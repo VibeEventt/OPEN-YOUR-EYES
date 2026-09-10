@@ -466,13 +466,12 @@
           </label>
 
           <input
-            id="dekont"
-            type="file"
-            name="dekont"
-            accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
-            required
-          >
-
+  id="dekont"
+  type="file"
+  name="dekont"
+  accept="application/pdf,image/*"
+  required
+>
           <div id="fileName">
             Dekont seçilmedi (PDF veya Görsel)
           </div>
@@ -580,65 +579,46 @@
 
       dekont.addEventListener("change", function () {
 
-        if (
-          this.files &&
-          this.files.length > 0
-        ) {
+  console.log("DOSYA DEĞİŞTİ");
 
-          const file =
-            this.files[0];
+  if (!this.files || this.files.length === 0) {
+    fileName.textContent =
+      "Dekont seçilmedi (PDF veya Görsel)";
 
+    fileName.classList.remove("file-selected");
 
-          if (
-            file.size >
-            10 * 1024 * 1024
-          ) {
+    return;
+  }
 
-            alert(
-              "Dekont dosyası 10 MB altında olmalıdır."
-            );
+  const file = this.files[0];
 
-            this.value = "";
+  console.log("SEÇİLEN DOSYA:", file.name);
+  console.log("DOSYA BOYUTU:", file.size);
 
-            fileName.textContent =
-              "Dekont seçilmedi (PDF veya Görsel)";
+  if (file.size > 10 * 1024 * 1024) {
 
-            fileName.classList.remove(
-              "file-selected"
-            );
+    alert("Dekont dosyası 10 MB altında olmalıdır.");
 
-            return;
-          }
+    this.value = "";
 
+    fileName.textContent =
+      "Dekont seçilmedi (PDF veya Görsel)";
 
-          fileName.textContent =
-            "✓ " +
-            file.name +
-            " (" +
-            (
-              file.size /
-              1024 /
-              1024
-            ).toFixed(2) +
-            " MB)";
+    fileName.classList.remove("file-selected");
 
+    return;
+  }
 
-          fileName.classList.add(
-            "file-selected"
-          );
+  fileName.textContent =
+    "✓ " +
+    file.name +
+    " (" +
+    (file.size / 1024 / 1024).toFixed(2) +
+    " MB)";
 
-        } else {
+  fileName.classList.add("file-selected");
 
-          fileName.textContent =
-            "Dekont seçilmedi (PDF veya Görsel)";
-
-          fileName.classList.remove(
-            "file-selected"
-          );
-
-        }
-
-      });
+});
 
 
       /* BAŞVURU ID */
