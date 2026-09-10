@@ -8,22 +8,21 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
-    /* ULTRA AURA & NEON ARKA PLAN (SİYAH TAMAMEN BİTTİ) */
+    /* AFİŞİN AURA VE NEON RENKLERİNE UYGUN ARKA PLAN */
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background: #3a0058;
+      background: #0d001a;
       background-image: 
-        radial-gradient(circle at 50% 10%, #ff6600 0%, transparent 55%),
-        radial-gradient(circle at 90% 35%, #ff0077 0%, transparent 50%),
-        radial-gradient(circle at 10% 65%, #9900ff 0%, transparent 50%),
-        radial-gradient(circle at 50% 88%, #ff00bb 0%, transparent 60%),
-        linear-gradient(180deg, #420066 0%, #680058 50%, #2f004f 100%);
+        radial-gradient(circle at 50% 0%, #ff0077 0%, transparent 50%),
+        radial-gradient(circle at 100% 20%, #ff6600 0%, transparent 45%),
+        radial-gradient(circle at 0% 50%, #8800ff 0%, transparent 50%),
+        radial-gradient(circle at 50% 100%, #ff00bb 0%, transparent 60%);
       background-attachment: fixed;
       color: #ffffff;
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 12px 10px 50px;
+      padding: 10px 10px 40px;
       overflow-x: hidden;
     }
 
@@ -33,118 +32,91 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 16px;
     }
 
-    /* VIBE LOGO BOX */
-    .logo-header-box {
-      text-align: center;
-      padding: 5px 0;
-    }
-
-    .logo-header-box img {
-      width: 85%;
-      max-width: 320px;
-      filter: drop-shadow(0 0 25px #ff00bb) drop-shadow(0 0 10px #ffaa00);
-      animation: floatLogo 4s ease-in-out infinite;
-    }
-
-    @keyframes floatLogo {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    /* AFİŞ KART KAPSAYICI */
+    /* AFİŞİN KENDİSİ (EN ÜSTE BİREBİR YERLEŞTİ) */
     .hero-poster-card {
-      position: relative;
-      border-radius: 28px;
+      width: 100%;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 0 35px #ff0077, 0 0 15px #ffaa00;
-      border: 2px solid rgba(255, 255, 255, 0.4);
-      background: rgba(255, 0, 128, 0.2);
+      box-shadow: 0 0 30px rgba(255, 0, 119, 0.6), 0 0 15px rgba(255, 102, 0, 0.4);
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
     }
 
     .hero-poster-card img {
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 26px;
-    }
-
-    /* LİKİT GÜMÜŞ / CHROME BAŞLIK EFEKTİ */
-    .chrome-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 30%, #8a8a8a 50%, #ffffff 70%, #4a4a4a 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.8));
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     /* DUYURU BANNER'I */
     .announcement-box {
-      background: linear-gradient(135deg, rgba(255, 0, 128, 0.6) 0%, rgba(150, 0, 255, 0.6) 100%);
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      border-radius: 22px;
-      padding: 18px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 0 30px rgba(255, 0, 150, 0.6);
+      background: rgba(255, 0, 128, 0.15);
+      border: 1.5px solid rgba(255, 0, 180, 0.4);
+      border-radius: 20px;
+      padding: 16px;
+      backdrop-filter: blur(15px);
       text-align: center;
+      box-shadow: 0 0 20px rgba(255, 0, 128, 0.2);
     }
 
     .announcement-box h3 {
       font-family: 'Syne', sans-serif;
-      color: #fff;
-      font-size: 17px;
+      color: #ffaa00;
+      font-size: 16px;
       font-weight: 900;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       margin-bottom: 6px;
-      text-shadow: 0 0 12px #ff00bb, 0 0 5px #ffaa00;
+      text-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
     }
 
     .announcement-box p {
-      font-size: 12.5px;
-      color: #ffffff;
+      font-size: 12px;
+      color: #e0e0e0;
       line-height: 1.5;
-      font-weight: 700;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      font-weight: 600;
     }
 
-    /* GLASSMOPHISM CANLI KARTLAR */
+    /* GLASSKARTLAR (ŞEFFAF NEON) */
     .card-hype {
-      background: rgba(120, 0, 180, 0.35);
-      border: 2px solid rgba(255, 180, 255, 0.4);
-      border-radius: 22px;
-      padding: 18px 16px;
-      box-shadow: 0 8px 32px rgba(255, 0, 128, 0.3);
-      backdrop-filter: blur(20px);
+      background: rgba(20, 5, 35, 0.65);
+      border: 1.5px solid rgba(255, 0, 150, 0.3);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(15px);
     }
 
     .step-header {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .step-circle {
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #ffaa00, #ff0077, #9900ff);
+      background: linear-gradient(135deg, #ff0077, #9900ff);
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      font-size: 13px;
-      box-shadow: 0 0 15px #ff00bb;
+      font-size: 12px;
+      box-shadow: 0 0 10px #ff0077;
+    }
+
+    .chrome-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(255,255,255,0.6);
     }
 
     .form-inputs {
@@ -155,214 +127,140 @@
 
     input[type="text"], input[type="email"], input[type="tel"] {
       width: 100%;
-      background: rgba(60, 0, 90, 0.65);
-      border: 1.5px solid rgba(255, 255, 255, 0.4);
-      border-radius: 14px;
-      padding: 14px;
+      background: rgba(10, 0, 20, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 13px;
       color: #ffffff;
-      font-size: 13.5px;
+      font-size: 13px;
       outline: none;
-      transition: all 0.25s ease;
-      font-weight: 700;
-    }
-
-    input::placeholder {
-      color: rgba(255, 255, 255, 0.75);
+      transition: all 0.25s;
     }
 
     input:focus {
       border-color: #ff00bb;
-      box-shadow: 0 0 20px #ff00bb;
-      background: rgba(90, 0, 140, 0.85);
+      box-shadow: 0 0 12px rgba(255, 0, 187, 0.5);
     }
 
-    /* NEON BİLET SEÇENEKLERİ */
+    /* BİLET SEÇENEKLERİ */
     .ticket-selector {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .ticket-radio-btn input {
       position: absolute;
       opacity: 0;
-      cursor: pointer;
     }
 
     .ticket-card-content {
-      border: 1.5px solid rgba(255, 255, 255, 0.35);
-      background: linear-gradient(90deg, rgba(140, 0, 200, 0.5) 0%, rgba(255, 0, 120, 0.4) 100%);
-      border-radius: 16px;
-      padding: 14px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(40, 10, 60, 0.5);
+      border-radius: 14px;
+      padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
-      transition: all 0.25s;
+      transition: all 0.2s;
     }
 
     .ticket-radio-btn input:checked + .ticket-card-content {
-      border-color: #ffffff;
-      background: linear-gradient(90deg, #ff0077 0%, #ff8800 100%);
-      box-shadow: 0 0 25px #ff0077;
-      transform: scale(1.02);
+      border-color: #ff0077;
+      background: linear-gradient(90deg, rgba(255, 0, 119, 0.4) 0%, rgba(153, 0, 255, 0.4) 100%);
+      box-shadow: 0 0 15px rgba(255, 0, 119, 0.4);
     }
 
-    .ticket-card-title {
-      font-size: 14px;
-      font-weight: 800;
-      color: #ffffff;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-    }
+    .ticket-card-title { font-size: 13px; font-weight: 700; }
+    .ticket-card-price { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; color: #ffaa00; }
 
-    .ticket-card-price {
-      font-family: 'Syne', sans-serif;
-      font-size: 17px;
-      font-weight: 900;
-      color: #fff;
-      text-shadow: 0 0 10px #ffffff;
-    }
-
-    /* IBAN KUTUSU (PARLAK GRADIENT AURA) */
+    /* IBAN KUTUSU */
     .gradient-iban-box {
-      background: linear-gradient(100deg, #ff0077 0%, #ff5500 50%, #aa00ff 100%);
-      border-radius: 16px;
-      padding: 16px 18px;
+      background: linear-gradient(135deg, #ff0077 0%, #ff5500 100%);
+      border-radius: 14px;
+      padding: 14px;
       color: white;
       font-weight: 800;
-      box-shadow: 0 0 30px rgba(255, 0, 119, 0.8);
+      box-shadow: 0 0 20px rgba(255, 0, 119, 0.5);
       text-align: center;
-      border: 1.5px solid rgba(255,255,255,0.4);
     }
 
-    .iban-num {
-      font-size: 15px;
-      letter-spacing: 0.5px;
-      word-break: break-all;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-
-    .iban-owner {
-      font-size: 13.5px;
-      margin-top: 4px;
-      opacity: 0.95;
-    }
+    .iban-num { font-size: 14px; letter-spacing: 0.5px; }
+    .iban-owner { font-size: 12px; opacity: 0.9; margin-top: 2px; }
 
     /* DEKONT YÜKLEME */
     .file-dropzone {
-      border: 2px dashed rgba(255, 255, 255, 0.7);
-      background: rgba(255, 0, 180, 0.25);
-      border-radius: 16px;
-      padding: 22px 15px;
+      border: 1.5px dashed rgba(255, 0, 150, 0.5);
+      background: rgba(255, 0, 150, 0.1);
+      border-radius: 14px;
+      padding: 18px 10px;
       text-align: center;
-      cursor: pointer;
       position: relative;
-      transition: all 0.25s;
     }
 
-    .file-dropzone input {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-    }
+    .file-dropzone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 
-    /* ULTRA GLOW NEON BUTTON */
+    /* NEON BUTON */
     .neon-submit-btn {
       width: 100%;
       background: linear-gradient(90deg, #ff0077 0%, #ff5500 50%, #9900ff 100%);
-      border: 2px solid rgba(255,255,255,0.6);
-      border-radius: 18px;
-      padding: 18px;
+      border: none;
+      border-radius: 16px;
+      padding: 16px;
       color: white;
       font-family: 'Syne', sans-serif;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 900;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
       cursor: pointer;
-      box-shadow: 0 0 35px #ff0077, 0 0 15px #ffaa00;
-      transition: all 0.25s;
-      margin-top: 5px;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      box-shadow: 0 0 25px rgba(255, 0, 119, 0.6);
     }
 
-    .neon-submit-btn:active {
-      transform: scale(0.97);
-    }
-
-    /* BİLGİLENDİRME & KURALLAR */
     .info-list, .rules-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      font-size: 12px;
-      color: #ffffff;
-      line-height: 1.45;
-      font-weight: 600;
-    }
-
-    .check-pink {
-      color: #ffaa00;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .rules-list li strong {
-      color: #ffaa00;
+      gap: 8px;
+      font-size: 11.5px;
+      color: #ccc;
     }
 
     .accept-checkbox {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      margin-top: 14px;
-      font-size: 12px;
-      color: #ffffff;
-      cursor: pointer;
-      line-height: 1.35;
-      font-weight: 700;
-    }
-
-    .accept-checkbox input {
-      accent-color: #ff00bb;
-      width: 18px;
-      height: 18px;
-      margin-top: 1px;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 11.5px;
+      color: #fff;
     }
 
     .footer-text {
       text-align: center;
-      font-size: 11.5px;
-      color: #ffffff;
-      letter-spacing: 1px;
-      margin-top: 15px;
-      font-weight: 800;
-      text-shadow: 0 0 8px #ff00bb;
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 10px;
     }
 
-    /* LOADING & SUCCESS */
     #loadingOverlay {
       position: fixed;
       inset: 0;
-      background: rgba(50, 0, 80, 0.92);
+      background: rgba(10, 0, 20, 0.9);
       display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      backdrop-filter: blur(15px);
-      padding: 20px;
     }
 
     .spinner {
-      width: 55px;
-      height: 55px;
-      border: 4px solid rgba(255, 255, 255, 0.2);
-      border-top-color: #ffaa00;
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255,255,255,0.2);
+      border-top-color: #ff0077;
       border-radius: 50%;
-      animation: spin 0.9s linear infinite;
-      margin-bottom: 20px;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 15px;
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -370,35 +268,11 @@
     #successCard {
       display: none;
       text-align: center;
-      padding: 40px 20px;
-      background: rgba(80, 0, 120, 0.9);
-      border: 2px solid #ff00bb;
-      border-radius: 26px;
-      box-shadow: 0 0 50px #ff00bb;
-    }
-
-    .welcome-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 28px;
-      font-weight: 900;
-      background: linear-gradient(90deg, #ff0077, #ff5500, #ffaa00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
-    }
-
-    .ticket-code-display {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 12px 24px;
-      background: rgba(255, 0, 150, 0.3);
-      border: 2px dashed #ffffff;
-      border-radius: 14px;
-      color: #ffffff;
-      font-weight: 900;
-      font-size: 18px;
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px #ff00bb;
+      padding: 30px 15px;
+      background: rgba(20, 5, 35, 0.95);
+      border: 1.5px solid #ff0077;
+      border-radius: 20px;
+      box-shadow: 0 0 30px #ff0077;
     }
   </style>
 </head>
@@ -406,14 +280,9 @@
 
   <div class="mobile-container">
     
-    <!-- LİKİT GÜMÜŞ LOGO ALANI -->
-    <div class="logo-header-box">
-      <img id="vibeLogoImg" alt="Vibe Event Logo">
-    </div>
-
-    <!-- ORİJİNAL AFİŞ KART -->
+    <!-- AFİŞİN KENDİSİ EN ÜSTE YERLEŞTİRİLDİ -->
     <div class="hero-poster-card">
-      <img id="mainPosterImg" alt="DJ TINA Open Your Eyes Poster">
+      <img src="https://i.postimg.cc/pT3gL5mJ/dj-tina-poster.jpg" alt="DJ TINA Open Your Eyes Poster">
     </div>
 
     <!-- DUYURU BANNER'I -->
@@ -424,7 +293,7 @@
 
     <!-- BİLET ALMA FORMU -->
     <main id="mainContent">
-      <form id="ticketForm" style="display: flex; flex-direction: column; gap: 16px;">
+      <form id="ticketForm" style="display: flex; flex-direction: column; gap: 14px;">
         
         <!-- ADIM 1 -->
         <div class="card-hype">
@@ -482,7 +351,7 @@
             <div class="iban-num">TR02 0001 2009 4570 0001 1277 39</div>
             <div class="iban-owner">Turgut Çağatay Ünal</div>
           </div>
-          <p style="font-size: 11.5px; color: #ffffff; text-align: center; margin-top: 8px; font-weight:700;">Ödemenizi yaptıktan sonra dekontunuzu aşağıya yükleyin.</p>
+          <p style="font-size: 11px; color: #aaa; text-align: center; margin-top: 6px;">Ödemenizi yaptıktan sonra dekontunuzu aşağıya yükleyin.</p>
         </div>
 
         <!-- ADIM 4 -->
@@ -493,31 +362,29 @@
           </div>
           <div class="file-dropzone">
             <input type="file" id="dekont" accept="application/pdf,image/*" required>
-            <div style="font-size:26px; margin-bottom:2px;">📥</div>
-            <div style="font-size:13.5px; font-weight:800; color:#fff;" id="fileStatus">Dekont seçmek için dokunun</div>
-            <div style="font-size:11px; color:#ffffff; margin-top:2px; font-weight:600;">PDF, JPG, PNG (Maks 10 MB)</div>
+            <div style="font-size:20px; margin-bottom:2px;">📥</div>
+            <div style="font-size:12px; font-weight:700; color:#fff;" id="fileStatus">Dekont seçmek için dokunun</div>
+            <div style="font-size:10px; color:#aaa; margin-top:2px;">PDF, JPG, PNG (Maks 10 MB)</div>
           </div>
         </div>
 
         <!-- BİLGİLENDİRME -->
         <div class="card-hype">
-          <div class="chrome-title" style="margin-bottom:10px;">📩 Biletin Nasıl Gelecek?</div>
+          <div class="chrome-title" style="margin-bottom:8px;">📩 Biletin Nasıl Gelecek?</div>
           <ul class="info-list">
-            <li><span class="check-pink">✓</span> Bilgilerini girip dekontunu yükle.</li>
-            <li><span class="check-pink">✓</span> Biletin e-posta adresine anında gönderilecek.</li>
-            <li><span class="check-pink">✓</span> Maildeki QR kod ile kapıdan giriş yapabilirsin.</li>
+            <li>✓ Bilgilerini girip dekontunu yükle.</li>
+            <li>✓ Biletin e-posta adresine anında gönderilecek.</li>
+            <li>✓ Maildeki QR kod ile kapıdan giriş yapabilirsin.</li>
           </ul>
         </div>
 
         <!-- KURALLAR -->
         <div class="card-hype">
-          <div class="chrome-title" style="margin-bottom:10px; color:#ffaa00;">⚠️ Etkinlik Kuralları</div>
+          <div class="chrome-title" style="margin-bottom:8px; color:#ffaa00;">⚠️ Etkinlik Kuralları</div>
           <ul class="rules-list">
-            <li><strong>Giriş:</strong> Kapı açılışında alanda olman önerilir. Kimlik kontrolü yapılabilir.</li>
-            <li><strong>Huzur & Güvenlik:</strong> Rahatsızlık veren veya taşkınlık çıkaran kişiler alandan çıkarılır ve bilet iadesi yapılmaz.</li>
-            <li><strong>Eşyalar:</strong> Kesici, yanıcı maddeler ve açık sigara paketi alana alınmaz.</li>
-            <li><strong>Alkol:</strong> Etkinlik tamamen alkolsüzdür. Dışarıdan alkol sokulması yasaktır.</li>
-            <li><strong>Yiyecek/İçecek:</strong> Mekanda stantlar mevcuttur, dışarıdan yiyecek alınmaz.</li>
+            <li><strong>Giriş:</strong> Kapı açılışında alanda olman önerilir.</li>
+            <li><strong>Huzur & Güvenlik:</strong> Taşkınlık çıkaran kişiler alandan çıkarılır.</li>
+            <li><strong>Alkol:</strong> Etkinlik tamamen alkolsüzdür.</li>
           </ul>
 
           <label class="accept-checkbox">
@@ -535,42 +402,30 @@
 
     <!-- BAŞARILI EKRANI -->
     <div id="successCard">
-      <div style="font-size: 50px; margin-bottom: 8px;">🎉</div>
-      <div class="welcome-title">ARAMIZA HOŞ GELDİN!</div>
-      <p style="color: #ffffff; font-size: 14px; line-height: 1.5; font-weight:600;">
+      <div style="font-size: 40px; margin-bottom: 8px;">🎉</div>
+      <h2 style="font-family: 'Syne', sans-serif; color: #ff0077; font-size: 22px; margin-bottom: 6px;">ARAMIZA HOŞ GELDİN!</h2>
+      <p style="color: #ccc; font-size: 13px; line-height: 1.4;">
         Biletiniz başarıyla oluşturuldu.<br>
         PDF biletiniz <strong>e-posta adresinize</strong> gönderilmiştir.
       </p>
-      <div id="ticketCodeDisplay" class="ticket-code-display"></div>
-      <p style="margin-top: 15px; font-size: 11.5px; color: #ffffff; font-weight:600;">Etkinlik girişinde PDF biletinizdeki QR kodu göstermeniz yeterlidir.</p>
+      <div id="ticketCodeDisplay" style="margin-top: 15px; padding: 10px; background: rgba(255,0,120,0.2); border: 1px dashed #ff0077; border-radius: 10px; color: #fff; font-weight: 800; font-size: 16px;"></div>
     </div>
 
-    <!-- FOOTER -->
     <footer class="footer-text">
-      <div>VİBE EVENT • DJ TINA • 22 EYLÜL 2026</div>
-      <div style="font-family: 'Syne', sans-serif; color: #ffaa00; font-size: 14px; margin-top: 4px; font-weight: 900;">SEE YOU ON THE DANCEFLOOR!</div>
+      VİBE EVENT • DJ TINA • 22 EYLÜL 2026
     </footer>
 
   </div>
 
-  <!-- LOADING OVERLAY -->
   <div id="loadingOverlay">
     <div class="spinner"></div>
-    <h3 style="font-family: 'Syne', sans-serif; font-size:18px; font-weight:900; margin-bottom:6px; color:#fff;">Biletiniz Hazırlanıyor...</h3>
-    <p style="font-size:12px; color:#ffffff; text-align:center; line-height:1.4;">Dekont işleniyor ve QR kodlu biletiniz e-postanıza gönderiliyor.<br>Lütfen sayfadan ayrılmayın.</p>
+    <h3 style="font-family: 'Syne', sans-serif; font-size:16px; color:#fff;">Biletiniz Hazırlanıyor...</h3>
   </div>
 
   <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzyR_LA9q-53B0uMph7GDl-Tdzh3FGXIvNP_ybwZIr-5Bvn59zyWQ4hxW9dQWxPRd81Hg/exec";
 
-    // GÖRSELLERİN DOĞRUDAN LİNKLERİ
-    const vibeLogoBase64 = "https://i.postimg.cc/mD8T1h61/vibe-logo.png";
-    const mainPosterBase64 = "https://i.postimg.cc/pT3gL5mJ/dj-tina-poster.jpg";
-
     document.addEventListener("DOMContentLoaded", function () {
-      document.getElementById("vibeLogoImg").src = vibeLogoBase64;
-      document.getElementById("mainPosterImg").src = mainPosterBase64;
-
       const form = document.getElementById("ticketForm");
       const dekontInput = document.getElementById("dekont");
       const fileStatus = document.getElementById("fileStatus");
@@ -582,14 +437,7 @@
 
       dekontInput.addEventListener("change", function () {
         if (this.files && this.files.length > 0) {
-          const file = this.files[0];
-          if (file.size > 10 * 1024 * 1024) {
-            alert("Dekont dosyası 10 MB altında olmalıdır.");
-            this.value = "";
-            fileStatus.textContent = "Dekont seçmek için dokunun";
-            return;
-          }
-          fileStatus.textContent = "✓ " + file.name;
+          fileStatus.textContent = "✓ " + this.files[0].name;
           fileStatus.style.color = "#ffaa00";
         }
       });
@@ -597,11 +445,7 @@
       function fileToBase64(file) {
         return new Promise((resolve, reject) => {
           const reader = new FileReader();
-          reader.onload = () => {
-            const result = reader.result;
-            const commaIndex = result.indexOf(",");
-            resolve(result.substring(commaIndex + 1));
-          };
+          reader.onload = () => resolve(reader.result.substring(reader.result.indexOf(",") + 1));
           reader.onerror = error => reject(error);
           reader.readAsDataURL(file);
         });
@@ -609,23 +453,8 @@
 
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
-
-        if (!dekontInput.files || dekontInput.files.length === 0) {
-          alert("Lütfen ödeme dekontunuzu yükleyin.");
-          return;
-        }
-
         const selectedTicket = document.querySelector('input[name="bilet"]:checked');
-        if (!selectedTicket) {
-          alert("Lütfen bilet seçin.");
-          return;
-        }
-
-        if (!document.getElementById("kabul").checked) {
-          alert("Lütfen etkinlik kurallarını kabul edin.");
-          return;
-        }
-
+        
         submitBtn.disabled = true;
         loadingOverlay.style.display = "flex";
 
@@ -653,20 +482,14 @@
             body: JSON.stringify(payload)
           });
 
-          let data = {};
-          try {
-            data = await response.json();
-          } catch(err) {
-            data = { success: true, ticketId: "VIBE-" + Math.floor(1000 + Math.random() * 9000) };
-          }
+          let data = await response.json();
 
           loadingOverlay.style.display = "none";
           mainContent.style.display = "none";
           successCard.style.display = "block";
-          ticketCodeDisplay.textContent = "BİLET KODUNUZ: " + (data.ticketId || "VIBE-OK");
+          ticketCodeDisplay.textContent = "BİLET KODU: " + (data.ticketId || "VIBE-OK");
 
         } catch (err) {
-          console.error(err);
           loadingOverlay.style.display = "none";
           submitBtn.disabled = false;
           alert("Bilet talebiniz alındı! E-postanızı kontrol ediniz.");
