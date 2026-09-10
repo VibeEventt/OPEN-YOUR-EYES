@@ -43,17 +43,16 @@
       display: flex;
       justify-content: center;
       min-height: 100vh;
-      padding: 10px 8px 20px 8px; /* Web sitesinin kenar boşlukları kırpıldı */
+      padding: 10px 8px 20px 8px;
     }
 
-    /* Sitenin Genişliği Sıkılaştırıldı - Her Şey Tam Hizada ve Büyük Görünüyor */
     .container {
       width: 100%;
-      max-width: 780px; /* Kenarlar kırpıldığı için içerik daha dolu durur */
+      max-width: 780px;
       margin: 0 auto;
     }
 
-    /* Afiş Alanı (Siyah Boşluksuz, Sıfıra Sıfır Hizada) */
+    /* Afiş Alanı */
     .hero-container {
       width: 100%;
       margin-bottom: 20px;
@@ -262,20 +261,20 @@
       color: var(--text-muted);
     }
 
-    /* File Upload */
+    /* File Upload Box */
     .file-upload-box {
-      border: 1px dashed var(--accent-purple);
+      border: 2px dashed var(--accent-purple);
       border-radius: var(--radius-md);
       padding: 18px;
       text-align: center;
-      background: rgba(6, 2, 14, 0.6);
+      background: rgba(6, 2, 14, 0.7);
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
     .file-upload-box:hover {
       border-color: var(--accent-pink);
-      background: rgba(236, 72, 153, 0.08);
+      background: rgba(236, 72, 153, 0.12);
     }
 
     .file-upload-box p {
@@ -283,7 +282,15 @@
       color: var(--text-muted);
     }
 
-    /* DEV HEYBETLİ BİLETİMİ AL BUTONU (DOSYA EKLEMENİN ALTINA TAM HİZALANDI) */
+    .file-name-display {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: #4ade80;
+      font-weight: 700;
+      word-break: break-all;
+    }
+
+    /* BİLETİMİ AL BUTONU */
     .submit-btn {
       width: 100%;
       padding: 20px 24px;
@@ -391,7 +398,7 @@
       cursor: pointer;
     }
 
-    /* FOOTER VE BÜYÜTÜLMÜŞ VIBE EVENT LOGOSU */
+    /* FOOTER */
     footer {
       margin-top: 25px;
       padding-top: 20px;
@@ -410,7 +417,6 @@
       }
     }
 
-    /* Belirginleştirilmiş ve Büyütülmüş Vibe Event Logosu */
     .footer-logo-badge {
       background: rgba(18, 9, 38, 0.95);
       border: 1.5px solid var(--accent-pink);
@@ -424,9 +430,8 @@
       justify-content: center;
     }
 
-    /* Logo Görsel Boyutu Artırıldı */
     .footer-logo-badge img {
-      height: 70px; /* Büyütüldü! */
+      height: 70px;
       width: auto;
       display: block;
       object-fit: contain;
@@ -450,7 +455,7 @@
 
   <div class="container">
 
-    <!-- Orijinal Boyutlarda Kusursuz Afiş Banner -->
+    <!-- Afiş Banner -->
     <div class="hero-container">
       <div class="poster-card">
         <img src="DJ TINA - 1.jpeg" alt="DJ TINA Open Your Eyes Poster">
@@ -533,20 +538,23 @@
             <div class="iban-note">Ödemenizi yaptıktan sonra dekontunuzu yükleyiniz.</div>
           </div>
 
-          <!-- ADIM 4: DEKONT YÜKLEME -->
+          <!-- ADIM 4: DEKONT YÜKLEME (PDF VE TÜM GÖRSELLER FULL AKTİF) -->
           <div class="section-card" style="margin-bottom: 12px;">
             <div class="step-header">
               <div class="step-number">4</div>
               <div class="step-title">DEKONT YÜKLEME</div>
             </div>
             <div class="file-upload-box" onclick="document.getElementById('fileInput').click()">
-              <p style="color: #fff; font-weight: 700; margin-bottom: 4px;">Dekontunuzu buraya sürükleyin veya seçin</p>
-              <p style="font-size: 0.72rem;">PDF, JPG, PNG • Maksimum 10 MB</p>
-              <input type="file" id="fileInput" style="display: none;" accept="image/*,.pdf" required>
+              <p style="color: #fff; font-weight: 700; margin-bottom: 4px;">📄 Dekontunuzu buraya yükleyin veya seçin</p>
+              <p style="font-size: 0.72rem;">PDF, JPG, JPEG, PNG • Maksimum 10 MB</p>
+              
+              <!-- PDF ve Görseller için tam uyumlu yükleme alanı -->
+              <input type="file" id="fileInput" style="display: none;" accept="application/pdf,image/png,image/jpeg,image/jpg" required onchange="showFileName(this)">
+              <div id="fileNameDisplay" class="file-name-display"></div>
             </div>
           </div>
 
-          <!-- HEYBETLİ BİLETİMİ AL BUTONU (DEKONT YÜKLEMENİN TAM ALTINA HİZALANDI) -->
+          <!-- BİLETİMİ AL BUTONU -->
           <button type="submit" class="submit-btn">
             🎟️ BİLETİMİ AL
           </button>
@@ -593,7 +601,7 @@
       </div>
     </form>
 
-    <!-- BÜYÜK VIBE EVENT LOGOLU FOOTER -->
+    <!-- FOOTER -->
     <footer>
       <div class="footer-logo-badge">
         <img src="Paragraf metniniz.png" alt="Vibe Event Logo">
@@ -606,6 +614,18 @@
     </footer>
 
   </div>
+
+  <script>
+    // Kullanıcı PDF veya Görsel seçtiğinde dosya ismini gösteren ek fonksiyon
+    function showFileName(input) {
+      const display = document.getElementById('fileNameDisplay');
+      if (input.files && input.files[0]) {
+        display.innerHTML = '✔ Seçilen Dosya: ' + input.files[0].name;
+      } else {
+        display.innerHTML = '';
+      }
+    }
+  </script>
 
 </body>
 </html>
