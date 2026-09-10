@@ -761,21 +761,36 @@
             };
 
 
-            fetch(WEB_APP_URL, {
+            const hiddenForm = document.createElement("form");
 
-              method: "POST",
+hiddenForm.method = "POST";
+hiddenForm.action = WEB_APP_URL;
+hiddenForm.target = "_blank";
+hiddenForm.style.display = "none";
 
-              headers: {
-                "Content-Type":
-                  "text/plain;charset=utf-8"
-              },
 
-              body:
-                JSON.stringify(formData)
+Object.keys(formData).forEach(function (key) {
 
-            })
+  const input =
+    document.createElement("input");
 
-              .then(function (response) {
+  input.type = "hidden";
+  input.name = key;
+  input.value =
+    formData[key] == null
+      ? ""
+      : String(formData[key]);
+
+  hiddenForm.appendChild(input);
+
+});
+
+
+document.body.appendChild(hiddenForm);
+
+hiddenForm.submit();
+
+document.body.removeChild(hiddenForm);              .then(function (response) {
 
                 return response.text();
 
