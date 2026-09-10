@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DJ TINA - OPEN YOUR EYES | Vibe Event</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
+
   <style>
     :root {
       --bg-color: #0c0418;
@@ -30,10 +32,9 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    /* Web Sitesi Arka Planı (Afiş Atmosferi) */
     body {
       background-color: var(--bg-color);
-      background-image: 
+      background-image:
         radial-gradient(circle at 50% 0%, rgba(217, 70, 239, 0.3), transparent 50%),
         radial-gradient(circle at 10% 40%, rgba(168, 85, 247, 0.22), transparent 45%),
         radial-gradient(circle at 90% 70%, rgba(236, 72, 153, 0.25), transparent 50%),
@@ -52,7 +53,6 @@
       margin: 0 auto;
     }
 
-    /* Afiş Alanı */
     .hero-container {
       width: 100%;
       margin-bottom: 20px;
@@ -64,7 +64,7 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
       border: 1px solid var(--border-glow);
-      box-shadow: 
+      box-shadow:
         0 15px 45px rgba(0, 0, 0, 0.9),
         0 0 30px rgba(217, 70, 239, 0.35);
       background: #000;
@@ -76,7 +76,6 @@
       display: block;
     }
 
-    /* Açıklama Kartı */
     .description-card {
       background: var(--card-bg);
       backdrop-filter: blur(14px);
@@ -102,7 +101,6 @@
       line-height: 1.55;
     }
 
-    /* Grid Yapısı */
     .main-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -115,7 +113,6 @@
       }
     }
 
-    /* Kartlar */
     .section-card {
       background: var(--card-bg);
       backdrop-filter: blur(14px);
@@ -144,6 +141,7 @@
       font-weight: 800;
       font-size: 0.8rem;
       box-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
+      flex-shrink: 0;
     }
 
     .step-title {
@@ -153,7 +151,6 @@
       text-transform: uppercase;
     }
 
-    /* Inputlar */
     .input-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -161,8 +158,13 @@
     }
 
     @media (min-width: 480px) {
-      .input-grid-3 { grid-template-columns: repeat(3, 1fr); }
-      .input-grid-2 { grid-template-columns: repeat(2, 1fr); }
+      .input-grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .input-grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     input[type="text"],
@@ -185,7 +187,10 @@
       background: rgba(12, 4, 24, 0.95);
     }
 
-    /* Bilet Kartları */
+    input::placeholder {
+      color: #8f8f98;
+    }
+
     .ticket-options {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
@@ -208,7 +213,9 @@
       background: rgba(236, 72, 153, 0.1);
     }
 
-    .ticket-card-option input { display: none; }
+    .ticket-card-option input {
+      display: none;
+    }
 
     .ticket-card-option input:checked + .opt-box .opt-title {
       color: var(--accent-pink);
@@ -216,6 +223,15 @@
 
     .ticket-card-option input:checked ~ .opt-price {
       color: #4ade80;
+    }
+
+    .ticket-card-option input:checked ~ .opt-box::after {
+      content: "✓";
+      display: block;
+      color: #4ade80;
+      font-size: 0.72rem;
+      font-weight: 900;
+      margin-top: 4px;
     }
 
     .opt-title {
@@ -232,7 +248,6 @@
       color: #a7f3d0;
     }
 
-    /* IBAN */
     .iban-card {
       background: linear-gradient(135deg, #e11d48, #9333ea);
       border-radius: var(--radius-md);
@@ -248,6 +263,7 @@
       font-weight: 800;
       letter-spacing: 0.04em;
       margin-bottom: 4px;
+      word-break: break-word;
     }
 
     .iban-card .iban-holder {
@@ -261,7 +277,6 @@
       color: var(--text-muted);
     }
 
-    /* File Upload Box */
     .file-upload-box {
       border: 2px dashed var(--accent-purple);
       border-radius: var(--radius-md);
@@ -290,7 +305,6 @@
       word-break: break-all;
     }
 
-    /* BİLETİMİ AL BUTONU */
     .submit-btn {
       width: 100%;
       padding: 20px 24px;
@@ -303,7 +317,7 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 
+      box-shadow:
         0 10px 35px rgba(217, 70, 239, 0.65),
         0 0 25px rgba(244, 114, 182, 0.5),
         inset 0 2px 4px rgba(255, 255, 255, 0.5);
@@ -319,7 +333,7 @@
 
     .submit-btn:hover {
       transform: translateY(-3px) scale(1.015);
-      box-shadow: 
+      box-shadow:
         0 15px 45px rgba(217, 70, 239, 0.85),
         0 0 35px rgba(244, 114, 182, 0.7);
       background: linear-gradient(135deg, #fb7185 0%, #e879f9 50%, #c084fc 100%);
@@ -329,7 +343,12 @@
       transform: translateY(-1px) scale(0.99);
     }
 
-    /* Sağ Kolon */
+    .submit-btn:disabled {
+      cursor: wait;
+      transform: none;
+      opacity: 0.75;
+    }
+
     .info-card {
       background: var(--card-bg);
       backdrop-filter: blur(14px);
@@ -398,7 +417,6 @@
       cursor: pointer;
     }
 
-    /* FOOTER */
     footer {
       margin-top: 25px;
       padding-top: 20px;
@@ -422,8 +440,8 @@
       border: 1.5px solid var(--accent-pink);
       padding: 12px 22px;
       border-radius: 16px;
-      box-shadow: 
-        0 8px 25px rgba(0, 0, 0, 0.7), 
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.7),
         0 0 20px rgba(236, 72, 153, 0.45);
       display: flex;
       align-items: center;
@@ -449,182 +467,1327 @@
         text-align: right;
       }
     }
+
+    /* =========================================================
+       YÜKLENİYOR
+       ========================================================= */
+
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: rgba(12, 4, 24, 0.94);
+      backdrop-filter: blur(12px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .loading-box {
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      background: rgba(20, 9, 38, 0.98);
+      border: 1px solid rgba(236, 72, 153, 0.5);
+      border-radius: 20px;
+      padding: 32px 24px;
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.8),
+        0 0 35px rgba(217, 70, 239, 0.3);
+    }
+
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(255,255,255,0.15);
+      border-top-color: var(--accent-pink);
+      border-right-color: var(--accent-purple);
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-title {
+      font-size: 1rem;
+      font-weight: 900;
+      margin-bottom: 7px;
+    }
+
+    .loading-text {
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      line-height: 1.5;
+    }
+
+    /* =========================================================
+       BAŞARILI GÖNDERİ DURUMU
+       ========================================================= */
+
+    .success-screen {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99998;
+      background: rgba(12, 4, 24, 0.97);
+      backdrop-filter: blur(14px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .success-card {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(20, 9, 38, 0.98);
+      border: 1px solid rgba(236, 72, 153, 0.55);
+      border-radius: 22px;
+      padding: 34px 24px;
+      text-align: center;
+      box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.85),
+        0 0 45px rgba(217, 70, 239, 0.35);
+    }
+
+    .success-icon {
+      font-size: 3.8rem;
+      margin-bottom: 10px;
+    }
+
+    .success-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .success-text {
+      color: #cbd5e1;
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
+    .ticket-code {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(236, 72, 153, 0.45);
+      background: rgba(6, 2, 14, 0.8);
+      color: #f472b6;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      word-break: break-all;
+    }
+
+    .success-small {
+      margin-top: 18px;
+      color: #a1a1aa;
+      font-size: 0.72rem;
+      line-height: 1.5;
+    }
   </style>
 </head>
+
 <body>
 
   <div class="container">
 
-    <!-- Afiş Banner -->
+    <!-- =====================================================
+         AFİŞ
+         ===================================================== -->
+
     <div class="hero-container">
       <div class="poster-card">
-        <img src="DJ TINA - 1.jpeg" alt="DJ TINA Open Your Eyes Poster">
+        <img
+          src="DJ TINA - 1.jpeg"
+          alt="DJ TINA Open Your Eyes Poster"
+        >
       </div>
     </div>
 
-    <!-- Etkinlik Açıklama Kartı -->
+
+    <!-- =====================================================
+         AÇIKLAMA
+         ===================================================== -->
+
     <div class="description-card">
-      <div class="description-title">HAZIR OL, GÖZLERİN AÇILSIN!</div>
-      <div class="description-text">
-        Elektronik müziğin enerjisi, DJ TINA'nın eşsiz performansıyla 22 Eylül 2026'da Kırıkkale'deki Terapi Cafe'de buluşuyor. Open Your Eyes etkinlik serisi, müzik, dans ve unutulmaz bir gece için seni bekliyor. Bu özel deneyimin bir parçası olmak için biletini şimdi al!
+
+      <div class="description-title">
+        HAZIR OL, GÖZLERİN AÇILSIN!
       </div>
+
+      <div class="description-text">
+        Elektronik müziğin enerjisi, DJ TINA'nın eşsiz performansıyla
+        22 Eylül 2026'da Kırıkkale'deki Terapi Cafe'de buluşuyor.
+        Open Your Eyes etkinlik serisi, müzik, dans ve unutulmaz bir
+        gece için seni bekliyor. Bu özel deneyimin bir parçası olmak
+        için biletini şimdi al!
+      </div>
+
     </div>
+
+
+    <!-- =====================================================
+         ANA FORM
+         ===================================================== -->
 
     <form id="mainTicketForm">
+
       <div class="main-grid">
-        
-        <!-- SOL KOLON: ADIMLAR & BİLET AL BUTONU -->
+
+        <!-- =================================================
+             SOL KOLON
+             ================================================= -->
+
         <div class="form-column">
-          
+
+
           <!-- ADIM 1 -->
+
           <div class="section-card">
+
             <div class="step-header">
+
               <div class="step-number">1</div>
-              <div class="step-title">KİŞİSEL BİLGİLER</div>
+
+              <div class="step-title">
+                KİŞİSEL BİLGİLER
+              </div>
+
             </div>
+
+
             <div class="input-grid input-grid-3">
-              <input type="text" placeholder="Ad Soyad *" required>
-              <input type="text" placeholder="Ad Soyad 2">
-              <input type="text" placeholder="Ad Soyad 3">
+
+              <input
+                type="text"
+                id="adSoyad"
+                placeholder="Ad Soyad *"
+                autocomplete="name"
+                required
+              >
+
+              <input
+                type="text"
+                id="adSoyad2"
+                placeholder="Ad Soyad 2"
+                autocomplete="off"
+              >
+
+              <input
+                type="text"
+                id="adSoyad3"
+                placeholder="Ad Soyad 3"
+                autocomplete="off"
+              >
+
             </div>
-            <div class="input-grid input-grid-2" style="margin-top: 10px;">
-              <input type="email" placeholder="E-posta Adresi *" required>
-              <input type="tel" placeholder="Telefon Numarası *" required>
+
+
+            <div
+              class="input-grid input-grid-2"
+              style="margin-top: 10px;"
+            >
+
+              <input
+                type="email"
+                id="email"
+                placeholder="E-posta Adresi *"
+                autocomplete="email"
+                required
+              >
+
+              <input
+                type="tel"
+                id="telefon"
+                placeholder="Telefon Numarası *"
+                autocomplete="tel"
+                required
+              >
+
             </div>
+
           </div>
+
 
           <!-- ADIM 2 -->
+
           <div class="section-card">
+
             <div class="step-header">
+
               <div class="step-number">2</div>
-              <div class="step-title">BİLET SEÇİMİ</div>
+
+              <div class="step-title">
+                BİLET SEÇİMİ
+              </div>
+
             </div>
-            <p style="font-size: 0.76rem; color: var(--text-muted); margin-bottom: 8px;">Bilet Sayısı *</p>
+
+
+            <p
+              style="
+                font-size: 0.76rem;
+                color: var(--text-muted);
+                margin-bottom: 8px;
+              "
+            >
+              Bilet Sayısı *
+            </p>
+
+
             <div class="ticket-options">
+
+
               <label class="ticket-card-option">
-                <input type="radio" name="ticket_count" value="1" checked>
+
+                <input
+                  type="radio"
+                  name="ticket_count"
+                  value="1"
+                  checked
+                >
+
                 <div class="opt-box">
-                  <span class="opt-title">1. Tek Tabanca</span>
+
+                  <span class="opt-title">
+                    1. Tek Tabanca
+                  </span>
+
                 </div>
-                <span class="opt-price">380₺</span>
+
+                <span class="opt-price">
+                  380₺
+                </span>
+
               </label>
+
+
               <label class="ticket-card-option">
-                <input type="radio" name="ticket_count" value="2">
+
+                <input
+                  type="radio"
+                  name="ticket_count"
+                  value="2"
+                >
+
                 <div class="opt-box">
-                  <span class="opt-title">2. Ayrılmaz İkili</span>
+
+                  <span class="opt-title">
+                    2. Ayrılmaz İkili
+                  </span>
+
                 </div>
-                <span class="opt-price">700₺</span>
+
+                <span class="opt-price">
+                  700₺
+                </span>
+
               </label>
+
+
               <label class="ticket-card-option">
-                <input type="radio" name="ticket_count" value="3">
+
+                <input
+                  type="radio"
+                  name="ticket_count"
+                  value="3"
+                >
+
                 <div class="opt-box">
-                  <span class="opt-title">3. Üçlü Kampanya</span>
+
+                  <span class="opt-title">
+                    3. Üçlü Kampanya
+                  </span>
+
                 </div>
-                <span class="opt-price">1000₺</span>
+
+                <span class="opt-price">
+                  1000₺
+                </span>
+
               </label>
+
+
             </div>
+
           </div>
+
 
           <!-- ADIM 3 -->
+
           <div class="section-card">
+
             <div class="step-header">
+
               <div class="step-number">3</div>
-              <div class="step-title">ÖDEME BİLGİLERİ</div>
+
+              <div class="step-title">
+                ÖDEME BİLGİLERİ
+              </div>
+
             </div>
+
+
             <div class="iban-card">
-              <div class="iban-no">IBAN: TR02 0001 2009 4570 0001 1277 39</div>
-              <div class="iban-holder">Hesap Sahibi: Turgut Çağatay Ünal</div>
+
+              <div class="iban-no">
+                IBAN: TR02 0001 2009 4570 0001 1277 39
+              </div>
+
+              <div class="iban-holder">
+                Hesap Sahibi: Turgut Çağatay Ünal
+              </div>
+
             </div>
-            <div class="iban-note">Ödemenizi yaptıktan sonra dekontunuzu yükleyiniz.</div>
+
+
+            <div class="iban-note">
+              Ödemenizi yaptıktan sonra dekontunuzu yükleyiniz.
+            </div>
+
           </div>
 
-          <!-- ADIM 4: DEKONT YÜKLEME (PDF VE TÜM GÖRSELLER FULL AKTİF) -->
-          <div class="section-card" style="margin-bottom: 12px;">
+
+          <!-- ADIM 4 -->
+
+          <div
+            class="section-card"
+            style="margin-bottom: 12px;"
+          >
+
             <div class="step-header">
+
               <div class="step-number">4</div>
-              <div class="step-title">DEKONT YÜKLEME</div>
+
+              <div class="step-title">
+                DEKONT YÜKLEME
+              </div>
+
             </div>
-            <div class="file-upload-box" onclick="document.getElementById('fileInput').click()">
-              <p style="color: #fff; font-weight: 700; margin-bottom: 4px;">📄 Dekontunuzu buraya yükleyin veya seçin</p>
-              <p style="font-size: 0.72rem;">PDF, JPG, JPEG, PNG • Maksimum 10 MB</p>
-              
-              <!-- PDF ve Görseller için tam uyumlu yükleme alanı -->
-              <input type="file" id="fileInput" style="display: none;" accept="application/pdf,image/png,image/jpeg,image/jpg" required onchange="showFileName(this)">
-              <div id="fileNameDisplay" class="file-name-display"></div>
+
+
+            <div
+              class="file-upload-box"
+              onclick="document.getElementById('fileInput').click()"
+            >
+
+              <p
+                style="
+                  color: #fff;
+                  font-weight: 700;
+                  margin-bottom: 4px;
+                "
+              >
+                📄 Dekontunuzu buraya yükleyin veya seçin
+              </p>
+
+              <p style="font-size: 0.72rem;">
+                PDF, JPG, JPEG, PNG • Maksimum 10 MB
+              </p>
+
+
+              <input
+                type="file"
+                id="fileInput"
+                style="display: none;"
+                accept="application/pdf,image/png,image/jpeg,image/jpg"
+                required
+              >
+
+
+              <div
+                id="fileNameDisplay"
+                class="file-name-display"
+              ></div>
+
             </div>
+
           </div>
 
-          <!-- BİLETİMİ AL BUTONU -->
-          <button type="submit" class="submit-btn">
+
+          <!-- BUTON -->
+
+          <button
+            type="submit"
+            id="submitBtn"
+            class="submit-btn"
+          >
             🎟️ BİLETİMİ AL
           </button>
 
+
         </div>
 
-        <!-- SAĞ KOLON: SİDEBAR & KURALLAR -->
+
+        <!-- =================================================
+             SAĞ KOLON
+             ================================================= -->
+
         <div class="sidebar-column">
-          
+
+
+          <!-- BİLET NASIL GELECEK -->
+
           <div class="info-card">
-            <h4>🎟️ BİLETİN NASIL GELECEK?</h4>
+
+            <h4>
+              🎟️ BİLETİN NASIL GELECEK?
+            </h4>
+
             <ul class="info-list">
-              <li>Bilgilerini doldurup ödeme yaptıktan sonra dekontunu yükle.</li>
-              <li>Onaylandığında biletin otomatik olarak e-posta adresine gönderilecek.</li>
-              <li>Biletinde yer alan QR kod ile etkinlik alanına giriş yapabilirsin.</li>
-              <li>Biletini mailinde bulamazsan lütfen spam klasörünü kontrol et.</li>
+
+              <li>
+                Bilgilerini doldurup ödeme yaptıktan sonra
+                dekontunu yükle.
+              </li>
+
+              <li>
+                Onaylandığında biletin otomatik olarak
+                e-posta adresine gönderilecek.
+              </li>
+
+              <li>
+                Biletinde yer alan QR kod ile etkinlik alanına
+                giriş yapabilirsin.
+              </li>
+
+              <li>
+                Biletini mailinde bulamazsan lütfen spam
+                klasörünü kontrol et.
+              </li>
+
             </ul>
+
           </div>
 
-          <div class="info-card" style="text-align: center;">
-            <h4>📸 Bizi takip et!</h4>
-            <p style="color: var(--accent-pink); font-weight: 700; font-size: 0.88rem; margin-top: 4px;">@vibe.eventt</p>
-            <p style="color: var(--accent-pink); font-weight: 700; font-size: 0.88rem; margin-top: 2px;">@tugceshtx</p>
+
+          <!-- SOSYAL -->
+
+          <div
+            class="info-card"
+            style="text-align: center;"
+          >
+
+            <h4>
+              📸 Bizi takip et!
+            </h4>
+
+            <p
+              style="
+                color: var(--accent-pink);
+                font-weight: 700;
+                font-size: 0.88rem;
+                margin-top: 4px;
+              "
+            >
+              @vibe.eventt
+            </p>
+
+            <p
+              style="
+                color: var(--accent-pink);
+                font-weight: 700;
+                font-size: 0.88rem;
+                margin-top: 2px;
+              "
+            >
+              @tugceshtx
+            </p>
+
           </div>
+
+
+          <!-- KURALLAR -->
 
           <div class="info-card">
-            <h4 style="color: #f43f5e;">⚠️ ETKİNLİK KURALLARI</h4>
+
+            <h4 style="color: #f43f5e;">
+              ⚠️ ETKİNLİK KURALLARI
+            </h4>
+
+
             <ul class="info-list rules-list">
-              <li><strong>Giriş ve Kontrol:</strong> Yoğunluk yaşanamak ve program başlangıcını kaçırmamak adına kapı açılış saatinde alanda bulunmanız önerilir. Girişte kimlik veya öğrenci kimliği kontrolü yapılabilir, lütfen kimliğinizi yanınızda bulundurmayı unutma.</li>
-              <li><strong>Aman Ali Rıza Bey Ağzımızın Tadı Kaçmasın:</strong> Etkinlik süresince diğer katılımcıların güvenliğini veya huzurunu tehdit eden, taşkınlık, fiziksel/sözlü taciz veya alana zarar verici eylemlerde bulunan kişiler, organizasyon ve güvenlik inisiyatifiyle derhal etkinlik alanından uzaklaştırılır. Bu gerekçeyle alandan çıkarılan kişilerin biletleri iptal edilir ve hiçbir koşulda bilet bedeli iadesi yapılmaz.</li>
-              <li><strong>Kişisel Eşyalar:</strong> Etkinlik alanındaki eşyaların sorumluluğu sana aittir. Güvenlik gerekçesiyle alana kesici, yanıcı, sivri nesneler ve açık paket sigara alınmayacaktır.</li>
-              <li><strong>Alkol Detoksu:</strong> Etkinliğimiz tamamen alkolsüz bir organizasyondur. Alanda alkol satışı bulunmamakta olup dışarıdan her türlü alkollü içeceğin alana sokulması kesinlikle yasaktır.</li>
-              <li><strong>Yiyecek & İçecek:</strong> Mekan kuralına göre; alanda yeme-içme stantları yer almaktadır. Dışarıdan yeme içme alınmamaktadır.</li>
+
+              <li>
+                <strong>Giriş ve Kontrol:</strong>
+                Yoğunluk yaşanamak ve program başlangıcını
+                kaçırmamak adına kapı açılış saatinde alanda
+                bulunmanız önerilir. Girişte kimlik veya öğrenci
+                kimliği kontrolü yapılabilir, lütfen kimliğinizi
+                yanınızda bulundurmayı unutma.
+              </li>
+
+
+              <li>
+                <strong>Aman Ali Rıza Bey Ağzımızın Tadı Kaçmasın:</strong>
+                Etkinlik süresince diğer katılımcıların güvenliğini
+                veya huzurunu tehdit eden, taşkınlık, fiziksel/sözlü
+                taciz veya alana zarar verici eylemlerde bulunan
+                kişiler, organizasyon ve güvenlik inisiyatifiyle
+                derhal etkinlik alanından uzaklaştırılır. Bu
+                gerekçeyle alandan çıkarılan kişilerin biletleri
+                iptal edilir ve hiçbir koşulda bilet bedeli iadesi
+                yapılmaz.
+              </li>
+
+
+              <li>
+                <strong>Kişisel Eşyalar:</strong>
+                Etkinlik alanındaki eşyaların sorumluluğu sana aittir.
+                Güvenlik gerekçesiyle alana kesici, yanıcı, sivri
+                nesneler ve açık paket sigara alınmayacaktır.
+              </li>
+
+
+              <li>
+                <strong>Alkol Detoksu:</strong>
+                Etkinliğimiz tamamen alkolsüz bir organizasyondur.
+                Alanda alkol satışı bulunmamakta olup dışarıdan her
+                türlü alkollü içeceğin alana sokulması kesinlikle
+                yasaktır.
+              </li>
+
+
+              <li>
+                <strong>Yiyecek & İçecek:</strong>
+                Mekan kuralına göre; alanda yeme-içme stantları
+                yer almaktadır. Dışarıdan yeme içme alınmamaktadır.
+              </li>
+
             </ul>
+
 
             <div class="checkbox-group">
-              <input type="checkbox" id="rulesCheck" required>
-              <label for="rulesCheck">Etkinlik kurallarını okudum ve kabul ediyorum. *</label>
+
+              <input
+                type="checkbox"
+                id="rulesCheck"
+                required
+              >
+
+              <label for="rulesCheck">
+                Etkinlik kurallarını okudum ve kabul ediyorum. *
+              </label>
+
             </div>
+
           </div>
+
 
         </div>
 
       </div>
+
     </form>
 
-    <!-- FOOTER -->
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
     <footer>
+
       <div class="footer-logo-badge">
-        <img src="Paragraf metniniz.png" alt="Vibe Event Logo">
+
+        <img
+          src="Paragraf metniniz.png"
+          alt="Vibe Event Logo"
+        >
+
       </div>
+
+
       <div class="footer-text">
-        DJ TINA &nbsp;/&nbsp; OPEN YOUR EYES &nbsp;/&nbsp; 22 EYLÜL 2026 &nbsp;/&nbsp; KIRIKKALE
+
+        DJ TINA &nbsp;/&nbsp;
+        OPEN YOUR EYES &nbsp;/&nbsp;
+        22 EYLÜL 2026 &nbsp;/&nbsp;
+        KIRIKKALE
+
         <br>
-        <span style="color: var(--accent-pink); font-style: italic; font-weight: 600;">See you on the dancefloor!</span>
+
+        <span
+          style="
+            color: var(--accent-pink);
+            font-style: italic;
+            font-weight: 600;
+          "
+        >
+          See you on the dancefloor!
+        </span>
+
       </div>
+
     </footer>
 
   </div>
 
+
+  <!-- =======================================================
+       YÜKLENİYOR EKRANI
+       ======================================================= -->
+
+  <div
+    id="loading"
+    class="loading-overlay"
+  >
+
+    <div class="loading-box">
+
+      <div class="loading-spinner"></div>
+
+      <div class="loading-title">
+        BİLETİNİZ HAZIRLANIYOR
+      </div>
+
+      <div class="loading-text">
+        Dekontunuz yükleniyor ve biletiniz oluşturuluyor.<br>
+        Lütfen bu sayfayı kapatmayın.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =======================================================
+       BAŞARI EKRANI
+       ======================================================= -->
+
+  <div
+    id="success"
+    class="success-screen"
+  >
+
+    <div class="success-card">
+
+      <div class="success-icon">
+        🎉
+      </div>
+
+      <div class="success-title">
+        Biletiniz Hazır!
+      </div>
+
+      <div class="success-text">
+
+        Biletiniz başarıyla oluşturuldu.
+
+        <br>
+
+        PDF biletiniz e-posta adresinize gönderildi.
+
+      </div>
+
+      <div
+        id="ticketCode"
+        class="ticket-code"
+      ></div>
+
+      <div class="success-small">
+
+        📩 Mail gelmezse Spam / Gereksiz klasörünü kontrol edin.
+
+        <br>
+
+        🎟️ QR kodunuzu etkinlik girişinde göstermeniz yeterlidir.
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =======================================================
+       OTOMASYON JAVASCRIPT
+       ======================================================= -->
+
   <script>
-    // Kullanıcı PDF veya Görsel seçtiğinde dosya ismini gösteren ek fonksiyon
-    function showFileName(input) {
-      const display = document.getElementById('fileNameDisplay');
-      if (input.files && input.files[0]) {
-        display.innerHTML = '✔ Seçilen Dosya: ' + input.files[0].name;
-      } else {
-        display.innerHTML = '';
+
+    const WEB_APP_URL =
+      "https://script.google.com/macros/s/AKfycbzyR_LA9q-53B0uMph7GDl-Tdzh3FGXIvNP_ybwZIr-5Bvn59zyWQ4hxW9dQWxPRd81Hg/exec";
+
+    const MAX_FILE_SIZE =
+      10 * 1024 * 1024;
+
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+        const form =
+          document.getElementById("mainTicketForm");
+
+        const fileInput =
+          document.getElementById("fileInput");
+
+        const fileNameDisplay =
+          document.getElementById("fileNameDisplay");
+
+        const rulesCheck =
+          document.getElementById("rulesCheck");
+
+        const submitBtn =
+          document.getElementById("submitBtn");
+
+        const loading =
+          document.getElementById("loading");
+
+
+        if (
+          !form ||
+          !fileInput ||
+          !rulesCheck ||
+          !submitBtn
+        ) {
+
+          console.error(
+            "Form elemanları bulunamadı."
+          );
+
+          return;
+        }
+
+
+        /* ===================================================
+           DOSYA ADINI GÖSTER
+           =================================================== */
+
+        function displaySelectedFile(file) {
+
+          if (!file) {
+
+            fileNameDisplay.innerHTML = "";
+
+            return;
+          }
+
+
+          if (file.size > MAX_FILE_SIZE) {
+
+            alert(
+              "Dekont dosyası maksimum 10 MB olabilir."
+            );
+
+            fileInput.value = "";
+
+            fileNameDisplay.innerHTML = "";
+
+            return;
+          }
+
+
+          const sizeMB =
+            (file.size / (1024 * 1024)).toFixed(2);
+
+
+          fileNameDisplay.innerHTML =
+            "✔ Seçilen Dosya: " +
+            file.name +
+            " (" +
+            sizeMB +
+            " MB)";
+        }
+
+
+        fileInput.addEventListener(
+          "change",
+          function () {
+
+            const file =
+              fileInput.files &&
+              fileInput.files[0];
+
+            displaySelectedFile(file);
+          }
+        );
+
+
+        /* ===================================================
+           BENZERSİZ BAŞVURU ID
+           =================================================== */
+
+        function createSubmissionId() {
+
+          if (
+            window.crypto &&
+            typeof window.crypto.randomUUID ===
+            "function"
+          ) {
+
+            return window.crypto.randomUUID();
+          }
+
+
+          return (
+            Date.now().toString(36) +
+            "-" +
+            Math.random()
+              .toString(36)
+              .substring(2, 15)
+          );
+        }
+
+
+        /* ===================================================
+           DOSYAYI BASE64 YAP
+           =================================================== */
+
+        function fileToBase64(file) {
+
+          return new Promise(
+            function (resolve, reject) {
+
+              const reader =
+                new FileReader();
+
+
+              reader.onload =
+                function () {
+
+                  try {
+
+                    const result =
+                      reader.result;
+
+                    const commaIndex =
+                      result.indexOf(",");
+
+
+                    if (commaIndex === -1) {
+
+                      reject(
+                        new Error(
+                          "Dosya Base64 formatına çevrilemedi."
+                        )
+                      );
+
+                      return;
+                    }
+
+
+                    const base64 =
+                      result.substring(
+                        commaIndex + 1
+                      );
+
+
+                    resolve(base64);
+
+                  } catch (error) {
+
+                    reject(error);
+                  }
+                };
+
+
+              reader.onerror =
+                function () {
+
+                  reject(
+                    new Error(
+                      "Dosya okunamadı."
+                    )
+                  );
+                };
+
+
+              reader.readAsDataURL(file);
+            }
+          );
+        }
+
+
+        /* ===================================================
+           SEÇİLEN BİLETİ ESKİ BACKEND FORMATINA ÇEVİR
+           =================================================== */
+
+        function getTicketValue() {
+
+          const selected =
+            document.querySelector(
+              'input[name="ticket_count"]:checked'
+            );
+
+
+          if (!selected) {
+            return null;
+          }
+
+
+          const ticketMap = {
+
+            "1":
+              "1. Tek Tabanca 380₺",
+
+            "2":
+              "2. Ayrılmaz İkili 700₺",
+
+            "3":
+              "3. Üçlü Kampanya 1000₺"
+          };
+
+
+          return (
+            ticketMap[selected.value] ||
+            null
+          );
+        }
+
+
+        /* ===================================================
+           FORM GÖNDER
+           =================================================== */
+
+        form.addEventListener(
+          "submit",
+          async function (event) {
+
+            event.preventDefault();
+
+
+            /* Çift tıklamayı engelle */
+
+            if (submitBtn.disabled) {
+              return;
+            }
+
+
+            /* HTML required kontrolleri */
+
+            if (!form.checkValidity()) {
+
+              form.reportValidity();
+
+              return;
+            }
+
+
+            /* =================================================
+               KİŞİSEL BİLGİLER
+               ================================================= */
+
+            const adSoyad =
+              document
+                .getElementById("adSoyad")
+                .value
+                .trim();
+
+
+            const adSoyad2 =
+              document
+                .getElementById("adSoyad2")
+                .value
+                .trim();
+
+
+            const adSoyad3 =
+              document
+                .getElementById("adSoyad3")
+                .value
+                .trim();
+
+
+            const email =
+              document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+            const telefon =
+              document
+                .getElementById("telefon")
+                .value
+                .trim();
+
+
+            /* =================================================
+               BİLET
+               ================================================= */
+
+            const bilet =
+              getTicketValue();
+
+
+            if (!bilet) {
+
+              alert(
+                "Lütfen bir bilet seçiniz."
+              );
+
+              return;
+            }
+
+
+            /* =================================================
+               KURALLAR
+               ================================================= */
+
+            if (!rulesCheck.checked) {
+
+              alert(
+                "Devam etmek için etkinlik kurallarını kabul etmelisiniz."
+              );
+
+              return;
+            }
+
+
+            /* =================================================
+               DEKONT
+               ================================================= */
+
+            const file =
+              fileInput.files &&
+              fileInput.files[0];
+
+
+            if (!file) {
+
+              alert(
+                "Lütfen ödeme dekontunuzu yükleyiniz."
+              );
+
+              return;
+            }
+
+
+            if (file.size > MAX_FILE_SIZE) {
+
+              alert(
+                "Dekont dosyası maksimum 10 MB olabilir."
+              );
+
+              return;
+            }
+
+
+            /* =================================================
+               YÜKLENİYOR
+               ================================================= */
+
+            submitBtn.disabled = true;
+
+            submitBtn.innerHTML =
+              "⏳ BİLETİNİZ HAZIRLANIYOR...";
+
+
+            loading.style.display =
+              "flex";
+
+
+            try {
+
+              /* ===============================================
+                 BASE64
+                 =============================================== */
+
+              const dekontBase64 =
+                await fileToBase64(file);
+
+
+              /* ===============================================
+                 SUBMISSION ID
+                 =============================================== */
+
+              const submissionId =
+                createSubmissionId();
+
+
+              /* ===============================================
+                 GERÇEK POST FORMU
+                 
+                 ÖNEMLİ:
+                 fetch kullanmıyoruz.
+                 Eski çalışan sistemdeki gibi
+                 gerçek HTML POST kullanıyoruz.
+                 =============================================== */
+
+              const uploadForm =
+                document.createElement("form");
+
+
+              uploadForm.method =
+                "POST";
+
+
+              uploadForm.action =
+                WEB_APP_URL;
+
+
+              uploadForm.target =
+                "_self";
+
+
+              uploadForm.style.display =
+                "none";
+
+
+              /* ===============================================
+                 HIDDEN FIELD
+                 =============================================== */
+
+              function addField(
+                name,
+                value
+              ) {
+
+                const input =
+                  document.createElement(
+                    "input"
+                  );
+
+
+                input.type =
+                  "hidden";
+
+
+                input.name =
+                  name;
+
+
+                input.value =
+                  value == null
+                    ? ""
+                    : String(value);
+
+
+                uploadForm.appendChild(
+                  input
+                );
+              }
+
+
+              /* ===============================================
+                 GOOGLE APPS SCRIPT ALANLARI
+                 =============================================== */
+
+              addField(
+                "adSoyad",
+                adSoyad
+              );
+
+
+              addField(
+                "adSoyad2",
+                adSoyad2
+              );
+
+
+              addField(
+                "adSoyad3",
+                adSoyad3
+              );
+
+
+              addField(
+                "telefon",
+                telefon
+              );
+
+
+              addField(
+                "email",
+                email
+              );
+
+
+              addField(
+                "bilet",
+                bilet
+              );
+
+
+              addField(
+                "kabul",
+                "KABUL EDİLDİ"
+              );
+
+
+              addField(
+                "rulesAccepted",
+                "true"
+              );
+
+
+              addField(
+                "submissionId",
+                submissionId
+              );
+
+
+              addField(
+                "dekontBase64",
+                dekontBase64
+              );
+
+
+              addField(
+                "dekontMimeType",
+                file.type ||
+                "application/octet-stream"
+              );
+
+
+              addField(
+                "dekontFileName",
+                file.name
+              );
+
+
+              /* ===============================================
+                 GÖNDER
+                 =============================================== */
+
+              document.body.appendChild(
+                uploadForm
+              );
+
+
+              uploadForm.submit();
+
+
+            } catch (error) {
+
+              console.error(
+                "Bilet gönderim hatası:",
+                error
+              );
+
+
+              loading.style.display =
+                "none";
+
+
+              submitBtn.disabled =
+                false;
+
+
+              submitBtn.innerHTML =
+                "🎟️ BİLETİMİ AL";
+
+
+              alert(
+                "Dekont gönderilirken bir hata oluştu. Lütfen tekrar deneyin."
+              );
+            }
+
+          }
+        );
+
       }
-    }
+    );
+
   </script>
 
 </body>
