@@ -547,420 +547,427 @@
 
   <script>
 
-    const WEB_APP_URL =
-      "https://script.google.com/macros/s/AKfycbzyR_LA9q-53B0uMph7GDl-Tdzh3FGXIvNP_ybwZIr-5Bvn59zyWQ4hxW9dQWxPRd81Hg/exec";
+const WEB_APP_URL =
+  "https://script.google.com/macros/s/AKfycbzyR_LA9q-53B0uMph7GDl-Tdzh3FGXIvNP_ybwZIr-5Bvn59zyWQ4hxW9dQWxPRd81Hg/exec";
 
 
-    document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-      const form =
-        document.getElementById("ticketForm");
+  const form =
+    document.getElementById("ticketForm");
 
-      const dekont =
-        document.getElementById("dekont");
+  const dekont =
+    document.getElementById("dekont");
 
-      const fileName =
-        document.getElementById("fileName");
+  const fileName =
+    document.getElementById("fileName");
 
-      const submitBtn =
-        document.getElementById("submitBtn");
+  const submitBtn =
+    document.getElementById("submitBtn");
 
-      const loading =
-        document.getElementById("loading");
+  const loading =
+    document.getElementById("loading");
 
-      const success =
-        document.getElementById("success");
 
-      const ticketCode =
-        document.getElementById("ticketCode");
+  /* =========================
+     DOSYA SEÇİMİ
+     ========================= */
 
+  dekont.addEventListener("change", function () {
 
-      /* DOSYA SEÇİMİ */
+    if (!this.files || this.files.length === 0) {
 
-      dekont.addEventListener("change", function () {
+      fileName.textContent =
+        "Dekont seçilmedi (PDF veya Görsel)";
 
-  console.log("DOSYA DEĞİŞTİ");
+      fileName.classList.remove("file-selected");
 
-  if (!this.files || this.files.length === 0) {
-    fileName.textContent =
-      "Dekont seçilmedi (PDF veya Görsel)";
+      return;
+    }
 
-    fileName.classList.remove("file-selected");
 
-    return;
-  }
+    const file = this.files[0];
 
-  const file = this.files[0];
 
-  console.log("SEÇİLEN DOSYA:", file.name);
-  console.log("DOSYA BOYUTU:", file.size);
+    if (file.size > 10 * 1024 * 1024) {
 
-  if (file.size > 10 * 1024 * 1024) {
-
-    alert("Dekont dosyası 10 MB altında olmalıdır.");
-
-    this.value = "";
-
-    fileName.textContent =
-      "Dekont seçilmedi (PDF veya Görsel)";
-
-    fileName.classList.remove("file-selected");
-
-    return;
-  }
-
-  fileName.textContent =
-    "✓ " +
-    file.name +
-    " (" +
-    (file.size / 1024 / 1024).toFixed(2) +
-    " MB)";
-
-  fileName.classList.add("file-selected");
-
-});
-
-
-      /* BAŞVURU ID */
-
-      function createSubmissionId() {
-
-        if (
-          window.crypto &&
-          typeof window.crypto.randomUUID ===
-            "function"
-        ) {
-
-          return window.crypto.randomUUID();
-
-        }
-
-
-        return (
-          Date.now().toString(36) +
-          "-" +
-          Math.random()
-            .toString(36)
-            .substring(2, 12)
-        );
-
-      }
-
-
-      /* DOSYAYI BASE64 YAP */
-
-      function fileToBase64(file) {
-
-        return new Promise(
-          function (resolve, reject) {
-
-            const reader =
-              new FileReader();
-
-
-            reader.onload =
-              function () {
-
-                const result =
-                  reader.result;
-
-
-                const commaIndex =
-                  result.indexOf(",");
-
-
-                if (
-                  commaIndex === -1
-                ) {
-
-                  reject(
-                    new Error(
-                      "Dosya okunamadı."
-                    )
-                  );
-
-                  return;
-                }
-
-
-                resolve(
-                  result.substring(
-                    commaIndex + 1
-                  )
-                );
-
-              };
-
-
-            reader.onerror =
-              function () {
-
-                reject(
-                  new Error(
-                    "Dekont dosyası okunamadı."
-                  )
-                );
-
-              };
-
-
-            reader.readAsDataURL(file);
-
-          }
-        );
-
-      }
-
-
-      /* FORM GÖNDER */
-
-      form.addEventListener(
-        "submit",
-        async function (e) {
-
-          e.preventDefault();
-
-
-          if (
-            !dekont.files ||
-            dekont.files.length === 0
-          ) {
-
-            alert(
-              "Lütfen ödeme dekontunuzu seçin."
-            );
-
-            return;
-          }
-
-
-          const file =
-            dekont.files[0];
-
-
-          if (
-            file.size >
-            10 * 1024 * 1024
-          ) {
-
-            alert(
-              "Dekont dosyası 10 MB altında olmalıdır."
-            );
-
-            return;
-          }
-
-
-          const selectedTicket =
-            document.querySelector(
-              'input[name="bilet"]:checked'
-            );
-
-
-          if (!selectedTicket) {
-
-            alert(
-              "Lütfen bilet seçin."
-            );
-
-            return;
-          }
-
-
-          const rules =
-            document.getElementById(
-              "kabul"
-            );
-
-
-          if (!rules.checked) {
-
-            alert(
-              "Lütfen etkinlik kurallarını kabul edin."
-            );
-
-            return;
-          }
-
-
-          submitBtn.disabled =
-            true;
-
-          loading.style.display =
-            "flex";
-
-
-          try {
-
-            const base64 =
-              await fileToBase64(file);
-
-
-            const formData = {
-
-              adSoyad:
-                document.getElementById(
-                  "adSoyad"
-                ).value.trim(),
-
-              adSoyad2:
-                document.getElementById(
-                  "adSoyad2"
-                ).value.trim(),
-
-              adSoyad3:
-                document.getElementById(
-                  "adSoyad3"
-                ).value.trim(),
-
-              telefon:
-                document.getElementById(
-                  "telefon"
-                ).value.trim(),
-
-              email:
-                document.getElementById(
-                  "email"
-                ).value.trim(),
-
-              bilet:
-                selectedTicket.value,
-
-              kabul:
-                "KABUL EDİLDİ",
-
-              rulesAccepted:
-                true,
-
-              submissionId:
-                createSubmissionId(),
-
-              dekontBase64:
-                base64,
-
-              dekontMimeType:
-                file.type ||
-                "application/octet-stream",
-
-              dekontFileName:
-                file.name
-
-            };
-
-
-            /*
-             * APPS SCRIPT'E GÖNDER
-             *
-             * text/plain kullanıyoruz.
-             * Böylece tarayıcı OPTIONS/CORS
-             * preflight istemiyor.
-             */
-
-            const response =
-              await fetch(
-                WEB_APP_URL,
-                {
-                  method: "POST",
-
-                  headers: {
-                    "Content-Type":
-                      "text/plain;charset=utf-8"
-                  },
-
-                  body:
-                    JSON.stringify(
-                      formData
-                    ),
-
-                  redirect: "follow"
-                }
-              );
-
-
-            const text =
-              await response.text();
-
-
-            let result;
-
-
-            try {
-
-              result =
-                JSON.parse(text);
-
-            } catch (parseError) {
-
-              throw new Error(
-                "Sunucudan geçerli cevap alınamadı."
-              );
-
-            }
-
-
-            if (
-              !result ||
-              result.success !== true
-            ) {
-
-              throw new Error(
-                result &&
-                result.message
-                  ? result.message
-                  : "Bilet oluşturulamadı."
-              );
-
-            }
-
-
-            loading.style.display =
-              "none";
-
-            form.style.display =
-              "none";
-
-            success.style.display =
-              "block";
-
-
-            ticketCode.textContent =
-              result.ticketId ||
-              "BİLET OLUŞTURULDU";
-
-
-          } catch (error) {
-
-            console.error(
-              "Bilet gönderme hatası:",
-              error
-            );
-
-
-            loading.style.display =
-              "none";
-
-            submitBtn.disabled =
-              false;
-
-
-            alert(
-              "HATA:\n\n" +
-              (
-                error &&
-                error.message
-                  ? error.message
-                  : String(error)
-              )
-            );
-
-          }
-
-        }
+      alert(
+        "Dekont dosyası 10 MB altında olmalıdır."
       );
+
+      this.value = "";
+
+      fileName.textContent =
+        "Dekont seçilmedi (PDF veya Görsel)";
+
+      fileName.classList.remove("file-selected");
+
+      return;
+    }
+
+
+    fileName.textContent =
+      "✓ " +
+      file.name +
+      " (" +
+      (file.size / 1024 / 1024).toFixed(2) +
+      " MB)";
+
+    fileName.classList.add("file-selected");
+
+  });
+
+
+  /* =========================
+     SUBMISSION ID
+     ========================= */
+
+  function createSubmissionId() {
+
+    if (
+      window.crypto &&
+      typeof window.crypto.randomUUID === "function"
+    ) {
+
+      return window.crypto.randomUUID();
+
+    }
+
+
+    return (
+      Date.now().toString(36) +
+      "-" +
+      Math.random()
+        .toString(36)
+        .substring(2, 12)
+    );
+
+  }
+
+
+  /* =========================
+     DOSYA → BASE64
+     ========================= */
+
+  function fileToBase64(file) {
+
+    return new Promise(function (resolve, reject) {
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload = function () {
+
+        const result =
+          reader.result;
+
+
+        const commaIndex =
+          result.indexOf(",");
+
+
+        if (commaIndex === -1) {
+
+          reject(
+            new Error(
+              "Dosya okunamadı."
+            )
+          );
+
+          return;
+        }
+
+
+        resolve(
+          result.substring(
+            commaIndex + 1
+          )
+        );
+
+      };
+
+
+      reader.onerror = function () {
+
+        reject(
+          new Error(
+            "Dekont dosyası okunamadı."
+          )
+        );
+
+      };
+
+
+      reader.readAsDataURL(file);
 
     });
 
-  </script>
+  }
+
+
+  /* =========================
+     FORM GÖNDER
+     ========================= */
+
+  form.addEventListener(
+    "submit",
+    async function (e) {
+
+      e.preventDefault();
+
+
+      /* DOSYA KONTROL */
+
+      if (
+        !dekont.files ||
+        dekont.files.length === 0
+      ) {
+
+        alert(
+          "Lütfen ödeme dekontunuzu seçin."
+        );
+
+        return;
+      }
+
+
+      const file =
+        dekont.files[0];
+
+
+      if (
+        file.size > 10 * 1024 * 1024
+      ) {
+
+        alert(
+          "Dekont dosyası 10 MB altında olmalıdır."
+        );
+
+        return;
+      }
+
+
+      /* BİLET KONTROL */
+
+      const selectedTicket =
+        document.querySelector(
+          'input[name="bilet"]:checked'
+        );
+
+
+      if (!selectedTicket) {
+
+        alert(
+          "Lütfen bilet seçin."
+        );
+
+        return;
+      }
+
+
+      /* KURAL KONTROL */
+
+      const rules =
+        document.getElementById("kabul");
+
+
+      if (!rules.checked) {
+
+        alert(
+          "Lütfen etkinlik kurallarını kabul edin."
+        );
+
+        return;
+      }
+
+
+      submitBtn.disabled = true;
+
+      loading.style.display = "flex";
+
+
+      try {
+
+        /*
+         * PDF / FOTOĞRAF
+         * Base64'e çevriliyor.
+         */
+
+        const base64 =
+          await fileToBase64(file);
+
+
+        /*
+         * GERÇEK HTML FORMU OLUŞTURUYORUZ.
+         *
+         * fetch YOK.
+         * Böylece CORS problemi YOK.
+         */
+
+        const uploadForm =
+          document.createElement("form");
+
+
+        uploadForm.method = "POST";
+
+        uploadForm.action =
+          WEB_APP_URL;
+
+        uploadForm.target =
+          "_self";
+
+        uploadForm.style.display =
+          "none";
+
+
+        /* TEXT ALANLARI */
+
+        function addField(name, value) {
+
+          const input =
+            document.createElement("input");
+
+          input.type = "hidden";
+
+          input.name = name;
+
+          input.value =
+            value == null
+              ? ""
+              : value;
+
+          uploadForm.appendChild(input);
+
+        }
+
+
+        addField(
+          "adSoyad",
+          document.getElementById("adSoyad").value.trim()
+        );
+
+
+        addField(
+          "adSoyad2",
+          document.getElementById("adSoyad2").value.trim()
+        );
+
+
+        addField(
+          "adSoyad3",
+          document.getElementById("adSoyad3").value.trim()
+        );
+
+
+        addField(
+          "telefon",
+          document.getElementById("telefon").value.trim()
+        );
+
+
+        addField(
+          "email",
+          document.getElementById("email").value.trim()
+        );
+
+
+        addField(
+          "bilet",
+          selectedTicket.value
+        );
+
+
+        addField(
+          "kabul",
+          "KABUL EDİLDİ"
+        );
+
+
+        addField(
+          "rulesAccepted",
+          "true"
+        );
+
+
+        addField(
+          "submissionId",
+          createSubmissionId()
+        );
+
+
+        /* DOSYA */
+
+        addField(
+          "dekontBase64",
+          base64
+        );
+
+
+        addField(
+          "dekontMimeType",
+          file.type || "application/octet-stream"
+        );
+
+
+        addField(
+          "dekontFileName",
+          file.name
+        );
+
+
+        /*
+         * FORMU SAYFAYA EKLE
+         */
+
+        document.body.appendChild(
+          uploadForm
+        );
+
+
+        /*
+         * APPS SCRIPT'E GÖNDER
+         */
+
+        uploadForm.submit();
+
+      } catch (error) {
+
+        console.error(
+          "Bilet gönderme hatası:",
+          error
+        );
+
+
+        loading.style.display =
+          "none";
+
+        submitBtn.disabled =
+          false;
+
+
+        alert(
+          "HATA:\n\n" +
+          (
+            error &&
+            error.message
+              ? error.message
+              : String(error)
+          )
+        );
+
+      }
+
+    }
+  );
+
+});
+
+</script>
+
+
+
+    
 
 </body>
 
