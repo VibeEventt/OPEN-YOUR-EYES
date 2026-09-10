@@ -4,18 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>DJ TINA - OPEN YOUR EYES | VIBE EVENT</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
+    /* ULTRA AURA & NEON ARKA PLAN (SİYAH TAMAMEN BİTTİ) */
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background: #0d0118;
+      background: #3a0058;
       background-image: 
-        radial-gradient(circle at 50% 5%, rgba(255, 120, 0, 0.7) 0%, transparent 50%),
-        radial-gradient(circle at 85% 30%, rgba(255, 0, 150, 0.6) 0%, transparent 50%),
-        radial-gradient(circle at 15% 60%, rgba(130, 0, 255, 0.6) 0%, transparent 50%),
-        radial-gradient(circle at 50% 90%, rgba(255, 50, 180, 0.5) 0%, transparent 60%);
+        radial-gradient(circle at 50% 10%, #ff6600 0%, transparent 55%),
+        radial-gradient(circle at 90% 35%, #ff0077 0%, transparent 50%),
+        radial-gradient(circle at 10% 65%, #9900ff 0%, transparent 50%),
+        radial-gradient(circle at 50% 88%, #ff00bb 0%, transparent 60%),
+        linear-gradient(180deg, #420066 0%, #680058 50%, #2f004f 100%);
       background-attachment: fixed;
       color: #ffffff;
       min-height: 100vh;
@@ -34,14 +36,32 @@
       gap: 18px;
     }
 
-    /* ORİJİNAL AFİŞ KART KAPSAYICI */
+    /* VIBE LOGO BOX */
+    .logo-header-box {
+      text-align: center;
+      padding: 5px 0;
+    }
+
+    .logo-header-box img {
+      width: 85%;
+      max-width: 320px;
+      filter: drop-shadow(0 0 25px #ff00bb) drop-shadow(0 0 10px #ffaa00);
+      animation: floatLogo 4s ease-in-out infinite;
+    }
+
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* AFİŞ KART KAPSAYICI */
     .hero-poster-card {
       position: relative;
       border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 15px 40px rgba(255, 0, 150, 0.4), 0 0 20px rgba(255, 120, 0, 0.3);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      background: #120224;
+      box-shadow: 0 0 35px #ff0077, 0 0 15px #ffaa00;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 0, 128, 0.2);
     }
 
     .hero-poster-card img {
@@ -49,24 +69,6 @@
       height: auto;
       display: block;
       border-radius: 26px;
-    }
-
-    /* VIBE LOGO AURA ALANI */
-    .logo-header-box {
-      text-align: center;
-      padding: 10px 0 5px;
-    }
-
-    .logo-header-box img {
-      width: 85%;
-      max-width: 320px;
-      filter: drop-shadow(0 0 25px rgba(255, 51, 194, 0.8));
-      animation: floatLogo 4s ease-in-out infinite;
-    }
-
-    @keyframes floatLogo {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
     }
 
     /* LİKİT GÜMÜŞ / CHROME BAŞLIK EFEKTİ */
@@ -79,20 +81,20 @@
       background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 30%, #8a8a8a 50%, #ffffff 70%, #4a4a4a 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.8));
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    /* ANONS KUTUSU (AURA Alev Temalı) */
+    /* DUYURU BANNER'I */
     .announcement-box {
-      background: linear-gradient(135deg, rgba(255, 0, 128, 0.35) 0%, rgba(120, 0, 255, 0.35) 100%);
-      border: 1.5px solid rgba(255, 120, 255, 0.5);
+      background: linear-gradient(135deg, rgba(255, 0, 128, 0.6) 0%, rgba(150, 0, 255, 0.6) 100%);
+      border: 2px solid rgba(255, 255, 255, 0.5);
       border-radius: 22px;
       padding: 18px;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 0 25px rgba(255, 0, 150, 0.3);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 30px rgba(255, 0, 150, 0.6);
       text-align: center;
     }
 
@@ -103,24 +105,25 @@
       font-weight: 900;
       letter-spacing: 1.5px;
       margin-bottom: 6px;
-      text-shadow: 0 0 12px #ff0099;
+      text-shadow: 0 0 12px #ff00bb, 0 0 5px #ffaa00;
     }
 
     .announcement-box p {
       font-size: 12.5px;
-      color: #f1e6ff;
+      color: #ffffff;
       line-height: 1.5;
-      font-weight: 600;
+      font-weight: 700;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
     }
 
-    /* HYPE KART STİLLERİ */
+    /* GLASSMOPHISM CANLI KARTLAR */
     .card-hype {
-      background: rgba(22, 6, 42, 0.65);
-      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      background: rgba(120, 0, 180, 0.35);
+      border: 2px solid rgba(255, 180, 255, 0.4);
       border-radius: 22px;
       padding: 18px 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(255, 0, 128, 0.3);
+      backdrop-filter: blur(20px);
     }
 
     .step-header {
@@ -134,14 +137,14 @@
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #ff7a00, #ff0099, #8200ff);
+      background: linear-gradient(135deg, #ffaa00, #ff0077, #9900ff);
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
       font-size: 13px;
-      box-shadow: 0 0 12px rgba(255, 0, 150, 0.7);
+      box-shadow: 0 0 15px #ff00bb;
     }
 
     .form-inputs {
@@ -152,24 +155,28 @@
 
     input[type="text"], input[type="email"], input[type="tel"] {
       width: 100%;
-      background: rgba(10, 2, 22, 0.75);
-      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      background: rgba(60, 0, 90, 0.65);
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
       border-radius: 14px;
       padding: 14px;
       color: #ffffff;
       font-size: 13.5px;
       outline: none;
       transition: all 0.25s ease;
-      font-weight: 600;
+      font-weight: 700;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.75);
     }
 
     input:focus {
-      border-color: #ff0099;
-      box-shadow: 0 0 15px rgba(255, 0, 150, 0.6);
-      background: rgba(25, 5, 48, 0.9);
+      border-color: #ff00bb;
+      box-shadow: 0 0 20px #ff00bb;
+      background: rgba(90, 0, 140, 0.85);
     }
 
-    /* CANLI BİLET SEÇENEKLERİ */
+    /* NEON BİLET SEÇENEKLERİ */
     .ticket-selector {
       display: flex;
       flex-direction: column;
@@ -183,8 +190,8 @@
     }
 
     .ticket-card-content {
-      border: 1.5px solid rgba(255, 255, 255, 0.2);
-      background: linear-gradient(90deg, rgba(20, 5, 40, 0.8) 0%, rgba(40, 10, 60, 0.8) 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      background: linear-gradient(90deg, rgba(140, 0, 200, 0.5) 0%, rgba(255, 0, 120, 0.4) 100%);
       border-radius: 16px;
       padding: 14px 18px;
       display: flex;
@@ -195,54 +202,56 @@
     }
 
     .ticket-radio-btn input:checked + .ticket-card-content {
-      border-color: #ff0099;
-      background: linear-gradient(90deg, rgba(255, 0, 150, 0.35) 0%, rgba(130, 0, 255, 0.35) 100%);
-      box-shadow: 0 0 20px rgba(255, 0, 150, 0.5);
+      border-color: #ffffff;
+      background: linear-gradient(90deg, #ff0077 0%, #ff8800 100%);
+      box-shadow: 0 0 25px #ff0077;
       transform: scale(1.02);
     }
 
     .ticket-card-title {
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 800;
       color: #ffffff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
     }
 
     .ticket-card-price {
       font-family: 'Syne', sans-serif;
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 900;
-      color: #ff66d9;
-      text-shadow: 0 0 10px rgba(255, 102, 217, 0.8);
+      color: #fff;
+      text-shadow: 0 0 10px #ffffff;
     }
 
-    /* IBAN KUTUSU (GRADIENT AURA) */
+    /* IBAN KUTUSU (PARLAK GRADIENT AURA) */
     .gradient-iban-box {
       background: linear-gradient(100deg, #ff0077 0%, #ff5500 50%, #aa00ff 100%);
       border-radius: 16px;
       padding: 16px 18px;
       color: white;
       font-weight: 800;
-      box-shadow: 0 8px 25px rgba(255, 0, 119, 0.5);
+      box-shadow: 0 0 30px rgba(255, 0, 119, 0.8);
       text-align: center;
+      border: 1.5px solid rgba(255,255,255,0.4);
     }
 
     .iban-num {
-      font-size: 14.5px;
+      font-size: 15px;
       letter-spacing: 0.5px;
       word-break: break-all;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
     .iban-owner {
-      font-size: 13px;
+      font-size: 13.5px;
       margin-top: 4px;
       opacity: 0.95;
     }
 
     /* DEKONT YÜKLEME */
     .file-dropzone {
-      border: 2px dashed rgba(255, 102, 217, 0.6);
-      background: rgba(255, 0, 150, 0.08);
+      border: 2px dashed rgba(255, 255, 255, 0.7);
+      background: rgba(255, 0, 180, 0.25);
       border-radius: 16px;
       padding: 22px 15px;
       text-align: center;
@@ -258,47 +267,49 @@
       cursor: pointer;
     }
 
-    /* GLOW BİLETİMİ AL BUTONU */
+    /* ULTRA GLOW NEON BUTTON */
     .neon-submit-btn {
       width: 100%;
-      background: linear-gradient(90deg, #ff0077 0%, #ff5500 50%, #8200ff 100%);
-      border: 0;
+      background: linear-gradient(90deg, #ff0077 0%, #ff5500 50%, #9900ff 100%);
+      border: 2px solid rgba(255,255,255,0.6);
       border-radius: 18px;
       padding: 18px;
       color: white;
       font-family: 'Syne', sans-serif;
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 900;
       letter-spacing: 2px;
       cursor: pointer;
-      box-shadow: 0 0 30px rgba(255, 0, 119, 0.8);
+      box-shadow: 0 0 35px #ff0077, 0 0 15px #ffaa00;
       transition: all 0.25s;
       margin-top: 5px;
-      text-shadow: 0 0 10px rgba(255,255,255,0.8);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
 
     .neon-submit-btn:active {
       transform: scale(0.97);
     }
 
-    /* BİLGİLENDİRME LİSTELERİ */
+    /* BİLGİLENDİRME & KURALLAR */
     .info-list, .rules-list {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      font-size: 11.5px;
-      color: #e0d0f5;
+      font-size: 12px;
+      color: #ffffff;
       line-height: 1.45;
+      font-weight: 600;
     }
 
     .check-pink {
-      color: #ff33c2;
+      color: #ffaa00;
       font-weight: bold;
+      font-size: 14px;
     }
 
     .rules-list li strong {
-      color: #ffffff;
+      color: #ffaa00;
     }
 
     .accept-checkbox {
@@ -306,15 +317,15 @@
       align-items: flex-start;
       gap: 10px;
       margin-top: 14px;
-      font-size: 11.5px;
+      font-size: 12px;
       color: #ffffff;
       cursor: pointer;
       line-height: 1.35;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .accept-checkbox input {
-      accent-color: #ff0099;
+      accent-color: #ff00bb;
       width: 18px;
       height: 18px;
       margin-top: 1px;
@@ -322,18 +333,19 @@
 
     .footer-text {
       text-align: center;
-      font-size: 11px;
-      color: #b0a0c8;
+      font-size: 11.5px;
+      color: #ffffff;
       letter-spacing: 1px;
       margin-top: 15px;
-      font-weight: 700;
+      font-weight: 800;
+      text-shadow: 0 0 8px #ff00bb;
     }
 
     /* LOADING & SUCCESS */
     #loadingOverlay {
       position: fixed;
       inset: 0;
-      background: rgba(10, 1, 20, 0.94);
+      background: rgba(50, 0, 80, 0.92);
       display: none;
       flex-direction: column;
       align-items: center;
@@ -346,8 +358,8 @@
     .spinner {
       width: 55px;
       height: 55px;
-      border: 4px solid rgba(255, 255, 255, 0.1);
-      border-top-color: #ff0099;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      border-top-color: #ffaa00;
       border-radius: 50%;
       animation: spin 0.9s linear infinite;
       margin-bottom: 20px;
@@ -359,17 +371,17 @@
       display: none;
       text-align: center;
       padding: 40px 20px;
-      background: rgba(22, 6, 42, 0.95);
-      border: 2px solid #ff0099;
+      background: rgba(80, 0, 120, 0.9);
+      border: 2px solid #ff00bb;
       border-radius: 26px;
-      box-shadow: 0 0 50px rgba(255, 0, 150, 0.5);
+      box-shadow: 0 0 50px #ff00bb;
     }
 
     .welcome-title {
       font-family: 'Syne', sans-serif;
       font-size: 28px;
       font-weight: 900;
-      background: linear-gradient(90deg, #ff0077, #ff5500, #aa00ff);
+      background: linear-gradient(90deg, #ff0077, #ff5500, #ffaa00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 8px;
@@ -379,13 +391,14 @@
       display: inline-block;
       margin-top: 18px;
       padding: 12px 24px;
-      background: rgba(255, 0, 150, 0.2);
-      border: 1.5px dashed #ff0099;
+      background: rgba(255, 0, 150, 0.3);
+      border: 2px dashed #ffffff;
       border-radius: 14px;
-      color: #ff66d9;
+      color: #ffffff;
       font-weight: 900;
-      font-size: 17px;
+      font-size: 18px;
       letter-spacing: 2px;
+      text-shadow: 0 0 10px #ff00bb;
     }
   </style>
 </head>
@@ -393,12 +406,17 @@
 
   <div class="mobile-container">
     
-    <!-- ORİJİNAL AFİŞ KART -->
-    <div class="hero-poster-card">
-      <img src="https://i.ibb.co/vz444C2/dj-tina-poster.jpg" alt="DJ TINA Open Your Eyes Poster" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop';">
+    <!-- LİKİT GÜMÜŞ LOGO ALANI -->
+    <div class="logo-header-box">
+      <img id="vibeLogoImg" alt="Vibe Event Logo">
     </div>
 
-    <!-- HAZIR OL DUYURU BANNER'I -->
+    <!-- ORİJİNAL AFİŞ KART -->
+    <div class="hero-poster-card">
+      <img id="mainPosterImg" alt="DJ TINA Open Your Eyes Poster">
+    </div>
+
+    <!-- DUYURU BANNER'I -->
     <section class="announcement-box">
       <h3>HAZIR OL, GÖZLERİN AÇILSIN!</h3>
       <p>Elektronik müziğin enerjisi, DJ TINA'nın eşsiz performansıyla Terapi Cafe'de buluşuyor. Biletini hemen al, bu unutulmaz gecedeki yerini kap!</p>
@@ -464,7 +482,7 @@
             <div class="iban-num">TR02 0001 2009 4570 0001 1277 39</div>
             <div class="iban-owner">Turgut Çağatay Ünal</div>
           </div>
-          <p style="font-size: 11px; color: #d0c0e8; text-align: center; margin-top: 8px; font-weight:600;">Ödemenizi yaptıktan sonra dekontunuzu aşağıya yükleyin.</p>
+          <p style="font-size: 11.5px; color: #ffffff; text-align: center; margin-top: 8px; font-weight:700;">Ödemenizi yaptıktan sonra dekontunuzu aşağıya yükleyin.</p>
         </div>
 
         <!-- ADIM 4 -->
@@ -476,8 +494,8 @@
           <div class="file-dropzone">
             <input type="file" id="dekont" accept="application/pdf,image/*" required>
             <div style="font-size:26px; margin-bottom:2px;">📥</div>
-            <div style="font-size:13px; font-weight:800; color:#fff;" id="fileStatus">Dekont seçmek için dokunun</div>
-            <div style="font-size:10.5px; color:#d0b0f0; margin-top:2px;">PDF, JPG, PNG (Maks 10 MB)</div>
+            <div style="font-size:13.5px; font-weight:800; color:#fff;" id="fileStatus">Dekont seçmek için dokunun</div>
+            <div style="font-size:11px; color:#ffffff; margin-top:2px; font-weight:600;">PDF, JPG, PNG (Maks 10 MB)</div>
           </div>
         </div>
 
@@ -493,7 +511,7 @@
 
         <!-- KURALLAR -->
         <div class="card-hype">
-          <div class="chrome-title" style="margin-bottom:10px; color:#ff3366;">⚠️ Etkinlik Kuralları</div>
+          <div class="chrome-title" style="margin-bottom:10px; color:#ffaa00;">⚠️ Etkinlik Kuralları</div>
           <ul class="rules-list">
             <li><strong>Giriş:</strong> Kapı açılışında alanda olman önerilir. Kimlik kontrolü yapılabilir.</li>
             <li><strong>Huzur & Güvenlik:</strong> Rahatsızlık veren veya taşkınlık çıkaran kişiler alandan çıkarılır ve bilet iadesi yapılmaz.</li>
@@ -519,18 +537,18 @@
     <div id="successCard">
       <div style="font-size: 50px; margin-bottom: 8px;">🎉</div>
       <div class="welcome-title">ARAMIZA HOŞ GELDİN!</div>
-      <p style="color: #e0d0f5; font-size: 14px; line-height: 1.5;">
+      <p style="color: #ffffff; font-size: 14px; line-height: 1.5; font-weight:600;">
         Biletiniz başarıyla oluşturuldu.<br>
         PDF biletiniz <strong>e-posta adresinize</strong> gönderilmiştir.
       </p>
       <div id="ticketCodeDisplay" class="ticket-code-display"></div>
-      <p style="margin-top: 15px; font-size: 11.5px; color: #b0a0c8;">Etkinlik girişinde PDF biletinizdeki QR kodu göstermeniz yeterlidir.</p>
+      <p style="margin-top: 15px; font-size: 11.5px; color: #ffffff; font-weight:600;">Etkinlik girişinde PDF biletinizdeki QR kodu göstermeniz yeterlidir.</p>
     </div>
 
     <!-- FOOTER -->
     <footer class="footer-text">
       <div>VİBE EVENT • DJ TINA • 22 EYLÜL 2026</div>
-      <div style="font-family: 'Syne', sans-serif; color: #ff66d9; font-size: 14px; margin-top: 4px; font-weight: 900;">SEE YOU ON THE DANCEFLOOR!</div>
+      <div style="font-family: 'Syne', sans-serif; color: #ffaa00; font-size: 14px; margin-top: 4px; font-weight: 900;">SEE YOU ON THE DANCEFLOOR!</div>
     </footer>
 
   </div>
@@ -539,13 +557,20 @@
   <div id="loadingOverlay">
     <div class="spinner"></div>
     <h3 style="font-family: 'Syne', sans-serif; font-size:18px; font-weight:900; margin-bottom:6px; color:#fff;">Biletiniz Hazırlanıyor...</h3>
-    <p style="font-size:12px; color:#d0c0e8; text-align:center; line-height:1.4;">Dekont işleniyor ve QR kodlu biletiniz e-postanıza gönderiliyor.<br>Lütfen sayfadan ayrılmayın.</p>
+    <p style="font-size:12px; color:#ffffff; text-align:center; line-height:1.4;">Dekont işleniyor ve QR kodlu biletiniz e-postanıza gönderiliyor.<br>Lütfen sayfadan ayrılmayın.</p>
   </div>
 
   <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzyR_LA9q-53B0uMph7GDl-Tdzh3FGXIvNP_ybwZIr-5Bvn59zyWQ4hxW9dQWxPRd81Hg/exec";
 
+    // GÖRSELLERİN DOĞRUDAN LİNKLERİ
+    const vibeLogoBase64 = "https://i.postimg.cc/mD8T1h61/vibe-logo.png";
+    const mainPosterBase64 = "https://i.postimg.cc/pT3gL5mJ/dj-tina-poster.jpg";
+
     document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("vibeLogoImg").src = vibeLogoBase64;
+      document.getElementById("mainPosterImg").src = mainPosterBase64;
+
       const form = document.getElementById("ticketForm");
       const dekontInput = document.getElementById("dekont");
       const fileStatus = document.getElementById("fileStatus");
@@ -565,7 +590,7 @@
             return;
           }
           fileStatus.textContent = "✓ " + file.name;
-          fileStatus.style.color = "#ff66d9";
+          fileStatus.style.color = "#ffaa00";
         }
       });
 
