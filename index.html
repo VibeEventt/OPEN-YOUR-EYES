@@ -10,14 +10,16 @@
   
   <style>
     :root {
-      --bg-color: #0b0514;
-      --card-bg: rgba(20, 10, 35, 0.7);
-      --border-color: #3b1d60;
-      --accent-pink: #d946ef;
-      --accent-purple: #8b5cf6;
+      --bg-color: #06020c;
+      --card-bg: rgba(14, 7, 26, 0.75);
+      --border-color: rgba(139, 92, 246, 0.25);
+      --border-glow: rgba(217, 70, 239, 0.4);
+      --accent-pink: #ec4899;
+      --accent-purple: #a855f7;
       --text-white: #ffffff;
-      --text-muted: #a1a1aa;
-      --radius: 16px;
+      --text-muted: #94a3b8;
+      --radius-lg: 20px;
+      --radius-md: 12px;
     }
 
     * {
@@ -29,248 +31,308 @@
 
     body {
       background-color: var(--bg-color);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(217, 70, 239, 0.15), transparent 70%),
+        radial-gradient(circle at 100% 50%, rgba(168, 85, 247, 0.1), transparent 50%);
       color: var(--text-white);
       display: flex;
       justify-content: center;
       min-height: 100vh;
-      padding: 20px 10px;
+      padding: 30px 15px;
     }
 
     .container {
       width: 100%;
-      max-width: 900px;
+      max-width: 1050px;
       margin: 0 auto;
     }
 
-    /* Logo & Poster Section */
-    .header-section {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .logo-img {
-      max-width: 160px;
-      height: auto;
-      margin-bottom: 16px;
-    }
-
-    .poster-img {
+    /* Giant Poster Hero Banner */
+    .hero-poster-wrapper {
+      position: relative;
       width: 100%;
-      max-width: 600px;
-      border-radius: var(--radius);
-      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
-      border: 1px solid var(--border-color);
+      margin-bottom: 30px;
+      perspective: 1000px;
+    }
+
+    .hero-poster-card {
+      position: relative;
+      width: 100%;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-glow);
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.9),
+        0 0 40px rgba(217, 70, 239, 0.25),
+        inset 0 0 15px rgba(255, 255, 255, 0.1);
+      transform: translateY(0);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      background: #0d061a;
+    }
+
+    .hero-poster-card:hover {
+      transform: translateY(-4px) rotateX(1deg);
+      box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.95),
+        0 0 50px rgba(217, 70, 239, 0.35);
+    }
+
+    .hero-poster-card img.poster-main {
+      width: 100%;
+      max-height: 75vh;
+      object-fit: cover;
+      object-position: top center;
       display: block;
-      margin: 0 auto;
     }
 
-    /* Hero Banner Text */
-    .hero-card {
+    /* Sol Alt Köşe Logo Overlay */
+    .hero-logo-overlay {
+      position: absolute;
+      bottom: -20px;
+      left: 20px;
+      z-index: 10;
+      background: rgba(10, 4, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glow);
+      padding: 10px 18px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6), 0 0 20px rgba(168, 85, 247, 0.3);
+    }
+
+    .hero-logo-overlay img {
+      height: 55px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* Description Hero Card */
+    .description-card {
       background: var(--card-bg);
+      backdrop-filter: blur(16px);
       border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 20px;
-      margin-top: 24px;
-      margin-bottom: 24px;
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-top: 35px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    .hero-title {
+    .description-title {
       color: #f472b6;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 800;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       margin-bottom: 8px;
+      text-transform: uppercase;
     }
 
-    .hero-desc {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.5;
+    .description-text {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
 
-    /* Main Grid Layout */
-    .grid-layout {
+    /* Layout Grid */
+    .main-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 25px;
     }
 
-    @media (min-width: 768px) {
-      .grid-layout {
-        grid-template-columns: 1.8fr 1.2fr;
+    @media (min-width: 850px) {
+      .main-grid {
+        grid-template-columns: 1.6fr 1.1fr;
       }
     }
 
-    /* Form Styles */
+    /* Section Cards */
     .section-card {
       background: var(--card-bg);
+      backdrop-filter: blur(16px);
       border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 20px;
+      border-radius: var(--radius-lg);
+      padding: 22px;
       margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
     }
 
     .step-header {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .step-number {
       background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+      box-shadow: 0 0 12px rgba(236, 72, 153, 0.5);
     }
 
     .step-title {
       font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
+    /* Form Elements */
     .input-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 12px;
     }
 
-    @media (min-width: 480px) {
-      .input-grid-3 {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .input-grid-2 {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    @media (min-width: 500px) {
+      .input-grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .input-grid-2 { grid-template-columns: repeat(2, 1fr); }
     }
 
-    input, select {
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
       width: 100%;
-      padding: 12px 14px;
-      background: rgba(15, 7, 30, 0.8);
+      padding: 13px 15px;
+      background: rgba(6, 2, 12, 0.7);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: var(--radius-md);
       color: var(--text-white);
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       outline: none;
+      transition: all 0.2s ease;
     }
 
     input:focus {
       border-color: var(--accent-pink);
+      box-shadow: 0 0 12px rgba(236, 72, 153, 0.3);
+      background: rgba(10, 4, 20, 0.9);
     }
 
     /* Ticket Options */
     .ticket-options {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px;
+      gap: 12px;
     }
 
-    .ticket-option-label {
+    .ticket-card-option {
       border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 12px 8px;
+      border-radius: var(--radius-md);
+      padding: 14px 10px;
       text-align: center;
       cursor: pointer;
-      background: rgba(15, 7, 30, 0.5);
-      transition: all 0.2s;
+      background: rgba(6, 2, 12, 0.5);
+      transition: all 0.2s ease;
       display: block;
     }
 
-    .ticket-option-label:hover {
+    .ticket-card-option:hover {
       border-color: var(--accent-pink);
+      background: rgba(236, 72, 153, 0.05);
     }
 
-    .ticket-option-label input {
-      display: none;
-    }
+    .ticket-card-option input { display: none; }
 
-    .ticket-option-label input:checked + .option-box {
-      color: #22c55e;
-    }
-
-    .ticket-option-label input:checked ~ .opt-title {
+    .ticket-card-option input:checked + .opt-box .opt-title {
       color: var(--accent-pink);
     }
 
+    .ticket-card-option input:checked ~ .opt-price {
+      color: #4ade80;
+    }
+
     .opt-title {
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-size: 0.82rem;
+      font-weight: 700;
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      color: var(--text-white);
     }
 
     .opt-price {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 800;
-      color: var(--text-white);
+      color: #a7f3d0;
     }
 
     /* IBAN Box */
     .iban-card {
-      background: linear-gradient(135deg, #f43f5e, #8b5cf6);
-      border-radius: 12px;
-      padding: 16px;
+      background: linear-gradient(135deg, #e11d48, #9333ea);
+      border-radius: var(--radius-md);
+      padding: 18px;
       text-align: center;
       color: white;
       margin-bottom: 12px;
+      box-shadow: 0 8px 20px rgba(225, 29, 72, 0.3);
     }
 
     .iban-card .iban-no {
       font-size: 0.95rem;
       font-weight: 800;
       letter-spacing: 0.05em;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .iban-card .iban-holder {
-      font-size: 0.85rem;
-      opacity: 0.9;
+      font-size: 0.88rem;
+      opacity: 0.95;
+      font-weight: 600;
     }
 
     .iban-note {
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
 
     /* File Upload */
     .file-upload-box {
-      border: 1px dashed var(--border-color);
-      border-radius: 8px;
-      padding: 20px;
+      border: 1px dashed var(--accent-purple);
+      border-radius: var(--radius-md);
+      padding: 24px;
       text-align: center;
-      background: rgba(15, 7, 30, 0.4);
+      background: rgba(6, 2, 12, 0.5);
       cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .file-upload-box:hover {
+      border-color: var(--accent-pink);
+      background: rgba(236, 72, 153, 0.05);
     }
 
     .file-upload-box p {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
-    /* Rules & Info Sidebar */
+    /* Sidebar Rules & Info */
     .info-card {
       background: var(--card-bg);
+      backdrop-filter: blur(16px);
       border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 16px;
-      margin-bottom: 16px;
-      font-size: 0.8rem;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
     }
 
     .info-card h4 {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--text-white);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     .info-list {
@@ -278,11 +340,12 @@
     }
 
     .info-list li {
-      color: var(--text-muted);
-      margin-bottom: 10px;
-      line-height: 1.4;
+      color: #cbd5e1;
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+      line-height: 1.5;
       position: relative;
-      padding-left: 18px;
+      padding-left: 20px;
     }
 
     .info-list li::before {
@@ -290,48 +353,64 @@
       position: absolute;
       left: 0;
       color: var(--accent-pink);
+      font-weight: bold;
     }
 
     .rules-list li::before {
       content: "•";
       color: #f43f5e;
+      font-size: 1.2rem;
+      top: -2px;
     }
 
-    /* Submit Button */
-    .submit-btn {
-      width: 100%;
-      padding: 16px;
-      background: linear-gradient(90deg, #a855f7, #ec4899);
-      border: none;
-      border-radius: 12px;
-      color: white;
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
-      margin-top: 10px;
+    .rules-list strong {
+      color: #fff;
     }
 
+    /* Checkbox & Submit */
     .checkbox-group {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
-      font-size: 0.75rem;
+      gap: 10px;
+      font-size: 0.78rem;
       color: var(--text-muted);
-      margin-top: 12px;
+      margin-top: 15px;
     }
 
     .checkbox-group input {
       width: auto;
-      margin-top: 2px;
+      margin-top: 3px;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(90deg, #c084fc, #f472b6);
+      border: none;
+      border-radius: var(--radius-md);
+      color: #000;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(244, 114, 182, 0.5);
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(244, 114, 182, 0.7);
     }
 
     footer {
       text-align: center;
-      margin-top: 40px;
-      font-size: 0.75rem;
+      margin-top: 45px;
+      padding-bottom: 20px;
+      font-size: 0.78rem;
       color: var(--text-muted);
+      letter-spacing: 0.05em;
     }
   </style>
 </head>
@@ -339,27 +418,33 @@
 
   <div class="container">
 
-    <!-- Top Logo & Poster -->
-    <div class="header-section">
-      <img src="Paragraf metniniz.png" alt="Vibe Event Logo" class="logo-img">
-      <img src="DJ TINA - 1.jpeg" alt="DJ TINA Open Your Eyes Poster" class="poster-img">
+    <!-- Poster Banner & Sol Alt Logo -->
+    <div class="hero-poster-wrapper">
+      <div class="hero-poster-card">
+        <img src="DJ TINA - 1.jpeg" alt="DJ TINA Open Your Eyes Poster" class="poster-main">
+      </div>
+      
+      <!-- Sol Alt Köşe Logo -->
+      <div class="hero-logo-overlay">
+        <img src="Paragraf metniniz.png" alt="Vibe Event Logo">
+      </div>
     </div>
 
-    <!-- Hero Banner Text -->
-    <div class="hero-card">
-      <div class="hero-title">HAZIR OL, GÖZLERİN AÇILSIN!</div>
-      <div class="hero-desc">
-        Elektronik müziğin enerjisi, DJ TINA'nın eşsiz performansıyla 22 Eylül 2026'da Kırıkkale'deki Terapi Cafe'de buluşuyor. Open Your Eyes etkinliği, müzik, dans ve unutulmaz bir gece için seni bekliyor. Bu özel deneyimin bir parçası olmak için biletini şimdi al!
+    <!-- Etkinlik Açıklama Kartı -->
+    <div class="description-card">
+      <div class="description-title">HAZIR OL, GÖZLERİN AÇILSIN!</div>
+      <div class="description-text">
+        Elektronik müziğin enerjisi, DJ TINA'nın eşsiz performansıyla 22 Eylül 2026'da Kırıkkale'deki Terapi Cafe'de buluşuyor. Open Your Eyes etkinlik serisi, müzik, dans ve unutulmaz bir gece için seni bekliyor. Bu özel deneyimin bir parçası olmak için biletini şimdi al!
       </div>
     </div>
 
     <form id="mainTicketForm">
-      <div class="grid-layout">
+      <div class="main-grid">
         
-        <!-- LEFT COLUMN: FORM STEPS -->
+        <!-- SOL KOLON: ADIMLAR -->
         <div class="form-column">
           
-          <!-- STEP 1 -->
+          <!-- ADIM 1 -->
           <div class="section-card">
             <div class="step-header">
               <div class="step-number">1</div>
@@ -376,32 +461,39 @@
             </div>
           </div>
 
-          <!-- STEP 2 -->
+          <!-- ADIM 2 -->
           <div class="section-card">
             <div class="step-header">
               <div class="step-number">2</div>
               <div class="step-title">BİLET SEÇİMİ</div>
             </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Bilet Sayısı *</p>
             <div class="ticket-options">
-              <label class="ticket-option-label">
+              <label class="ticket-card-option">
                 <input type="radio" name="ticket_count" value="1" checked>
-                <span class="opt-title">1. Tek Tabanca</span>
+                <div class="opt-box">
+                  <span class="opt-title">1. Tek Tabanca</span>
+                </div>
                 <span class="opt-price">380₺</span>
               </label>
-              <label class="ticket-option-label">
+              <label class="ticket-card-option">
                 <input type="radio" name="ticket_count" value="2">
-                <span class="opt-title">2. Ayrılmaz İkili</span>
+                <div class="opt-box">
+                  <span class="opt-title">2. Ayrılmaz İkili</span>
+                </div>
                 <span class="opt-price">700₺</span>
               </label>
-              <label class="ticket-option-label">
+              <label class="ticket-card-option">
                 <input type="radio" name="ticket_count" value="3">
-                <span class="opt-title">3. Üçlü Kampanya</span>
+                <div class="opt-box">
+                  <span class="opt-title">3. Üçlü Kampanya</span>
+                </div>
                 <span class="opt-price">1000₺</span>
               </label>
             </div>
           </div>
 
-          <!-- STEP 3 -->
+          <!-- ADIM 3 -->
           <div class="section-card">
             <div class="step-header">
               <div class="step-number">3</div>
@@ -414,22 +506,22 @@
             <div class="iban-note">Ödemenizi yaptıktan sonra dekontunuzu yükleyiniz.</div>
           </div>
 
-          <!-- STEP 4 -->
+          <!-- ADIM 4 -->
           <div class="section-card">
             <div class="step-header">
               <div class="step-number">4</div>
               <div class="step-title">DEKONT YÜKLEME</div>
             </div>
             <div class="file-upload-box" onclick="document.getElementById('fileInput').click()">
-              <p><strong>Dekontunuzu buraya sürükleyin veya seçin</strong></p>
-              <p style="margin-top: 4px; font-size: 0.7rem;">PDF, JPG, PNG • Maksimum 10 MB</p>
+              <p style="color: #fff; font-weight: 700; margin-bottom: 4px;">Dekontunuzu buraya sürükleyin veya seçin</p>
+              <p style="font-size: 0.72rem;">PDF, JPG, PNG • Maksimum 10 MB</p>
               <input type="file" id="fileInput" style="display: none;" accept="image/*,.pdf" required>
             </div>
           </div>
 
         </div>
 
-        <!-- RIGHT COLUMN: RULES & INFO -->
+        <!-- SAĞ KOLON: SİDEBAR & KURALLAR -->
         <div class="sidebar-column">
           
           <div class="info-card">
@@ -444,8 +536,8 @@
 
           <div class="info-card" style="text-align: center;">
             <h4>📸 Bizi takip et!</h4>
-            <p style="color: var(--accent-pink); font-weight: 700;">@vibe.eventt</p>
-            <p style="color: var(--accent-pink); font-weight: 700;">@tugceshtx</p>
+            <p style="color: var(--accent-pink); font-weight: 700; font-size: 0.95rem; margin-top: 4px;">@vibe.eventt</p>
+            <p style="color: var(--accent-pink); font-weight: 700; font-size: 0.95rem; margin-top: 2px;">@tugceshtx</p>
           </div>
 
           <div class="info-card">
