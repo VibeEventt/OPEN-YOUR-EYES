@@ -1220,6 +1220,27 @@
       document.getElementById("appsScriptResponse");
 
 
+    /* HATA KUTUSU SAYFA AÇILIR AÇILMAZ KESİNLİKLE GİZLİ */
+    errorBox.textContent = "";
+    errorBox.style.display = "none";
+
+
+    function clearError() {
+      errorBox.textContent = "";
+      errorBox.style.display = "none";
+    }
+
+
+    /* KULLANICI FORMDA HERHANGİ BİR ŞEY DEĞİŞTİRİRSE ESKİ HATA KAYBOLUR */
+    uploadForm.querySelectorAll("input").forEach(function(input) {
+
+      input.addEventListener("input", clearError);
+
+      input.addEventListener("change", clearError);
+
+    });
+
+
     function createSubmissionId() {
 
       if (
@@ -1347,7 +1368,7 @@
       "change",
       function() {
 
-        errorBox.style.display = "none";
+        clearError();
 
         if (
           !fileInput.files ||
@@ -1396,7 +1417,7 @@
 
         event.preventDefault();
 
-        errorBox.style.display = "none";
+        clearError();
 
 
         let file = null;
