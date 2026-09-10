@@ -1802,10 +1802,27 @@
         }
 
 
-        showError(
-          result.message ||
-          "Bilet oluşturulurken bir hata oluştu."
-        );
+        if (result.success === true) {
+  const ticketId = result.ticketId;
+
+  if (!ticketId) {
+    showError("Bilet oluşturuldu ancak bilet numarası alınamadı.");
+    return;
+  }
+
+  successTicketId.textContent = ticketId;
+  loadingOverlay.style.display = "none";
+  mainPage.style.display = "none";
+  successScreen.style.display = "flex";
+  window.scrollTo(0, 0);
+  return;
+}
+
+/* GERÇEK APPS SCRIPT HATASINI GÖSTER */
+showError(
+  "APPS SCRIPT HATASI: " +
+  (result.message || JSON.stringify(result))
+);
 
       }
     );
