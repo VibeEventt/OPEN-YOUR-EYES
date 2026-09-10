@@ -10,15 +10,13 @@
   
   <style>
     :root {
-      --bg-color: #f4f6f9;
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --accent-color: #6366f1;
-      --accent-hover: #4f46e5;
-      --border-color: #e2e8f0;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-      --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
+      --bg-color: #0b0514;
+      --card-bg: rgba(20, 10, 35, 0.7);
+      --border-color: #3b1d60;
+      --accent-pink: #d946ef;
+      --accent-purple: #8b5cf6;
+      --text-white: #ffffff;
+      --text-muted: #a1a1aa;
       --radius: 16px;
     }
 
@@ -31,242 +29,455 @@
 
     body {
       background-color: var(--bg-color);
-      color: var(--text-main);
+      color: var(--text-white);
       display: flex;
       justify-content: center;
-      align-items: center;
       min-height: 100vh;
-      padding: 20px;
+      padding: 20px 10px;
     }
 
     .container {
       width: 100%;
-      max-width: 480px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
-    /* Logo Header */
-    .logo-header-box {
+    /* Logo & Poster Section */
+    .header-section {
       text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .logo-img {
+      max-width: 160px;
+      height: auto;
+      margin-bottom: 16px;
+    }
+
+    .poster-img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+      border: 1px solid var(--border-color);
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Hero Banner Text */
+    .hero-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      color: #f472b6;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Main Grid Layout */
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .grid-layout {
+        grid-template-columns: 1.8fr 1.2fr;
+      }
+    }
+
+    /* Form Styles */
+    .section-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 20px;
       margin-bottom: 20px;
     }
 
-    .logo-header-box img {
-      max-width: 180px;
-      height: auto;
-      object-fit: contain;
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
-    /* Poster Card */
-    .hero-poster-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
-      margin-bottom: 24px;
-    }
-
-    .hero-poster-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-    }
-
-    /* Main Form Card */
-    .ticket-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border-color);
-    }
-
-    .event-title {
-      font-size: 1.5rem;
+    .step-number {
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--text-main);
-      margin-bottom: 6px;
-      text-align: center;
-    }
-
-    .event-subtitle {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      text-align: center;
-      margin-bottom: 24px;
-      font-weight: 500;
-    }
-
-    /* Form Fields */
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-group label {
-      display: block;
       font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: var(--text-main);
     }
 
-    .form-group input, 
-    .form-group select {
+    .step-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .input-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 480px) {
+      .input-grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .input-grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    input, select {
       width: 100%;
       padding: 12px 14px;
+      background: rgba(15, 7, 30, 0.8);
       border: 1px solid var(--border-color);
-      border-radius: 10px;
-      background-color: #f8fafc;
-      font-size: 0.95rem;
-      color: var(--text-main);
-      transition: all 0.2s ease;
+      border-radius: 8px;
+      color: var(--text-white);
+      font-size: 0.85rem;
       outline: none;
     }
 
-    .form-group input:focus, 
-    .form-group select:focus {
-      border-color: var(--accent-color);
-      background-color: #ffffff;
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    input:focus {
+      border-color: var(--accent-pink);
+    }
+
+    /* Ticket Options */
+    .ticket-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .ticket-option-label {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px 8px;
+      text-align: center;
+      cursor: pointer;
+      background: rgba(15, 7, 30, 0.5);
+      transition: all 0.2s;
+      display: block;
+    }
+
+    .ticket-option-label:hover {
+      border-color: var(--accent-pink);
+    }
+
+    .ticket-option-label input {
+      display: none;
+    }
+
+    .ticket-option-label input:checked + .option-box {
+      color: #22c55e;
+    }
+
+    .ticket-option-label input:checked ~ .opt-title {
+      color: var(--accent-pink);
+    }
+
+    .opt-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .opt-price {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--text-white);
+    }
+
+    /* IBAN Box */
+    .iban-card {
+      background: linear-gradient(135deg, #f43f5e, #8b5cf6);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .iban-card .iban-no {
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .iban-card .iban-holder {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .iban-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* File Upload */
+    .file-upload-box {
+      border: 1px dashed var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      background: rgba(15, 7, 30, 0.4);
+      cursor: pointer;
+    }
+
+    .file-upload-box p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Rules & Info Sidebar */
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 16px;
+      font-size: 0.8rem;
+    }
+
+    .info-card h4 {
+      font-size: 0.85rem;
+      color: var(--text-white);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      line-height: 1.4;
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .info-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent-pink);
+    }
+
+    .rules-list li::before {
+      content: "•";
+      color: #f43f5e;
     }
 
     /* Submit Button */
     .submit-btn {
       width: 100%;
-      padding: 14px;
-      background-color: var(--accent-color);
-      color: #ffffff;
+      padding: 16px;
+      background: linear-gradient(90deg, #a855f7, #ec4899);
       border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background-color 0.2s ease, transform 0.1s ease;
-      margin-top: 10px;
-    }
-
-    .submit-btn:hover {
-      background-color: var(--accent-hover);
-    }
-
-    .submit-btn:active {
-      transform: scale(0.99);
-    }
-
-    /* Ticket Result Box */
-    .ticket-result {
-      display: none;
-      margin-top: 24px;
-      padding: 20px;
       border-radius: 12px;
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      text-align: center;
-    }
-
-    .ticket-result h3 {
-      color: #166534;
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-    }
-
-    .ticket-result p {
-      color: #15803d;
-      font-size: 0.9rem;
-      margin-bottom: 4px;
-    }
-
-    .ticket-code {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 6px 12px;
-      background: #ffffff;
-      border: 1px dashed #22c55e;
-      border-radius: 6px;
-      font-weight: 700;
+      color: white;
+      font-size: 1rem;
+      font-weight: 800;
       letter-spacing: 0.05em;
-      color: #15803d;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
+      margin-top: 10px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    .checkbox-group input {
+      width: auto;
+      margin-top: 2px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    
-    <!-- Vibe Logo Header -->
-    <div class="logo-header-box">
-      <img src="Paragraf metniniz.png" alt="Vibe Event Logo">
+
+    <!-- Top Logo & Poster -->
+    <div class="header-section">
+      <img src="Paragraf metniniz.png" alt="Vibe Event Logo" class="logo-img">
+      <img src="DJ TINA - 1.jpeg" alt="DJ TINA Open Your Eyes Poster" class="poster-img">
     </div>
 
-    <!-- DJ TINA Poster -->
-    <div class="hero-poster-card">
-      <img src="DJ TINA - 1.jpeg" alt="DJ TINA Open Your Eyes Poster">
-    </div>
-
-    <!-- Bilet Formu -->
-    <div class="ticket-card">
-      <h1 class="event-title">OPEN YOUR EYES</h1>
-      <p class="event-subtitle">DJ TINA Performance • Bilet Kayıt Formu</p>
-
-      <form id="ticketForm">
-        <div class="form-group">
-          <label for="fullName">Ad Soyad</label>
-          <input type="text" id="fullName" placeholder="Aykut Yılmaz" required>
-        </div>
-
-        <div class="form-group">
-          <label for="email">E-Posta Adresi</label>
-          <input type="email" id="email" placeholder="ornek@email.com" required>
-        </div>
-
-        <div class="form-group">
-          <label for="phone">Telefon Numarası</label>
-          <input type="tel" id="phone" placeholder="05XX XXX XX XX" required>
-        </div>
-
-        <div class="form-group">
-          <label for="ticketType">Bilet Türü</label>
-          <select id="ticketType" required>
-            <option value="" disabled selected>Lütfen seçiniz</option>
-            <option value="Standard Pass">Standard Pass</option>
-            <option value="VIP Backstage">VIP Backstage</option>
-            <option value="Early Bird">Early Bird</option>
-          </select>
-        </div>
-
-        <button type="submit" class="submit-btn">Bileti Oluştur</button>
-      </form>
-
-      <!-- Oluşturulan Bilet Bilgisi -->
-      <div id="ticketResult" class="ticket-result">
-        <h3>🎉 Biletiniz Hazır!</h3>
-        <p><strong id="resName"></strong> adına kaydınız alınmıştır.</p>
-        <p>Tür: <span id="resType"></span></p>
-        <div class="ticket-code" id="resCode">VIBE-000000</div>
+    <!-- Hero Banner Text -->
+    <div class="hero-card">
+      <div class="hero-title">HAZIR OL, GÖZLERİN AÇILSIN!</div>
+      <div class="hero-desc">
+        Elektronik müziğin enerjisi, DJ TINA'nın eşsiz performansıyla 22 Eylül 2026'da Kırıkkale'deki Terapi Cafe'de buluşuyor. Open Your Eyes etkinliği, müzik, dans ve unutulmaz bir gece için seni bekliyor. Bu özel deneyimin bir parçası olmak için biletini şimdi al!
       </div>
     </div>
 
+    <form id="mainTicketForm">
+      <div class="grid-layout">
+        
+        <!-- LEFT COLUMN: FORM STEPS -->
+        <div class="form-column">
+          
+          <!-- STEP 1 -->
+          <div class="section-card">
+            <div class="step-header">
+              <div class="step-number">1</div>
+              <div class="step-title">KİŞİSEL BİLGİLER</div>
+            </div>
+            <div class="input-grid input-grid-3">
+              <input type="text" placeholder="Ad Soyad *" required>
+              <input type="text" placeholder="Ad Soyad 2">
+              <input type="text" placeholder="Ad Soyad 3">
+            </div>
+            <div class="input-grid input-grid-2" style="margin-top: 12px;">
+              <input type="email" placeholder="E-posta Adresi *" required>
+              <input type="tel" placeholder="Telefon Numarası *" required>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="section-card">
+            <div class="step-header">
+              <div class="step-number">2</div>
+              <div class="step-title">BİLET SEÇİMİ</div>
+            </div>
+            <div class="ticket-options">
+              <label class="ticket-option-label">
+                <input type="radio" name="ticket_count" value="1" checked>
+                <span class="opt-title">1. Tek Tabanca</span>
+                <span class="opt-price">380₺</span>
+              </label>
+              <label class="ticket-option-label">
+                <input type="radio" name="ticket_count" value="2">
+                <span class="opt-title">2. Ayrılmaz İkili</span>
+                <span class="opt-price">700₺</span>
+              </label>
+              <label class="ticket-option-label">
+                <input type="radio" name="ticket_count" value="3">
+                <span class="opt-title">3. Üçlü Kampanya</span>
+                <span class="opt-price">1000₺</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="section-card">
+            <div class="step-header">
+              <div class="step-number">3</div>
+              <div class="step-title">ÖDEME BİLGİLERİ</div>
+            </div>
+            <div class="iban-card">
+              <div class="iban-no">IBAN: TR02 0001 2009 4570 0001 1277 39</div>
+              <div class="iban-holder">Hesap Sahibi: Turgut Çağatay Ünal</div>
+            </div>
+            <div class="iban-note">Ödemenizi yaptıktan sonra dekontunuzu yükleyiniz.</div>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="section-card">
+            <div class="step-header">
+              <div class="step-number">4</div>
+              <div class="step-title">DEKONT YÜKLEME</div>
+            </div>
+            <div class="file-upload-box" onclick="document.getElementById('fileInput').click()">
+              <p><strong>Dekontunuzu buraya sürükleyin veya seçin</strong></p>
+              <p style="margin-top: 4px; font-size: 0.7rem;">PDF, JPG, PNG • Maksimum 10 MB</p>
+              <input type="file" id="fileInput" style="display: none;" accept="image/*,.pdf" required>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: RULES & INFO -->
+        <div class="sidebar-column">
+          
+          <div class="info-card">
+            <h4>🎟️ BİLETİN NASIL GELECEK?</h4>
+            <ul class="info-list">
+              <li>Bilgilerini doldurup ödeme yaptıktan sonra dekontunu yükle.</li>
+              <li>Onaylandığında biletin otomatik olarak e-posta adresine gönderilecek.</li>
+              <li>Biletinde yer alan QR kod ile etkinlik alanına giriş yapabilirsin.</li>
+              <li>Biletini mailinde bulamazsan lütfen spam klasörünü kontrol et.</li>
+            </ul>
+          </div>
+
+          <div class="info-card" style="text-align: center;">
+            <h4>📸 Bizi takip et!</h4>
+            <p style="color: var(--accent-pink); font-weight: 700;">@vibe.eventt</p>
+            <p style="color: var(--accent-pink); font-weight: 700;">@tugceshtx</p>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: #f43f5e;">⚠️ ETKİNLİK KURALLARI</h4>
+            <ul class="info-list rules-list">
+              <li><strong>Giriş ve Kontrol:</strong> Yoğunluk yaşanamak ve program başlangıcını kaçırmamak adına kapı açılış saatinde alanda bulunmanız önerilir. Girişte kimlik veya öğrenci kimliği kontrolü yapılabilir, lütfen kimliğinizi yanınızda bulundurmayı unutma.</li>
+              <li><strong>Aman Ali Rıza Bey Ağzımızın Tadı Kaçmasın:</strong> Etkinlik süresince diğer katılımcıların güvenliğini veya huzurunu tehdit eden, taşkınlık, fiziksel/sözlü taciz veya alana zarar verici eylemlerde bulunan kişiler, organizasyon ve güvenlik inisiyatifiyle derhal etkinlik alanından uzaklaştırılır. Bu gerekçeyle alandan çıkarılan kişilerin biletleri iptal edilir ve hiçbir koşulda bilet bedeli iadesi yapılmaz.</li>
+              <li><strong>Kişisel Eşyalar:</strong> Etkinlik alanındaki eşyaların sorumluluğu sana aittir. Güvenlik gerekçesiyle alana kesici, yanıcı, sivri nesneler ve açık paket sigara alınmayacaktır.</li>
+              <li><strong>Alkol Detoksu:</strong> Etkinliğimiz tamamen alkolsüz bir organizasyondur. Alanda alkol satışı bulunmamakta olup dışarıdan her türlü alkollü içeceğin alana sokulması kesinlikle yasaktır.</li>
+              <li><strong>Yiyecek & İçecek:</strong> Mekan kuralına göre; alanda yeme-içme stantları yer almaktadır. Dışarıdan yeme içme alınmamaktadır.</li>
+            </ul>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="rulesCheck" required>
+              <label for="rulesCheck">Etkinlik kurallarını okudum ve kabul ediyorum. *</label>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">🎟️ BİLETİMİ AL</button>
+
+        </div>
+
+      </div>
+    </form>
+
+    <footer>
+      DJ TINA &nbsp;/&nbsp; OPEN YOUR EYES &nbsp;/&nbsp; 22 EYLÜL 2026 &nbsp;/&nbsp; KIRIKKALE
+      <br><br>
+      <span style="color: var(--accent-pink); font-style: italic;">See you on the dancefloor!</span>
+    </footer>
+
   </div>
-
-  <script>
-    document.getElementById('ticketForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById('fullName').value;
-      const ticketType = document.getElementById('ticketType').value;
-      const randomCode = 'VIBE-' + Math.floor(100000 + Math.random() * 900000);
-
-      document.getElementById('resName').textContent = name;
-      document.getElementById('resType').textContent = ticketType;
-      document.getElementById('resCode').textContent = randomCode;
-
-      document.getElementById('ticketResult').style.display = 'block';
-      this.reset();
-    });
-  </script>
 
 </body>
 </html>
