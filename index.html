@@ -101,16 +101,18 @@
       line-height: 1.55;
     }
 
+    /* ANA SAYFA HER CİHAZDA 2 SÜTUN */
     .main-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1.2fr 1fr;
       gap: 16px;
+      width: 100%;
+      align-items: start;
     }
 
-    @media (min-width: 768px) {
-      .main-grid {
-        grid-template-columns: 1.2fr 1fr;
-      }
+    .form-column,
+    .sidebar-column {
+      min-width: 0;
     }
 
     .section-card {
@@ -121,6 +123,7 @@
       padding: 18px;
       margin-bottom: 16px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      min-width: 0;
     }
 
     .step-header {
@@ -171,6 +174,7 @@
     input[type="email"],
     input[type="tel"] {
       width: 100%;
+      min-width: 0;
       padding: 11px 13px;
       background: rgba(6, 2, 14, 0.85);
       border: 1px solid var(--border-color);
@@ -189,7 +193,7 @@
 
     .ticket-options {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
     }
 
@@ -202,6 +206,7 @@
       background: rgba(6, 2, 14, 0.6);
       transition: all 0.2s ease;
       display: block;
+      min-width: 0;
     }
 
     .ticket-card-option:hover {
@@ -243,6 +248,7 @@
       color: white;
       margin-bottom: 8px;
       box-shadow: 0 6px 18px rgba(225, 29, 72, 0.35);
+      overflow-wrap: anywhere;
     }
 
     .iban-card .iban-no {
@@ -271,6 +277,7 @@
       background: rgba(6, 2, 14, 0.6);
       cursor: pointer;
       transition: all 0.2s ease;
+      min-width: 0;
     }
 
     .file-upload-box:hover {
@@ -329,6 +336,7 @@
       padding: 16px;
       margin-bottom: 16px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      min-width: 0;
     }
 
     .info-card h4 {
@@ -387,6 +395,7 @@
       width: auto;
       margin-top: 2px;
       cursor: pointer;
+      flex-shrink: 0;
     }
 
     footer {
@@ -440,9 +449,7 @@
       }
     }
 
-    /* =========================================================
-       BAŞARI EKRANI
-    ========================================================= */
+    /* BAŞARI EKRANI */
 
     #successScreen {
       display: none;
@@ -605,9 +612,7 @@
       color: transparent;
     }
 
-    /* =========================================================
-       LOADING
-    ========================================================= */
+    /* LOADING */
 
     #loadingOverlay {
       display: none;
@@ -673,13 +678,6 @@
       text-align: center;
     }
 
-    /*
-      ÖNEMLİ:
-      iframe display:none yapılmıyor.
-      Safari/GitHub -> Apps Script POST'unun gerçekten
-      tetiklenebilmesi için iframe DOM'da görünmez şekilde
-      tutuluyor.
-    */
     #appsScriptResponse {
       position: fixed;
       width: 2px;
@@ -711,6 +709,7 @@
     </div>
 
     <div class="description-card">
+
       <div class="description-title">
         HAZIR OL, GÖZLERİN AÇILSIN!
       </div>
@@ -718,6 +717,7 @@
       <div class="description-text">
         Elektronik müziğin enerjisi, DJ TINA'nın eşsiz performansıyla 22 Eylül 2026'da Kırıkkale'deki Terapi Cafe'de buluşuyor. Open Your Eyes etkinlik serisi, müzik, dans ve unutulmaz bir gece için seni bekliyor. Bu özel deneyimin bir parçası olmak için biletini şimdi al!
       </div>
+
     </div>
 
     <form id="mainTicketForm">
@@ -725,6 +725,7 @@
       <div class="main-grid">
 
         <!-- SOL SÜTUN -->
+
         <div class="form-column">
 
           <div class="section-card">
@@ -948,6 +949,7 @@
         </div>
 
         <!-- SAĞ SÜTUN -->
+
         <div class="sidebar-column">
 
           <div class="info-card">
@@ -1104,6 +1106,7 @@
 
   </div>
 
+
   <!-- BAŞARI EKRANI -->
 
   <div id="successScreen">
@@ -1149,6 +1152,7 @@
 
   </div>
 
+
   <!-- LOADING -->
 
   <div id="loadingOverlay">
@@ -1170,21 +1174,17 @@
 
   </div>
 
-  <!--
-    display:none YOK.
-    Bu iframe POST'un Safari/GitHub tarafından
-    Apps Script'e ulaşmasını sağlıyor.
-  -->
+
+  <!-- APPS SCRIPT CEVAP IFRAME -->
+
   <iframe
     name="appsScriptResponse"
     id="appsScriptResponse"
   ></iframe>
 
+
   <script>
 
-    /*
-     * YENİ ÇALIŞAN APPS SCRIPT URL
-     */
     const APPS_SCRIPT_URL =
       "https://script.google.com/macros/s/AKfycbz7g1JW4MXqF7hMDC1THQNIu5N-YDXWtAXCtgYMDpvLRQjRhaKdhiBB0QeLnETUZEGQ/exec";
 
@@ -1220,9 +1220,6 @@
       document.getElementById("appsScriptResponse");
 
 
-    /*
-     * Benzersiz gönderim ID
-     */
     function createSubmissionId() {
 
       if (
@@ -1244,9 +1241,6 @@
     }
 
 
-    /*
-     * HATA
-     */
     function showError(message) {
 
       loadingOverlay.style.display = "none";
@@ -1262,9 +1256,6 @@
     }
 
 
-    /*
-     * DOSYA BASE64
-     */
     function readFileAsBase64(file) {
 
       return new Promise(function(resolve, reject) {
@@ -1352,9 +1343,6 @@
     }
 
 
-    /*
-     * DOSYA SEÇİLDİ
-     */
     fileInput.addEventListener(
       "change",
       function() {
@@ -1375,13 +1363,6 @@
 
         const file =
           fileInput.files[0];
-
-        console.log(
-          "SEÇİLEN DOSYA:",
-          file.name,
-          file.type,
-          file.size
-        );
 
         if (
           file.size >
@@ -1409,12 +1390,6 @@
     );
 
 
-    /*
-     * =====================================================
-     * FORM GÖNDER
-     * =====================================================
-     */
-
     uploadForm.addEventListener(
       "submit",
       async function(event) {
@@ -1424,9 +1399,6 @@
         errorBox.style.display = "none";
 
 
-        /*
-         * DOSYAYI AL
-         */
         let file = null;
 
         if (
@@ -1468,9 +1440,6 @@
         }
 
 
-        /*
-         * KURALLAR
-         */
         const rulesCheck =
           document.getElementById("rulesCheck");
 
@@ -1485,9 +1454,6 @@
         }
 
 
-        /*
-         * BİLET
-         */
         const selectedTicket =
           document.querySelector(
             'input[name="bilet"]:checked'
@@ -1506,9 +1472,6 @@
 
         try {
 
-          /*
-           * LOADING AÇ
-           */
           loadingOverlay.style.display =
             "flex";
 
@@ -1519,21 +1482,9 @@
             "0.6";
 
 
-          /*
-           * DEKONT BASE64
-           */
           const base64 =
             await readFileAsBase64(file);
 
-
-          /*
-           * =================================================
-           * GİZLİ POST FORMU
-           *
-           * display:none YOK.
-           * DOM'da görünmez olarak tutuluyor.
-           * =================================================
-           */
 
           const postForm =
             document.createElement("form");
@@ -1542,14 +1493,11 @@
           postForm.method =
             "POST";
 
-
           postForm.action =
             APPS_SCRIPT_URL;
 
-
           postForm.target =
             "appsScriptResponse";
-
 
           postForm.enctype =
             "application/x-www-form-urlencoded";
@@ -1577,9 +1525,6 @@
             "none";
 
 
-          /*
-           * INPUT EKLE
-           */
           function addField(name, value) {
 
             const input =
@@ -1603,9 +1548,6 @@
           }
 
 
-          /*
-           * FORM VERİLERİ
-           */
           const formData =
             new FormData(uploadForm);
 
@@ -1689,19 +1631,11 @@
           );
 
 
-          /*
-           * FORMU BODY'YE EKLE
-           */
           document.body.appendChild(
             postForm
           );
 
 
-          /*
-           * Safari/GitHub tarafında submit'in
-           * kesin şekilde işleme girmesi için
-           * çok kısa gecikme.
-           */
           setTimeout(
             function() {
 
@@ -1732,12 +1666,6 @@
           );
 
 
-          /*
-           * FORMU HEMEN SİLME.
-           *
-           * Apps Script'in cevabı iframe'e
-           * dönene kadar DOM'da kalması önemli.
-           */
           setTimeout(
             function() {
 
@@ -1773,19 +1701,10 @@
     );
 
 
-    /*
-     * =====================================================
-     * APPS SCRIPT CEVABI
-     * =====================================================
-     */
-
     window.addEventListener(
       "message",
       function(event) {
 
-        /*
-         * Sadece bizim iframe
-         */
         if (
           event.source !==
           responseFrame.contentWindow
@@ -1816,9 +1735,6 @@
         );
 
 
-        /*
-         * BAŞARILI
-         */
         if (
           result.success === true
         ) {
@@ -1865,9 +1781,6 @@
         }
 
 
-        /*
-         * BACKEND HATASI
-         */
         showError(
           result.message ||
           "Bilet oluşturulurken bir hata oluştu."
@@ -1877,12 +1790,6 @@
     );
 
 
-    /*
-     * =====================================================
-     * 90 SANİYELİK GÜVENLİK ZAMAN AŞIMI
-     * =====================================================
-     */
-
     let loadingTimeout = null;
 
 
@@ -1891,7 +1798,11 @@
       function() {
 
         if (loadingTimeout) {
-          clearTimeout(loadingTimeout);
+
+          clearTimeout(
+            loadingTimeout
+          );
+
         }
 
 
@@ -1917,9 +1828,6 @@
     );
 
 
-    /*
-     * BAŞARILI OLUNCA TIMEOUT'U TEMİZLE
-     */
     window.addEventListener(
       "message",
       function(event) {
