@@ -11,7 +11,7 @@
   <style>
     :root {
       --bg-color: #0c0418;
-      --card-bg: rgba(20, 9, 38, 0.85);
+      --card-bg: rgba(20, 9, 38, 0.88);
       --border-color: rgba(168, 85, 247, 0.35);
       --border-glow: rgba(236, 72, 153, 0.5);
       --accent-pink: #ec4899;
@@ -30,56 +30,51 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    /* Tüm Sitenin Arka Planı Afişle Birebir Uyumlu */
+    /* Web Sitesi Arka Planı (Afiş Atmosferi) */
     body {
       background-color: var(--bg-color);
       background-image: 
-        radial-gradient(circle at 50% 10%, rgba(217, 70, 239, 0.28), transparent 50%),
-        radial-gradient(circle at 10% 40%, rgba(168, 85, 247, 0.2), transparent 45%),
-        radial-gradient(circle at 90% 70%, rgba(236, 72, 153, 0.22), transparent 50%),
-        radial-gradient(circle at 50% 95%, rgba(147, 51, 234, 0.25), transparent 60%);
+        radial-gradient(circle at 50% 0%, rgba(217, 70, 239, 0.3), transparent 50%),
+        radial-gradient(circle at 10% 40%, rgba(168, 85, 247, 0.22), transparent 45%),
+        radial-gradient(circle at 90% 70%, rgba(236, 72, 153, 0.25), transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(147, 51, 234, 0.3), transparent 60%);
       background-attachment: fixed;
       color: var(--text-white);
       display: flex;
       justify-content: center;
       min-height: 100vh;
-      padding: 15px 10px 25px 10px; /* Kenarlar ve alt taraf kırpılıp sıkılaştırıldı */
+      padding: 10px 8px 20px 8px; /* Web sitesinin kenar boşlukları kırpıldı */
     }
 
+    /* Sitenin Genişliği Sıkılaştırıldı - Her Şey Tam Hizada ve Büyük Görünüyor */
     .container {
       width: 100%;
-      max-width: 900px;
+      max-width: 780px; /* Kenarlar kırpıldığı için içerik daha dolu durur */
       margin: 0 auto;
     }
 
-    /* Afiş Alanı (Oranları Düzeltildi) */
+    /* Afiş Alanı (Siyah Boşluksuz, Sıfıra Sıfır Hizada) */
     .hero-container {
-      position: relative;
       width: 100%;
-      margin-bottom: 25px;
-      display: flex;
-      justify-content: center;
+      margin-bottom: 20px;
     }
 
     .poster-card {
       position: relative;
       width: 100%;
-      max-width: 820px;
       border-radius: var(--radius-lg);
       overflow: hidden;
       border: 1px solid var(--border-glow);
       box-shadow: 
-        0 20px 50px rgba(0, 0, 0, 0.9),
-        0 0 35px rgba(217, 70, 239, 0.3);
-      background: #080212;
+        0 15px 45px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(217, 70, 239, 0.35);
+      background: #000;
     }
 
     .poster-card img {
       width: 100%;
-      max-height: 60vh;
+      height: auto;
       display: block;
-      object-fit: contain;
-      margin: 0 auto;
     }
 
     /* Açıklama Kartı */
@@ -88,7 +83,7 @@
       backdrop-filter: blur(14px);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
-      padding: 20px 24px;
+      padding: 18px 22px;
       margin-bottom: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
@@ -112,12 +107,12 @@
     .main-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 18px;
+      gap: 16px;
     }
 
-    @media (min-width: 800px) {
+    @media (min-width: 768px) {
       .main-grid {
-        grid-template-columns: 1.55fr 1.05fr;
+        grid-template-columns: 1.2fr 1fr;
       }
     }
 
@@ -176,7 +171,7 @@
     input[type="tel"] {
       width: 100%;
       padding: 11px 13px;
-      background: rgba(6, 2, 14, 0.8);
+      background: rgba(6, 2, 14, 0.85);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-md);
       color: var(--text-white);
@@ -194,7 +189,7 @@
     /* Bilet Kartları */
     .ticket-options {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
       gap: 10px;
     }
 
@@ -242,7 +237,7 @@
     .iban-card {
       background: linear-gradient(135deg, #e11d48, #9333ea);
       border-radius: var(--radius-md);
-      padding: 15px;
+      padding: 14px;
       text-align: center;
       color: white;
       margin-bottom: 8px;
@@ -250,14 +245,14 @@
     }
 
     .iban-card .iban-no {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 800;
       letter-spacing: 0.04em;
       margin-bottom: 4px;
     }
 
     .iban-card .iban-holder {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       opacity: 0.95;
       font-weight: 600;
     }
@@ -286,6 +281,45 @@
     .file-upload-box p {
       font-size: 0.78rem;
       color: var(--text-muted);
+    }
+
+    /* DEV HEYBETLİ BİLETİMİ AL BUTONU (DOSYA EKLEMENİN ALTINA TAM HİZALANDI) */
+    .submit-btn {
+      width: 100%;
+      padding: 20px 24px;
+      background: linear-gradient(135deg, #f472b6 0%, #d946ef 50%, #a855f7 100%);
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-radius: 16px;
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 
+        0 10px 35px rgba(217, 70, 239, 0.65),
+        0 0 25px rgba(244, 114, 182, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      margin-top: 10px;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px) scale(1.015);
+      box-shadow: 
+        0 15px 45px rgba(217, 70, 239, 0.85),
+        0 0 35px rgba(244, 114, 182, 0.7);
+      background: linear-gradient(135deg, #fb7185 0%, #e879f9 50%, #c084fc 100%);
+    }
+
+    .submit-btn:active {
+      transform: translateY(-1px) scale(0.99);
     }
 
     /* Sağ Kolon */
@@ -357,50 +391,11 @@
       cursor: pointer;
     }
 
-    /* DEV HEYBETLİ BİLETİMİ AL BUTONU */
-    .submit-btn {
-      width: 100%;
-      padding: 22px 30px;
-      background: linear-gradient(135deg, #f472b6 0%, #d946ef 50%, #a855f7 100%);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 16px;
-      color: #ffffff;
-      font-size: 1.25rem;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 
-        0 10px 35px rgba(217, 70, 239, 0.6),
-        0 0 20px rgba(244, 114, 182, 0.5),
-        inset 0 2px 4px rgba(255, 255, 255, 0.4);
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      margin-top: 12px;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 
-        0 15px 45px rgba(217, 70, 239, 0.8),
-        0 0 30px rgba(244, 114, 182, 0.7),
-        inset 0 2px 6px rgba(255, 255, 255, 0.6);
-      background: linear-gradient(135deg, #fb7185 0%, #e879f9 50%, #c084fc 100%);
-    }
-
-    .submit-btn:active {
-      transform: translateY(-1px) scale(0.99);
-    }
-
-    /* FOOTER VE SOL ALT VIBE EVENT LOGOSU */
+    /* FOOTER VE BÜYÜTÜLMÜŞ VIBE EVENT LOGOSU */
     footer {
-      margin-top: 35px;
+      margin-top: 25px;
       padding-top: 20px;
-      border-top: 1px solid rgba(168, 85, 247, 0.2);
+      border-top: 1px solid rgba(168, 85, 247, 0.25);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -415,19 +410,23 @@
       }
     }
 
-    /* Sitenin En Sol Altına Eklenen Vibe Event Logosu */
+    /* Belirginleştirilmiş ve Büyütülmüş Vibe Event Logosu */
     .footer-logo-badge {
-      background: rgba(18, 9, 38, 0.9);
-      border: 1px solid var(--accent-pink);
-      padding: 8px 16px;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(236, 72, 153, 0.35);
+      background: rgba(18, 9, 38, 0.95);
+      border: 1.5px solid var(--accent-pink);
+      padding: 12px 22px;
+      border-radius: 16px;
+      box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.7), 
+        0 0 20px rgba(236, 72, 153, 0.45);
       display: flex;
       align-items: center;
+      justify-content: center;
     }
 
+    /* Logo Görsel Boyutu Artırıldı */
     .footer-logo-badge img {
-      height: 46px;
+      height: 70px; /* Büyütüldü! */
       width: auto;
       display: block;
       object-fit: contain;
@@ -451,7 +450,7 @@
 
   <div class="container">
 
-    <!-- Ana Afiş Banner -->
+    <!-- Orijinal Boyutlarda Kusursuz Afiş Banner -->
     <div class="hero-container">
       <div class="poster-card">
         <img src="DJ TINA - 1.jpeg" alt="DJ TINA Open Your Eyes Poster">
@@ -469,7 +468,7 @@
     <form id="mainTicketForm">
       <div class="main-grid">
         
-        <!-- SOL KOLON: ADIMLAR -->
+        <!-- SOL KOLON: ADIMLAR & BİLET AL BUTONU -->
         <div class="form-column">
           
           <!-- ADIM 1 -->
@@ -534,8 +533,8 @@
             <div class="iban-note">Ödemenizi yaptıktan sonra dekontunuzu yükleyiniz.</div>
           </div>
 
-          <!-- ADIM 4 -->
-          <div class="section-card">
+          <!-- ADIM 4: DEKONT YÜKLEME -->
+          <div class="section-card" style="margin-bottom: 12px;">
             <div class="step-header">
               <div class="step-number">4</div>
               <div class="step-title">DEKONT YÜKLEME</div>
@@ -546,6 +545,11 @@
               <input type="file" id="fileInput" style="display: none;" accept="image/*,.pdf" required>
             </div>
           </div>
+
+          <!-- HEYBETLİ BİLETİMİ AL BUTONU (DEKONT YÜKLEMENİN TAM ALTINA HİZALANDI) -->
+          <button type="submit" class="submit-btn">
+            🎟️ BİLETİMİ AL
+          </button>
 
         </div>
 
@@ -584,17 +588,12 @@
             </div>
           </div>
 
-          <!-- Heybetli Bilet Al Butonu -->
-          <button type="submit" class="submit-btn">
-            🎟️ BİLETİMİ AL
-          </button>
-
         </div>
 
       </div>
     </form>
 
-    <!-- Sitenin Sol Altına Logo Eklenen Footer -->
+    <!-- BÜYÜK VIBE EVENT LOGOLU FOOTER -->
     <footer>
       <div class="footer-logo-badge">
         <img src="Paragraf metniniz.png" alt="Vibe Event Logo">
