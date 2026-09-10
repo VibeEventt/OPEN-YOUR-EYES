@@ -4,26 +4,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>DJ TINA - OPEN YOUR EYES | Vibe Event</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
+
     :root {
       --bg-color: #0c0418;
       --card-bg: rgba(20, 9, 38, 0.88);
       --border-color: rgba(168, 85, 247, 0.35);
       --border-glow: rgba(236, 72, 153, 0.5);
+
       --accent-pink: #ec4899;
       --accent-purple: #a855f7;
       --accent-magenta: #d946ef;
+
       --text-white: #ffffff;
       --text-muted: #a1a1aa;
+
       --radius-lg: 18px;
       --radius-md: 12px;
     }
+
 
     * {
       box-sizing: border-box;
@@ -32,20 +42,44 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
+
     body {
       background-color: var(--bg-color);
+
       background-image:
-        radial-gradient(circle at 50% 0%, rgba(217, 70, 239, 0.3), transparent 50%),
-        radial-gradient(circle at 10% 40%, rgba(168, 85, 247, 0.22), transparent 45%),
-        radial-gradient(circle at 90% 70%, rgba(236, 72, 153, 0.25), transparent 50%),
-        radial-gradient(circle at 50% 100%, rgba(147, 51, 234, 0.3), transparent 60%);
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(217, 70, 239, 0.3),
+          transparent 50%
+        ),
+        radial-gradient(
+          circle at 10% 40%,
+          rgba(168, 85, 247, 0.22),
+          transparent 45%
+        ),
+        radial-gradient(
+          circle at 90% 70%,
+          rgba(236, 72, 153, 0.25),
+          transparent 50%
+        ),
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(147, 51, 234, 0.3),
+          transparent 60%
+        );
+
       background-attachment: fixed;
+
       color: var(--text-white);
+
       display: flex;
       justify-content: center;
+
       min-height: 100vh;
-      padding: 10px 8px 20px 8px;
+
+      padding: 10px 8px 20px;
     }
+
 
     .container {
       width: 100%;
@@ -53,22 +87,31 @@
       margin: 0 auto;
     }
 
+
     .hero-container {
       width: 100%;
       margin-bottom: 20px;
     }
 
+
     .poster-card {
       position: relative;
+
       width: 100%;
+
       border-radius: var(--radius-lg);
+
       overflow: hidden;
+
       border: 1px solid var(--border-glow);
+
       box-shadow:
         0 15px 45px rgba(0, 0, 0, 0.9),
         0 0 30px rgba(217, 70, 239, 0.35);
+
       background: #000;
     }
+
 
     .poster-card img {
       width: 100%;
@@ -76,87 +119,145 @@
       display: block;
     }
 
+
     .description-card {
       background: var(--card-bg);
+
       backdrop-filter: blur(14px);
+
       border: 1px solid var(--border-color);
+
       border-radius: var(--radius-lg);
+
       padding: 18px 22px;
+
       margin-bottom: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.6);
     }
+
 
     .description-title {
       color: #f472b6;
+
       font-size: 1.05rem;
+
       font-weight: 800;
+
       letter-spacing: 0.06em;
+
       margin-bottom: 6px;
+
       text-transform: uppercase;
     }
+
 
     .description-text {
       color: #e2e8f0;
+
       font-size: 0.88rem;
+
       line-height: 1.55;
     }
 
+
     .main-grid {
       display: grid;
+
       grid-template-columns: 1fr;
+
       gap: 16px;
     }
 
+
     @media (min-width: 768px) {
+
       .main-grid {
         grid-template-columns: 1.2fr 1fr;
       }
+
     }
+
 
     .section-card {
       background: var(--card-bg);
+
       backdrop-filter: blur(14px);
+
       border: 1px solid var(--border-color);
+
       border-radius: var(--radius-lg);
+
       padding: 18px;
+
       margin-bottom: 16px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.5);
     }
+
 
     .step-header {
       display: flex;
+
       align-items: center;
+
       gap: 10px;
+
       margin-bottom: 14px;
     }
 
+
     .step-number {
-      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent-pink),
+          var(--accent-purple)
+        );
+
       width: 26px;
       height: 26px;
+
       border-radius: 50%;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
+
       font-weight: 800;
+
       font-size: 0.8rem;
-      box-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
+
+      box-shadow:
+        0 0 10px rgba(236, 72, 153, 0.6);
     }
+
 
     .step-title {
       font-size: 0.88rem;
+
       font-weight: 800;
+
       letter-spacing: 0.05em;
+
       text-transform: uppercase;
     }
 
+
     .input-grid {
       display: grid;
+
       grid-template-columns: 1fr;
+
       gap: 10px;
     }
 
+
     @media (min-width: 480px) {
+
       .input-grid-3 {
         grid-template-columns: repeat(3, 1fr);
       }
@@ -164,555 +265,1065 @@
       .input-grid-2 {
         grid-template-columns: repeat(2, 1fr);
       }
+
     }
+
 
     input[type="text"],
     input[type="email"],
     input[type="tel"] {
+
       width: 100%;
+
       padding: 11px 13px;
+
       background: rgba(6, 2, 14, 0.85);
+
       border: 1px solid var(--border-color);
+
       border-radius: var(--radius-md);
+
       color: var(--text-white);
+
       font-size: 0.82rem;
+
       outline: none;
+
       transition: all 0.2s ease;
     }
 
+
     input:focus {
+
       border-color: var(--accent-pink);
-      box-shadow: 0 0 12px rgba(236, 72, 153, 0.4);
-      background: rgba(12, 4, 24, 0.95);
+
+      box-shadow:
+        0 0 12px rgba(236, 72, 153, 0.4);
+
+      background:
+        rgba(12, 4, 24, 0.95);
     }
 
+
     .ticket-options {
+
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(105px, 1fr));
+
       gap: 10px;
     }
 
+
     .ticket-card-option {
+
       border: 1px solid var(--border-color);
+
       border-radius: var(--radius-md);
+
       padding: 12px 8px;
+
       text-align: center;
+
       cursor: pointer;
-      background: rgba(6, 2, 14, 0.6);
+
+      background:
+        rgba(6, 2, 14, 0.6);
+
       transition: all 0.2s ease;
+
       display: block;
     }
 
+
     .ticket-card-option:hover {
+
       border-color: var(--accent-pink);
-      background: rgba(236, 72, 153, 0.1);
+
+      background:
+        rgba(236, 72, 153, 0.1);
     }
+
 
     .ticket-card-option input {
       display: none;
     }
 
-    .ticket-card-option input:checked + .opt-box .opt-title {
+
+    .ticket-card-option input:checked
+    + .opt-box
+    .opt-title {
+
       color: var(--accent-pink);
     }
 
-    .ticket-card-option input:checked ~ .opt-price {
+
+    .ticket-card-option input:checked
+    ~ .opt-price {
+
       color: #4ade80;
     }
 
+
     .opt-title {
+
       font-size: 0.78rem;
+
       font-weight: 700;
+
       display: block;
+
       margin-bottom: 4px;
+
       color: var(--text-white);
     }
 
+
     .opt-price {
+
       font-size: 0.88rem;
+
       font-weight: 800;
+
       color: #a7f3d0;
     }
 
+
     .iban-card {
-      background: linear-gradient(135deg, #e11d48, #9333ea);
+
+      background:
+        linear-gradient(
+          135deg,
+          #e11d48,
+          #9333ea
+        );
+
       border-radius: var(--radius-md);
+
       padding: 14px;
+
       text-align: center;
+
       color: white;
+
       margin-bottom: 8px;
-      box-shadow: 0 6px 18px rgba(225, 29, 72, 0.35);
+
+      box-shadow:
+        0 6px 18px rgba(225, 29, 72, 0.35);
     }
 
+
     .iban-card .iban-no {
+
       font-size: 0.85rem;
+
       font-weight: 800;
+
       letter-spacing: 0.04em;
+
       margin-bottom: 4px;
     }
 
+
     .iban-card .iban-holder {
+
       font-size: 0.8rem;
+
       opacity: 0.95;
+
       font-weight: 600;
     }
 
+
     .iban-note {
+
       font-size: 0.74rem;
+
       color: var(--text-muted);
     }
 
+
     .file-upload-box {
+
       border: 1px dashed var(--accent-purple);
+
       border-radius: var(--radius-md);
+
       padding: 18px;
+
       text-align: center;
-      background: rgba(6, 2, 14, 0.6);
+
+      background:
+        rgba(6, 2, 14, 0.6);
+
       cursor: pointer;
+
       transition: all 0.2s ease;
     }
 
+
     .file-upload-box:hover {
+
       border-color: var(--accent-pink);
-      background: rgba(236, 72, 153, 0.08);
+
+      background:
+        rgba(236, 72, 153, 0.08);
     }
 
+
     .file-upload-box p {
+
       font-size: 0.78rem;
+
       color: var(--text-muted);
     }
 
+
     .submit-btn {
+
       width: 100%;
+
       padding: 20px 24px;
-      background: linear-gradient(135deg, #f472b6 0%, #d946ef 50%, #a855f7 100%);
-      border: 2px solid rgba(255, 255, 255, 0.35);
+
+      background:
+        linear-gradient(
+          135deg,
+          #f472b6 0%,
+          #d946ef 50%,
+          #a855f7 100%
+        );
+
+      border: 2px solid
+        rgba(255, 255, 255, 0.35);
+
       border-radius: 16px;
+
       color: #ffffff;
+
       font-size: 1.25rem;
+
       font-weight: 900;
+
       letter-spacing: 0.1em;
+
       text-transform: uppercase;
+
       cursor: pointer;
+
       box-shadow:
         0 10px 35px rgba(217, 70, 239, 0.65),
         0 0 25px rgba(244, 114, 182, 0.5),
         inset 0 2px 4px rgba(255, 255, 255, 0.5);
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+      transition:
+        all 0.3s
+        cubic-bezier(
+          0.175,
+          0.885,
+          0.32,
+          1.275
+        );
+
       margin-top: 10px;
+
       margin-bottom: 16px;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+
+      text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.4);
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       gap: 10px;
     }
 
+
     .submit-btn:hover {
-      transform: translateY(-3px) scale(1.015);
+
+      transform:
+        translateY(-3px)
+        scale(1.015);
+
       box-shadow:
         0 15px 45px rgba(217, 70, 239, 0.85),
         0 0 35px rgba(244, 114, 182, 0.7);
-      background: linear-gradient(135deg, #fb7185 0%, #e879f9 50%, #c084fc 100%);
     }
+
 
     .submit-btn:active {
-      transform: translateY(-1px) scale(0.99);
+
+      transform:
+        translateY(-1px)
+        scale(0.99);
     }
+
+
+    .submit-btn:disabled {
+
+      cursor: wait;
+
+      transform: none;
+
+      opacity: 0.6;
+    }
+
 
     .info-card {
+
       background: var(--card-bg);
+
       backdrop-filter: blur(14px);
+
       border: 1px solid var(--border-color);
+
       border-radius: var(--radius-lg);
+
       padding: 16px;
+
       margin-bottom: 16px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.5);
     }
 
+
     .info-card h4 {
+
       font-size: 0.82rem;
+
       color: var(--text-white);
+
       margin-bottom: 10px;
+
       display: flex;
+
       align-items: center;
+
       gap: 6px;
+
       text-transform: uppercase;
+
       letter-spacing: 0.03em;
     }
 
+
     .info-list {
+
       list-style: none;
     }
 
+
     .info-list li {
+
       color: #cbd5e1;
+
       font-size: 0.76rem;
+
       margin-bottom: 8px;
+
       line-height: 1.45;
+
       position: relative;
+
       padding-left: 16px;
     }
 
+
     .info-list li::before {
+
       content: "✓";
+
       position: absolute;
+
       left: 0;
+
       color: var(--accent-pink);
+
       font-weight: bold;
     }
 
+
     .rules-list li::before {
+
       content: "•";
+
       color: #f43f5e;
+
       font-size: 1.1rem;
+
       top: -2px;
     }
 
+
     .rules-list strong {
+
       color: #fff;
     }
 
+
     .checkbox-group {
+
       display: flex;
+
       align-items: flex-start;
+
       gap: 8px;
+
       font-size: 0.74rem;
+
       color: var(--text-muted);
+
       margin-top: 10px;
     }
 
+
     .checkbox-group input {
+
       width: auto;
+
       margin-top: 2px;
+
       cursor: pointer;
     }
 
+
     footer {
+
       margin-top: 25px;
+
       padding-top: 20px;
-      border-top: 1px solid rgba(168, 85, 247, 0.25);
+
+      border-top:
+        1px solid rgba(168, 85, 247, 0.25);
+
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
+
       gap: 15px;
     }
 
+
     @media (min-width: 600px) {
+
       footer {
+
         flex-direction: row;
+
         justify-content: space-between;
+
         align-items: center;
       }
+
     }
 
+
     .footer-logo-badge {
-      background: rgba(18, 9, 38, 0.95);
-      border: 1.5px solid var(--accent-pink);
+
+      background:
+        rgba(18, 9, 38, 0.95);
+
+      border:
+        1.5px solid var(--accent-pink);
+
       padding: 12px 22px;
+
       border-radius: 16px;
+
       box-shadow:
         0 8px 25px rgba(0, 0, 0, 0.7),
         0 0 20px rgba(236, 72, 153, 0.45);
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
     }
 
+
     .footer-logo-badge img {
+
       height: 70px;
+
       width: auto;
+
       display: block;
+
       object-fit: contain;
     }
 
+
     .footer-text {
+
       font-size: 0.76rem;
+
       color: var(--text-muted);
+
       letter-spacing: 0.05em;
+
       text-align: center;
     }
 
+
     @media (min-width: 600px) {
+
       .footer-text {
         text-align: right;
       }
+
     }
 
-    /* =========================================================
-       OTOMASYON
-    ========================================================= */
+
+    /* =====================================================
+       BAŞARI EKRANI
+    ===================================================== */
 
     #successScreen {
+
       display: none;
+
       width: 100%;
+
       max-width: 780px;
-      min-height: calc(100vh - 30px);
+
+      min-height:
+        calc(100vh - 30px);
+
       align-items: center;
+
       justify-content: center;
+
       position: relative;
+
       overflow: hidden;
     }
 
+
     .success-background {
+
       position: absolute;
+
       inset: -20%;
+
       background:
-        radial-gradient(circle at 20% 20%, rgba(236, 72, 153, 0.40), transparent 25%),
-        radial-gradient(circle at 80% 30%, rgba(59, 130, 246, 0.35), transparent 25%),
-        radial-gradient(circle at 50% 80%, rgba(217, 70, 239, 0.35), transparent 30%);
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(236, 72, 153, 0.40),
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at 80% 30%,
+          rgba(59, 130, 246, 0.35),
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at 50% 80%,
+          rgba(217, 70, 239, 0.35),
+          transparent 30%
+        );
+
       filter: blur(20px);
-      animation: successMove 8s ease-in-out infinite alternate;
+
+      animation:
+        successMove
+        8s
+        ease-in-out
+        infinite
+        alternate;
     }
 
+
     @keyframes successMove {
+
       0% {
-        transform: scale(1) translate(0, 0);
+        transform:
+          scale(1)
+          translate(0, 0);
       }
 
       100% {
-        transform: scale(1.15) translate(3%, -3%);
+        transform:
+          scale(1.15)
+          translate(3%, -3%);
       }
     }
 
+
     .success-card {
+
       position: relative;
+
       z-index: 2;
+
       width: 100%;
+
       max-width: 620px;
+
       padding: 42px 25px;
+
       text-align: center;
-      background: rgba(8, 3, 20, 0.90);
-      border: 1px solid rgba(236, 72, 153, 0.55);
+
+      background:
+        rgba(8, 3, 20, 0.90);
+
+      border:
+        1px solid rgba(236, 72, 153, 0.55);
+
       border-radius: 24px;
+
       box-shadow:
         0 20px 70px rgba(0, 0, 0, 0.85),
         0 0 50px rgba(217, 70, 239, 0.30);
+
       backdrop-filter: blur(18px);
-      animation: successAppear 0.7s ease forwards;
+
+      animation:
+        successAppear
+        0.7s
+        ease
+        forwards;
     }
 
+
     @keyframes successAppear {
+
       from {
+
         opacity: 0;
-        transform: translateY(25px) scale(0.97);
+
+        transform:
+          translateY(25px)
+          scale(0.97);
       }
 
       to {
+
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+          translateY(0)
+          scale(1);
       }
     }
 
+
     .success-welcome {
+
       color: #f9a8d4;
+
       font-size: 0.82rem;
+
       font-weight: 800;
+
       letter-spacing: 0.20em;
+
       margin-bottom: 20px;
     }
 
+
     .success-dj {
-      font-size: clamp(2.8rem, 10vw, 5rem);
+
+      font-size:
+        clamp(2.8rem, 10vw, 5rem);
+
       line-height: 0.95;
+
       font-weight: 900;
-      background: linear-gradient(
-        90deg,
-        #ffffff,
-        #f472b6,
-        #60a5fa,
-        #ffffff
-      );
+
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #f472b6,
+          #60a5fa,
+          #ffffff
+        );
+
       background-size: 250% auto;
+
       -webkit-background-clip: text;
+
       background-clip: text;
+
       color: transparent;
-      animation: shineText 4s linear infinite;
+
+      animation:
+        shineText
+        4s
+        linear
+        infinite;
     }
 
+
     @keyframes shineText {
+
       to {
-        background-position: 250% center;
+        background-position:
+          250% center;
       }
     }
 
+
     .success-event {
+
       margin-top: 10px;
+
       font-size: 1rem;
+
       font-weight: 800;
+
       letter-spacing: 0.22em;
+
       color: #dbeafe;
     }
 
+
     .success-divider {
+
       width: 90px;
+
       height: 2px;
+
       margin: 28px auto;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        #ec4899,
-        #60a5fa,
-        transparent
-      );
-      box-shadow: 0 0 15px rgba(236, 72, 153, 0.8);
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #ec4899,
+          #60a5fa,
+          transparent
+        );
+
+      box-shadow:
+        0 0 15px rgba(236, 72, 153, 0.8);
     }
 
+
     .ticket-label {
+
       color: #a1a1aa;
+
       font-size: 0.72rem;
+
       font-weight: 800;
+
       letter-spacing: 0.16em;
+
       margin-bottom: 9px;
     }
 
+
     .ticket-id {
+
       display: inline-block;
+
       padding: 12px 18px;
+
       border-radius: 12px;
-      border: 1px solid rgba(96, 165, 250, 0.55);
-      background: rgba(37, 99, 235, 0.10);
+
+      border:
+        1px solid rgba(96, 165, 250, 0.55);
+
+      background:
+        rgba(37, 99, 235, 0.10);
+
       color: #ffffff;
-      font-size: clamp(1.05rem, 4vw, 1.5rem);
+
+      font-size:
+        clamp(1.05rem, 4vw, 1.5rem);
+
       font-weight: 900;
+
       letter-spacing: 0.08em;
+
       box-shadow:
         0 0 20px rgba(59, 130, 246, 0.18),
         inset 0 0 20px rgba(236, 72, 153, 0.05);
+
       word-break: break-all;
     }
 
+
     .success-message {
+
       margin-top: 24px;
+
       color: #e2e8f0;
+
       font-size: 0.86rem;
+
       line-height: 1.65;
     }
 
+
     .success-brand {
+
       margin-top: 28px;
+
       font-size: 0.82rem;
+
       font-weight: 900;
+
       letter-spacing: 0.28em;
-      background: linear-gradient(
-        90deg,
-        #f472b6,
-        #60a5fa
-      );
+
+      background:
+        linear-gradient(
+          90deg,
+          #f472b6,
+          #60a5fa
+        );
+
       -webkit-background-clip: text;
+
       background-clip: text;
+
       color: transparent;
     }
 
+
+    /* =====================================================
+       LOADING
+    ===================================================== */
+
     #loadingOverlay {
+
       display: none;
+
       position: fixed;
+
       z-index: 99999;
+
       inset: 0;
-      background: rgba(6, 2, 14, 0.82);
+
+      background:
+        rgba(6, 2, 14, 0.82);
+
       backdrop-filter: blur(8px);
+
       align-items: center;
+
       justify-content: center;
+
       padding: 20px;
     }
 
+
     .loading-box {
+
       width: min(90%, 400px);
+
       padding: 30px 24px;
+
       text-align: center;
+
       border-radius: 18px;
-      background: rgba(20, 9, 38, 0.96);
-      border: 1px solid rgba(236, 72, 153, 0.5);
-      box-shadow: 0 0 40px rgba(217, 70, 239, 0.35);
+
+      background:
+        rgba(20, 9, 38, 0.96);
+
+      border:
+        1px solid rgba(236, 72, 153, 0.5);
+
+      box-shadow:
+        0 0 40px rgba(217, 70, 239, 0.35);
     }
+
 
     .loading-spinner {
+
       width: 42px;
+
       height: 42px;
+
       margin: 0 auto 18px;
+
       border-radius: 50%;
-      border: 3px solid rgba(255, 255, 255, 0.15);
+
+      border:
+        3px solid rgba(255, 255, 255, 0.15);
+
       border-top-color: #ec4899;
+
       border-right-color: #60a5fa;
-      animation: spin 0.8s linear infinite;
+
+      animation:
+        spin
+        0.8s
+        linear
+        infinite;
     }
 
+
     @keyframes spin {
+
       to {
         transform: rotate(360deg);
       }
     }
 
+
     .loading-title {
+
       font-weight: 800;
+
       font-size: 0.95rem;
+
       margin-bottom: 6px;
     }
 
+
     .loading-text {
+
       color: #a1a1aa;
+
       font-size: 0.76rem;
+
       line-height: 1.5;
     }
 
+
     #errorBox {
+
       display: none;
+
       margin-top: 12px;
+
       padding: 12px;
+
       border-radius: 10px;
-      background: rgba(244, 63, 94, 0.10);
-      border: 1px solid rgba(244, 63, 94, 0.35);
+
+      background:
+        rgba(244, 63, 94, 0.10);
+
+      border:
+        1px solid rgba(244, 63, 94, 0.35);
+
       color: #fecdd3;
+
       font-size: 0.76rem;
+
       line-height: 1.5;
+
       text-align: center;
     }
 
-    #appsScriptResponse {
-      display: none;
-    }
 
-    /* DOSYA SEÇİLDİĞİNDE */
     .file-selected {
+
       color: #ffffff !important;
+
       font-weight: 700 !important;
+
       margin-top: 8px !important;
+
       word-break: break-word;
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <div class="container" id="mainPage">
+
+  <!-- =====================================================
+       ANA SAYFA
+  ====================================================== -->
+
+  <div
+    class="container"
+    id="mainPage"
+  >
+
+
+    <!-- POSTER -->
 
     <div class="hero-container">
+
       <div class="poster-card">
-        <img src="DJ TINA - 1.jpeg" alt="DJ TINA Open Your Eyes Poster">
+
+        <img
+          src="DJ TINA - 1.jpeg"
+          alt="DJ TINA Open Your Eyes Poster"
+        >
+
       </div>
+
     </div>
+
+
+    <!-- AÇIKLAMA -->
 
     <div class="description-card">
-      <div class="description-title">HAZIR OL, GÖZLERİN AÇILSIN!</div>
-      <div class="description-text">
-        Elektronik müziğin enerjisi, DJ TINA'nın eşsiz performansıyla 22 Eylül 2026'da Kırıkkale'deki Terapi Cafe'de buluşuyor. Open Your Eyes etkinlik serisi, müzik, dans ve unutulmaz bir gece için seni bekliyor. Bu özel deneyimin bir parçası olmak için biletini şimdi al!
+
+      <div class="description-title">
+        HAZIR OL, GÖZLERİN AÇILSIN!
       </div>
+
+      <div class="description-text">
+
+        Elektronik müziğin enerjisi,
+        DJ TINA'nın eşsiz performansıyla
+        22 Eylül 2026'da Kırıkkale'deki
+        Terapi Cafe'de buluşuyor.
+        Open Your Eyes etkinlik serisi,
+        müzik, dans ve unutulmaz bir gece
+        için seni bekliyor.
+        Bu özel deneyimin bir parçası olmak
+        için biletini şimdi al!
+
+      </div>
+
     </div>
 
-    <form id="mainTicketForm">
+
+    <!-- FORM -->
+
+    <form
+      id="mainTicketForm"
+    >
+
 
       <div class="main-grid">
 
+
+        <!-- =================================================
+             SOL TARAF
+        ================================================== -->
+
         <div class="form-column">
+
+
+          <!-- KİŞİSEL BİLGİLER -->
 
           <div class="section-card">
 
+
             <div class="step-header">
-              <div class="step-number">1</div>
-              <div class="step-title">KİŞİSEL BİLGİLER</div>
+
+              <div class="step-number">
+                1
+              </div>
+
+              <div class="step-title">
+                KİŞİSEL BİLGİLER
+              </div>
+
             </div>
 
-            <div class="input-grid input-grid-3">
+
+            <div
+              class="input-grid input-grid-3"
+            >
 
               <input
                 type="text"
@@ -735,6 +1346,7 @@
 
             </div>
 
+
             <div
               class="input-grid input-grid-2"
               style="margin-top: 10px;"
@@ -756,15 +1368,27 @@
 
             </div>
 
+
           </div>
 
 
+          <!-- BİLET -->
+
           <div class="section-card">
 
+
             <div class="step-header">
-              <div class="step-number">2</div>
-              <div class="step-title">BİLET SEÇİMİ</div>
+
+              <div class="step-number">
+                2
+              </div>
+
+              <div class="step-title">
+                BİLET SEÇİMİ
+              </div>
+
             </div>
+
 
             <p
               style="
@@ -776,7 +1400,9 @@
               Bilet Sayısı *
             </p>
 
+
             <div class="ticket-options">
+
 
               <label class="ticket-card-option">
 
@@ -788,9 +1414,11 @@
                 >
 
                 <div class="opt-box">
+
                   <span class="opt-title">
                     1. Tek Tabanca
                   </span>
+
                 </div>
 
                 <span class="opt-price">
@@ -809,9 +1437,11 @@
                 >
 
                 <div class="opt-box">
+
                   <span class="opt-title">
                     2. Ayrılmaz İkili
                   </span>
+
                 </div>
 
                 <span class="opt-price">
@@ -830,9 +1460,11 @@
                 >
 
                 <div class="opt-box">
+
                   <span class="opt-title">
                     3. Üçlü Kampanya
                   </span>
+
                 </div>
 
                 <span class="opt-price">
@@ -841,51 +1473,88 @@
 
               </label>
 
+
             </div>
+
 
           </div>
 
 
+          <!-- ÖDEME -->
+
           <div class="section-card">
 
+
             <div class="step-header">
-              <div class="step-number">3</div>
-              <div class="step-title">ÖDEME BİLGİLERİ</div>
+
+              <div class="step-number">
+                3
+              </div>
+
+              <div class="step-title">
+                ÖDEME BİLGİLERİ
+              </div>
+
             </div>
+
 
             <div class="iban-card">
 
               <div class="iban-no">
-                IBAN: TR02 0001 2009 4570 0001 1277 39
+
+                IBAN:
+                TR02 0001 2009 4570 0001 1277 39
+
               </div>
+
 
               <div class="iban-holder">
-                Hesap Sahibi: Turgut Çağatay Ünal
+
+                Hesap Sahibi:
+                Turgut Çağatay Ünal
+
               </div>
 
             </div>
 
+
             <div class="iban-note">
-              Ödemenizi yaptıktan sonra dekontunuzu yükleyiniz.
+
+              Ödemenizi yaptıktan sonra
+              dekontunuzu yükleyiniz.
+
             </div>
+
 
           </div>
 
+
+          <!-- DEKONT -->
 
           <div
             class="section-card"
             style="margin-bottom: 12px;"
           >
 
+
             <div class="step-header">
-              <div class="step-number">4</div>
-              <div class="step-title">DEKONT YÜKLEME</div>
+
+              <div class="step-number">
+                4
+              </div>
+
+              <div class="step-title">
+                DEKONT YÜKLEME
+              </div>
+
             </div>
+
 
             <div
               class="file-upload-box"
-              onclick="document.getElementById('fileInput').click()"
+              id="fileUploadBox"
             >
+
 
               <p
                 style="
@@ -894,20 +1563,40 @@
                   margin-bottom: 4px;
                 "
               >
-                Dekontunuzu buraya sürükleyin veya seçin
+
+                Dekontunuzu buraya
+                sürükleyin veya seçin
+
               </p>
 
-              <p style="font-size: 0.72rem;">
-                PDF, JPG, PNG • Maksimum 10 MB
+
+              <p
+                style="
+                  font-size: 0.72rem;
+                "
+              >
+
+                PDF, JPG, PNG •
+                Maksimum 10 MB
+
               </p>
 
-              <!-- required KALDIRILDI -->
+
               <input
                 type="file"
                 id="fileInput"
+                name="dekont"
                 style="display: none;"
-                accept="application/pdf,image/*,.pdf,.jpg,.jpeg,.png"
+                accept="
+                  application/pdf,
+                  image/*,
+                  .pdf,
+                  .jpg,
+                  .jpeg,
+                  .png
+                "
               >
+
 
               <p
                 id="selectedFileName"
@@ -915,63 +1604,94 @@
                 style="display:none;"
               ></p>
 
+
             </div>
+
 
           </div>
 
+
+          <!-- BUTON -->
 
           <button
             type="submit"
             class="submit-btn"
             id="submitButton"
           >
+
             🎟️ BİLETİMİ AL
+
           </button>
 
+
           <div id="errorBox"></div>
+
 
         </div>
 
 
+        <!-- =================================================
+             SAĞ TARAF
+        ================================================== -->
+
         <div class="sidebar-column">
 
+
+          <!-- BİLET NASIL GELECEK -->
+
           <div class="info-card">
+
 
             <h4>
               🎟️ BİLETİN NASIL GELECEK?
             </h4>
 
+
             <ul class="info-list">
 
-              <li>
-                Bilgilerini doldurup ödeme yaptıktan sonra dekontunu yükle.
-              </li>
 
               <li>
-                Onaylandığında biletin otomatik olarak e-posta adresine gönderilecek.
+                Bilgilerini doldurup ödeme
+                yaptıktan sonra dekontunu yükle.
               </li>
 
-              <li>
-                Biletinde yer alan QR kod ile etkinlik alanına giriş yapabilirsin.
-              </li>
 
               <li>
-                Biletini mailinde bulamazsan lütfen spam klasörünü kontrol et.
+                Onaylandığında biletin otomatik
+                olarak e-posta adresine gönderilecek.
               </li>
+
+
+              <li>
+                Biletinde yer alan QR kod ile
+                etkinlik alanına giriş yapabilirsin.
+              </li>
+
+
+              <li>
+                Biletini mailinde bulamazsan
+                lütfen spam klasörünü kontrol et.
+              </li>
+
 
             </ul>
 
+
           </div>
 
+
+          <!-- INSTAGRAM -->
 
           <div
             class="info-card"
             style="text-align: center;"
           >
 
+
             <h4>
               📸 Bizi takip et!
             </h4>
+
 
             <p
               style="
@@ -984,6 +1704,7 @@
               @vibe.eventt
             </p>
 
+
             <p
               style="
                 color: var(--accent-pink);
@@ -995,46 +1716,112 @@
               @tugceshtx
             </p>
 
+
           </div>
 
 
+          <!-- KURALLAR -->
+
           <div class="info-card">
+
 
             <h4 style="color: #f43f5e;">
               ⚠️ ETKİNLİK KURALLARI
             </h4>
 
+
             <ul class="info-list rules-list">
 
-              <li>
-                <strong>Giriş ve Kontrol:</strong>
-                Yoğunluk yaşanamak ve program başlangıcını kaçırmamak adına kapı açılış saatinde alanda bulunmanız önerilir. Girişte kimlik veya öğrenci kimliği kontrolü yapılabilir, lütfen kimliğinizi yanınızda bulundurmayı unutma.
-              </li>
 
               <li>
-                <strong>Aman Ali Rıza Bey Ağzımızın Tadı Kaçmasın:</strong>
-                Etkinlik süresince diğer katılımcıların güvenliğini veya huzurunu tehdit eden, taşkınlık, fiziksel/sözlü taciz veya alana zarar verici eylemlerde bulunan kişiler, organizasyon ve güvenlik inisiyatifiyle derhal etkinlik alanından uzaklaştırılır. Bu gerekçeyle alandan çıkarılan kişilerin biletleri iptal edilir ve hiçbir koşulda bilet bedeli iadesi yapılmaz.
+
+                <strong>
+                  Giriş ve Kontrol:
+                </strong>
+
+                Yoğunluk yaşanamak ve program
+                başlangıcını kaçırmamak adına
+                kapı açılış saatinde alanda
+                bulunmanız önerilir.
+                Girişte kimlik veya öğrenci
+                kimliği kontrolü yapılabilir,
+                lütfen kimliğinizi yanında
+                bulundurmayı unutma.
+
               </li>
 
-              <li>
-                <strong>Kişisel Eşyalar:</strong>
-                Etkinlik alanındaki eşyaların sorumluluğu sana aittir. Güvenlik gerekçesiyle alana kesici, yanıcı, sivri nesneler ve açık paket sigara alınmayacaktır.
-              </li>
 
               <li>
-                <strong>Alkol Detoksu:</strong>
-                Etkinliğimiz tamamen alkolsüz bir organizasyondur. Alanda alkol satışı bulunmamakta olup dışarıdan her türlü alkollü içeceğin alana sokulması kesinlikle yasaktır.
+
+                <strong>
+                  Aman Ali Rıza Bey Ağzımızın Tadı Kaçmasın:
+                </strong>
+
+                Etkinlik süresince diğer
+                katılımcıların güvenliğini veya
+                huzurunu tehdit eden, taşkınlık,
+                fiziksel/sözlü taciz veya alana
+                zarar verici eylemlerde bulunan
+                kişiler organizasyon ve güvenlik
+                inisiyatifiyle derhal etkinlik
+                alanından uzaklaştırılır.
+                Bu gerekçeyle alandan çıkarılan
+                kişilerin biletleri iptal edilir
+                ve hiçbir koşulda bilet bedeli
+                iadesi yapılmaz.
+
               </li>
 
+
               <li>
-                <strong>Yiyecek &amp; İçecek:</strong>
-                Mekan kuralına göre; alanda yeme-içme stantları yer almaktadır. Dışarıdan yeme içme alınmamaktadır.
+
+                <strong>
+                  Kişisel Eşyalar:
+                </strong>
+
+                Etkinlik alanındaki eşyaların
+                sorumluluğu sana aittir.
+                Güvenlik gerekçesiyle alana
+                kesici, yanıcı, sivri nesneler
+                ve açık paket sigara alınmayacaktır.
+
               </li>
+
+
+              <li>
+
+                <strong>
+                  Alkol Detoksu:
+                </strong>
+
+                Etkinliğimiz tamamen alkolsüz
+                bir organizasyondur.
+                Alanda alkol satışı bulunmamakta
+                olup dışarıdan her türlü alkollü
+                içeceğin alana sokulması
+                kesinlikle yasaktır.
+
+              </li>
+
+
+              <li>
+
+                <strong>
+                  Yiyecek &amp; İçecek:
+                </strong>
+
+                Mekan kuralına göre; alanda
+                yeme-içme stantları yer almaktadır.
+                Dışarıdan yeme içme alınmamaktadır.
+
+              </li>
+
 
             </ul>
 
 
             <div class="checkbox-group">
+
 
               <input
                 type="checkbox"
@@ -1042,22 +1829,36 @@
                 required
               >
 
+
               <label for="rulesCheck">
-                Etkinlik kurallarını okudum ve kabul ediyorum. *
+
+                Etkinlik kurallarını okudum
+                ve kabul ediyorum. *
+
               </label>
+
 
             </div>
 
+
           </div>
+
 
         </div>
 
+
       </div>
+
 
     </form>
 
 
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
     <footer>
+
 
       <div class="footer-logo-badge">
 
@@ -1068,6 +1869,7 @@
 
       </div>
 
+
       <div class="footer-text">
 
         DJ TINA &nbsp;/&nbsp;
@@ -1077,6 +1879,7 @@
 
         <br>
 
+
         <span
           style="
             color: var(--accent-pink);
@@ -1084,79 +1887,132 @@
             font-weight: 600;
           "
         >
+
           See you on the dancefloor!
+
         </span>
+
 
       </div>
 
+
     </footer>
+
 
   </div>
 
 
+  <!-- =====================================================
+       BAŞARI EKRANI
+  ====================================================== -->
+
   <div id="successScreen">
+
 
     <div class="success-background"></div>
 
+
     <div class="success-card">
 
+
       <div class="success-welcome">
+
         ✦ ARAMIZA HOŞ GELDİN ✦
+
       </div>
+
 
       <div class="success-dj">
+
         DJ TINA
+
       </div>
 
+
       <div class="success-event">
+
         OPEN YOUR EYES
+
       </div>
+
 
       <div class="success-divider"></div>
 
+
       <div class="ticket-label">
+
         BİLET NUMARANIZ
+
       </div>
+
 
       <div
         class="ticket-id"
         id="successTicketId"
       >
+
         -
+
       </div>
+
 
       <div class="success-message">
-        Biletiniz ve QR kodunuz e-posta adresinize iletilmiştir.
+
+        Biletiniz ve QR kodunuz
+        e-posta adresinize iletilmiştir.
+
       </div>
 
+
       <div class="success-brand">
+
         VIBE EVENT
+
       </div>
+
 
     </div>
 
+
   </div>
 
+
+  <!-- =====================================================
+       LOADING
+  ====================================================== -->
 
   <div id="loadingOverlay">
 
+
     <div class="loading-box">
+
 
       <div class="loading-spinner"></div>
 
+
       <div class="loading-title">
+
         BİLETİN HAZIRLANIYOR
+
       </div>
 
+
       <div class="loading-text">
-        Ödemen ve bilgilerinin kontrolü yapılıyor.<br>
+
+        Ödemen ve bilgilerinin kontrolü yapılıyor.
+        <br>
         Lütfen bu ekranı kapatma.
+
       </div>
+
 
     </div>
 
+
   </div>
 
+
+  <!-- APPS SCRIPT CEVAP FRAME -->
 
   <iframe
     name="appsScriptResponse"
@@ -1165,187 +2021,113 @@
   ></iframe>
 
 
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
   <script>
 
+
+    /*
+     * YENİ HESABIN WEB APP ADRESİ
+     */
+
     const APPS_SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbzyR_L9aQ-53B0uMph7GDl-Tdzh3FGXIvNP_ybwZIr-5Bvn59zyWQ4hxW9dQWxPRd81Hg/exec";
+      "https://script.google.com/macros/s/AKfycbz7g1JW4MXqF7hMDC1THQNIu5N-YDXWtAXCtgYMDpvLRQjRhaKdhiBB0QeLnETUZEGQ/exec";
 
 
     const uploadForm =
-      document.getElementById("mainTicketForm");
-
-    const fileInput =
-      document.getElementById("fileInput");
-
-    const selectedFileName =
-      document.getElementById("selectedFileName");
-
-    const submitButton =
-      document.getElementById("submitButton");
-
-    const loadingOverlay =
-      document.getElementById("loadingOverlay");
-
-    const mainPage =
-      document.getElementById("mainPage");
-
-    const successScreen =
-      document.getElementById("successScreen");
-
-    const successTicketId =
-      document.getElementById("successTicketId");
-
-    const errorBox =
-      document.getElementById("errorBox");
-
-    const responseFrame =
-      document.getElementById("appsScriptResponse");
-
-
-    function createSubmissionId() {
-
-      if (
-        window.crypto &&
-        typeof window.crypto.randomUUID === "function"
-      ) {
-
-        return window.crypto.randomUUID();
-
-      }
-
-      return (
-        Date.now().toString(36) +
-        "-" +
-        Math.random()
-          .toString(36)
-          .substring(2, 14)
+      document.getElementById(
+        "mainTicketForm"
       );
 
-    }
+
+    const fileInput =
+      document.getElementById(
+        "fileInput"
+      );
 
 
-    function showError(message) {
-
-      loadingOverlay.style.display = "none";
-
-      submitButton.disabled = false;
-      submitButton.style.opacity = "1";
-
-      errorBox.textContent = message;
-      errorBox.style.display = "block";
-
-    }
+    const fileUploadBox =
+      document.getElementById(
+        "fileUploadBox"
+      );
 
 
-    /* =====================================================
-       DOSYAYI BASE64'E ÇEVİR
-    ===================================================== */
-
-    function readFileAsBase64(file) {
-
-      return new Promise(function(resolve, reject) {
-
-        if (!file) {
-
-          reject(
-            new Error(
-              "Dekont dosyası seçilmedi."
-            )
-          );
-
-          return;
-        }
-
-        if (file.size === 0) {
-
-          reject(
-            new Error(
-              "Seçtiğiniz dosya boş."
-            )
-          );
-
-          return;
-        }
-
-        const reader =
-          new FileReader();
+    const selectedFileName =
+      document.getElementById(
+        "selectedFileName"
+      );
 
 
-        reader.onload =
-          function(event) {
-
-            const result =
-              event.target.result;
-
-
-            if (
-              typeof result !== "string" ||
-              !result.includes(",")
-            ) {
-
-              reject(
-                new Error(
-                  "Dekont dosyası okunamadı."
-                )
-              );
-
-              return;
-
-            }
+    const submitButton =
+      document.getElementById(
+        "submitButton"
+      );
 
 
-            const base64 =
-              result.substring(
-                result.indexOf(",") + 1
-              );
+    const loadingOverlay =
+      document.getElementById(
+        "loadingOverlay"
+      );
 
 
-            if (!base64) {
-
-              reject(
-                new Error(
-                  "Dekont verisi alınamadı."
-                )
-              );
-
-              return;
-
-            }
+    const mainPage =
+      document.getElementById(
+        "mainPage"
+      );
 
 
-            resolve(base64);
-
-          };
-
-
-        reader.onerror =
-          function() {
-
-            reject(
-              new Error(
-                "Dekont okunurken hata oluştu."
-              )
-            );
-
-          };
+    const successScreen =
+      document.getElementById(
+        "successScreen"
+      );
 
 
-        reader.readAsDataURL(file);
+    const successTicketId =
+      document.getElementById(
+        "successTicketId"
+      );
 
-      });
 
-    }
+    const errorBox =
+      document.getElementById(
+        "errorBox"
+      );
 
 
-    /* =====================================================
-       DOSYA SEÇİLDİ
-    ===================================================== */
+    const responseFrame =
+      document.getElementById(
+        "appsScriptResponse"
+      );
+
+
+    /*
+     * DOSYA KUTUSUNA TIKLAYINCA
+     * DOSYA SEÇİCİ AÇ
+     */
+
+    fileUploadBox.addEventListener(
+      "click",
+      function () {
+
+        fileInput.click();
+
+      }
+    );
+
+
+    /*
+     * DOSYA SEÇİLDİ
+     */
 
     fileInput.addEventListener(
       "change",
-      function() {
+      function () {
 
-        errorBox.style.display = "none";
+
+        errorBox.style.display =
+          "none";
 
 
         if (
@@ -1368,13 +2150,9 @@
           fileInput.files[0];
 
 
-        console.log(
-          "SEÇİLEN DOSYA:",
-          file.name,
-          file.type,
-          file.size
-        );
-
+        /*
+         * 10 MB KONTROLÜ
+         */
 
         if (
           file.size >
@@ -1396,27 +2174,188 @@
 
 
         /*
-         * Dosya başarıyla seçildiyse
-         * kullanıcıya dosya adını göster.
+         * DOSYA ADINI GÖSTER
          */
 
         selectedFileName.textContent =
           "✓ " + file.name;
 
+
         selectedFileName.style.display =
           "block";
+
 
       }
     );
 
 
-    /* =====================================================
-       FORM GÖNDER
-    ===================================================== */
+    /*
+     * DOSYAYI BASE64'E ÇEVİR
+     */
+
+    function readFileAsBase64(file) {
+
+
+      return new Promise(
+        function(resolve, reject) {
+
+
+          if (!file) {
+
+            reject(
+              new Error(
+                "Dekont dosyası seçilmedi."
+              )
+            );
+
+            return;
+
+          }
+
+
+          const reader =
+            new FileReader();
+
+
+          reader.onload =
+            function(event) {
+
+
+              const result =
+                event.target.result;
+
+
+              if (
+                typeof result !== "string" ||
+                !result.includes(",")
+              ) {
+
+                reject(
+                  new Error(
+                    "Dekont dosyası okunamadı."
+                  )
+                );
+
+                return;
+
+              }
+
+
+              const base64 =
+                result.substring(
+                  result.indexOf(",") + 1
+                );
+
+
+              if (!base64) {
+
+                reject(
+                  new Error(
+                    "Dekont verisi alınamadı."
+                  )
+                );
+
+                return;
+
+              }
+
+
+              resolve(base64);
+
+
+            };
+
+
+          reader.onerror =
+            function() {
+
+
+              reject(
+                new Error(
+                  "Dekont okunurken hata oluştu."
+                )
+              );
+
+
+            };
+
+
+          reader.readAsDataURL(file);
+
+
+        }
+      );
+
+    }
+
+
+    /*
+     * HATA GÖSTER
+     */
+
+    function showError(message) {
+
+
+      loadingOverlay.style.display =
+        "none";
+
+
+      submitButton.disabled =
+        false;
+
+
+      submitButton.style.opacity =
+        "1";
+
+
+      errorBox.textContent =
+        message;
+
+
+      errorBox.style.display =
+        "block";
+
+
+    }
+
+
+    /*
+     * RASTGELE GÖNDERİM ID
+     */
+
+    function createSubmissionId() {
+
+
+      if (
+        window.crypto &&
+        typeof window.crypto.randomUUID ===
+        "function"
+      ) {
+
+        return window.crypto.randomUUID();
+
+      }
+
+
+      return (
+        Date.now().toString(36) +
+        "-" +
+        Math.random()
+          .toString(36)
+          .substring(2, 14)
+      );
+
+    }
+
+
+    /*
+     * FORM GÖNDER
+     */
 
     uploadForm.addEventListener(
       "submit",
       async function(event) {
+
 
         event.preventDefault();
 
@@ -1426,22 +2365,14 @@
 
 
         /*
-         * DOSYAYI DOĞRUDAN INPUT'TAN AL
+         * DEKONT KONTROL
          */
 
-        let file = null;
-
-
-        if (
-          fileInput &&
+        const file =
           fileInput.files &&
           fileInput.files.length > 0
-        ) {
-
-          file =
-            fileInput.files[0];
-
-        }
+            ? fileInput.files[0]
+            : null;
 
 
         if (!file) {
@@ -1455,13 +2386,13 @@
         }
 
 
-        const maxSize =
-          10 * 1024 * 1024;
-
+        /*
+         * BOYUT KONTROL
+         */
 
         if (
           file.size >
-          maxSize
+          10 * 1024 * 1024
         ) {
 
           showError(
@@ -1473,13 +2404,17 @@
         }
 
 
+        /*
+         * KURALLAR
+         */
+
         const rulesCheck =
-          document.getElementById("rulesCheck");
+          document.getElementById(
+            "rulesCheck"
+          );
 
 
-        if (
-          !rulesCheck.checked
-        ) {
+        if (!rulesCheck.checked) {
 
           showError(
             "Devam etmek için etkinlik kurallarını kabul etmelisiniz."
@@ -1489,6 +2424,10 @@
 
         }
 
+
+        /*
+         * BİLET
+         */
 
         const selectedTicket =
           document.querySelector(
@@ -1509,6 +2448,11 @@
 
         try {
 
+
+          /*
+           * LOADING
+           */
+
           loadingOverlay.style.display =
             "flex";
 
@@ -1522,7 +2466,7 @@
 
 
           /*
-           * PDF/JPG/PNG burada Base64'e çevriliyor.
+           * DEKONT BASE64
            */
 
           const base64 =
@@ -1530,12 +2474,13 @@
 
 
           /*
-           * Apps Script'e gönderilecek
-           * gizli form.
+           * GİZLİ FORM OLUŞTUR
            */
 
           const postForm =
-            document.createElement("form");
+            document.createElement(
+              "form"
+            );
 
 
           postForm.method =
@@ -1554,13 +2499,20 @@
             "none";
 
 
+          /*
+           * ALAN EKLEME
+           */
+
           function addField(
             name,
             value
           ) {
 
+
             const input =
-              document.createElement("input");
+              document.createElement(
+                "input"
+              );
 
 
             input.type =
@@ -1584,8 +2536,14 @@
           }
 
 
+          /*
+           * FORM BİLGİLERİ
+           */
+
           const formData =
-            new FormData(uploadForm);
+            new FormData(
+              uploadForm
+            );
 
 
           addField(
@@ -1631,6 +2589,12 @@
 
 
           addField(
+            "submissionId",
+            createSubmissionId()
+          );
+
+
+          addField(
             "kabul",
             "KABUL"
           );
@@ -1642,11 +2606,9 @@
           );
 
 
-          addField(
-            "submissionId",
-            createSubmissionId()
-          );
-
+          /*
+           * DEKONT
+           */
 
           addField(
             "dekontBase64",
@@ -1667,6 +2629,10 @@
           );
 
 
+          /*
+           * GİZLİ FORMU SAYFAYA EKLE
+           */
+
           document.body.appendChild(
             postForm
           );
@@ -1680,20 +2646,21 @@
 
 
           /*
-           * Form DOM'dan kaldırılıyor.
+           * FORMU SONRADAN SİL
            */
 
           setTimeout(
-            function() {
+            function () {
 
               postForm.remove();
 
             },
-            1500
+            3000
           );
 
 
         } catch (error) {
+
 
           console.error(
             "FORM HATASI:",
@@ -1706,23 +2673,25 @@
             "Bir hata oluştu. Lütfen tekrar deneyin."
           );
 
+
         }
+
 
       }
     );
 
 
-    /* =====================================================
-       APPS SCRIPT CEVABI
-    ===================================================== */
+    /*
+     * APPS SCRIPT'TEN CEVAP GELDİĞİNDE
+     */
 
     window.addEventListener(
       "message",
       function(event) {
 
+
         /*
-         * Sadece bizim gizli iframe'den
-         * gelen mesajları kabul et.
+         * SADECE BİZİM IFRAME
          */
 
         if (
@@ -1741,7 +2710,8 @@
 
         if (
           !result ||
-          typeof result !== "object"
+          typeof result !==
+          "object"
         ) {
 
           return;
@@ -1749,23 +2719,19 @@
         }
 
 
+        /*
+         * BAŞARILI
+         */
+
         if (
           result.success === true
         ) {
 
+
           const ticketId =
-            result.ticketId;
-
-
-          if (!ticketId) {
-
-            showError(
-              "Bilet oluşturuldu ancak bilet numarası alınamadı."
-            );
-
-            return;
-
-          }
+            result.ticketId ||
+            result.submissionId ||
+            "-";
 
 
           successTicketId.textContent =
@@ -1796,8 +2762,7 @@
 
 
         /*
-         * Backend hata verdiyse
-         * gerçek mesajı göster.
+         * HATA
          */
 
         showError(
@@ -1805,10 +2770,13 @@
           "Bilet oluşturulurken bir hata oluştu."
         );
 
+
       }
     );
 
+
   </script>
+
 
 </body>
 
