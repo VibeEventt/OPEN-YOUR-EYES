@@ -439,11 +439,9 @@
       }
     }
 
-
     /* =========================================================
-       SADECE OTOMASYON İÇİN EKLENEN KISIMLAR
-       ANA TASARIMA DOKUNMAZ
-       ========================================================= */
+       OTOMASYON
+    ========================================================= */
 
     #successScreen {
       display: none;
@@ -606,8 +604,6 @@
       color: transparent;
     }
 
-
-    /* YÜKLENİYOR */
     #loadingOverlay {
       display: none;
       position: fixed;
@@ -659,8 +655,6 @@
       line-height: 1.5;
     }
 
-
-    /* HATA */
     #errorBox {
       display: none;
       margin-top: 12px;
@@ -674,19 +668,21 @@
       text-align: center;
     }
 
-    /* GİZLİ FORM / IFRAME */
     #appsScriptResponse {
       display: none;
+    }
+
+    /* DOSYA SEÇİLDİĞİNDE */
+    .file-selected {
+      color: #ffffff !important;
+      font-weight: 700 !important;
+      margin-top: 8px !important;
+      word-break: break-word;
     }
   </style>
 </head>
 
 <body>
-
-  <!-- =====================================================
-       ANA SAYFA
-       SENİN GÖNDERDİĞİN TASARIMIN AYNISI
-       ===================================================== -->
 
   <div class="container" id="mainPage">
 
@@ -710,6 +706,7 @@
         <div class="form-column">
 
           <div class="section-card">
+
             <div class="step-header">
               <div class="step-number">1</div>
               <div class="step-title">KİŞİSEL BİLGİLER</div>
@@ -758,6 +755,7 @@
               >
 
             </div>
+
           </div>
 
 
@@ -903,13 +901,19 @@
                 PDF, JPG, PNG • Maksimum 10 MB
               </p>
 
+              <!-- required KALDIRILDI -->
               <input
                 type="file"
                 id="fileInput"
                 style="display: none;"
-                accept="image/*,.pdf"
-                required
+                accept="application/pdf,image/*,.pdf,.jpg,.jpeg,.png"
               >
+
+              <p
+                id="selectedFileName"
+                class="file-selected"
+                style="display:none;"
+              ></p>
 
             </div>
 
@@ -1090,10 +1094,6 @@
   </div>
 
 
-  <!-- =====================================================
-       BAŞARILI BİLET EKRANI
-       ===================================================== -->
-
   <div id="successScreen">
 
     <div class="success-background"></div>
@@ -1138,10 +1138,6 @@
   </div>
 
 
-  <!-- =====================================================
-       YÜKLENİYOR
-       ===================================================== -->
-
   <div id="loadingOverlay">
 
     <div class="loading-box">
@@ -1162,10 +1158,6 @@
   </div>
 
 
-  <!-- =====================================================
-       APPS SCRIPT CEVAP IFRAME
-       ===================================================== -->
-
   <iframe
     name="appsScriptResponse"
     id="appsScriptResponse"
@@ -1175,12 +1167,8 @@
 
   <script>
 
-    /* =====================================================
-       APPS SCRIPT WEB APP ADRESİ
-       ===================================================== */
-
     const APPS_SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbzyR_LA9q-53B0uMph7GDl-Tdzh3FGXIvNP_ybwZIr-5Bvn59zyWQ4hxW9dQWxPRd81Hg/exec";
+      "https://script.google.com/macros/s/AKfycbzyR_L9aQ-53B0uMph7GDl-Tdzh3FGXIvNP_ybwZIr-5Bvn59zyWQ4hxW9dQWxPRd81Hg/exec";
 
 
     const uploadForm =
@@ -1188,6 +1176,9 @@
 
     const fileInput =
       document.getElementById("fileInput");
+
+    const selectedFileName =
+      document.getElementById("selectedFileName");
 
     const submitButton =
       document.getElementById("submitButton");
@@ -1211,10 +1202,6 @@
       document.getElementById("appsScriptResponse");
 
 
-    /* =====================================================
-       RASTGELE SUBMISSION ID
-       ===================================================== */
-
     function createSubmissionId() {
 
       if (
@@ -1237,10 +1224,6 @@
     }
 
 
-    /* =====================================================
-       HATA GÖSTER
-       ===================================================== */
-
     function showError(message) {
 
       loadingOverlay.style.display = "none";
@@ -1255,68 +1238,181 @@
 
 
     /* =====================================================
-       DOSYA BASE64
-       ===================================================== */
+       DOSYAYI BASE64'E ÇEVİR
+    ===================================================== */
 
     function readFileAsBase64(file) {
 
-      return new Promise(
-        function(resolve, reject) {
+      return new Promise(function(resolve, reject) {
 
-          const reader =
-            new FileReader();
+        if (!file) {
 
-          reader.onload =
-            function() {
+          reject(
+            new Error(
+              "Dekont dosyası seçilmedi."
+            )
+          );
 
-              const result =
-                reader.result;
+          return;
+        }
 
-              if (
-                typeof result !== "string" ||
-                result.indexOf(",") === -1
-              ) {
+        if (file.size === 0) {
 
-                reject(
-                  new Error(
-                    "Dekont okunamadı."
-                  )
-                );
+          reject(
+            new Error(
+              "Seçtiğiniz dosya boş."
+            )
+          );
 
-                return;
+          return;
+        }
 
-              }
-
-              resolve(
-                result.split(",")[1]
-              );
-
-            };
+        const reader =
+          new FileReader();
 
 
-          reader.onerror =
-            function() {
+        reader.onload =
+          function(event) {
+
+            const result =
+              event.target.result;
+
+
+            if (
+              typeof result !== "string" ||
+              !result.includes(",")
+            ) {
 
               reject(
                 new Error(
-                  "Dekont okunurken hata oluştu."
+                  "Dekont dosyası okunamadı."
                 )
               );
 
-            };
+              return;
+
+            }
 
 
-          reader.readAsDataURL(file);
+            const base64 =
+              result.substring(
+                result.indexOf(",") + 1
+              );
 
-        }
-      );
+
+            if (!base64) {
+
+              reject(
+                new Error(
+                  "Dekont verisi alınamadı."
+                )
+              );
+
+              return;
+
+            }
+
+
+            resolve(base64);
+
+          };
+
+
+        reader.onerror =
+          function() {
+
+            reject(
+              new Error(
+                "Dekont okunurken hata oluştu."
+              )
+            );
+
+          };
+
+
+        reader.readAsDataURL(file);
+
+      });
 
     }
 
 
     /* =====================================================
+       DOSYA SEÇİLDİ
+    ===================================================== */
+
+    fileInput.addEventListener(
+      "change",
+      function() {
+
+        errorBox.style.display = "none";
+
+
+        if (
+          !fileInput.files ||
+          fileInput.files.length === 0
+        ) {
+
+          selectedFileName.style.display =
+            "none";
+
+          selectedFileName.textContent =
+            "";
+
+          return;
+
+        }
+
+
+        const file =
+          fileInput.files[0];
+
+
+        console.log(
+          "SEÇİLEN DOSYA:",
+          file.name,
+          file.type,
+          file.size
+        );
+
+
+        if (
+          file.size >
+          10 * 1024 * 1024
+        ) {
+
+          fileInput.value = "";
+
+          selectedFileName.style.display =
+            "none";
+
+          showError(
+            "Dekont dosyası maksimum 10 MB olabilir."
+          );
+
+          return;
+
+        }
+
+
+        /*
+         * Dosya başarıyla seçildiyse
+         * kullanıcıya dosya adını göster.
+         */
+
+        selectedFileName.textContent =
+          "✓ " + file.name;
+
+        selectedFileName.style.display =
+          "block";
+
+      }
+    );
+
+
+    /* =====================================================
        FORM GÖNDER
-       ===================================================== */
+    ===================================================== */
 
     uploadForm.addEventListener(
       "submit",
@@ -1324,10 +1420,29 @@
 
         event.preventDefault();
 
-        errorBox.style.display = "none";
 
-        const file =
-          fileInput.files[0];
+        errorBox.style.display =
+          "none";
+
+
+        /*
+         * DOSYAYI DOĞRUDAN INPUT'TAN AL
+         */
+
+        let file = null;
+
+
+        if (
+          fileInput &&
+          fileInput.files &&
+          fileInput.files.length > 0
+        ) {
+
+          file =
+            fileInput.files[0];
+
+        }
+
 
         if (!file) {
 
@@ -1343,7 +1458,11 @@
         const maxSize =
           10 * 1024 * 1024;
 
-        if (file.size > maxSize) {
+
+        if (
+          file.size >
+          maxSize
+        ) {
 
           showError(
             "Dekont dosyası maksimum 10 MB olabilir."
@@ -1357,7 +1476,10 @@
         const rulesCheck =
           document.getElementById("rulesCheck");
 
-        if (!rulesCheck.checked) {
+
+        if (
+          !rulesCheck.checked
+        ) {
 
           showError(
             "Devam etmek için etkinlik kurallarını kabul etmelisiniz."
@@ -1372,6 +1494,7 @@
           document.querySelector(
             'input[name="bilet"]:checked'
           );
+
 
         if (!selectedTicket) {
 
@@ -1389,33 +1512,43 @@
           loadingOverlay.style.display =
             "flex";
 
+
           submitButton.disabled =
             true;
+
 
           submitButton.style.opacity =
             "0.6";
 
+
+          /*
+           * PDF/JPG/PNG burada Base64'e çevriliyor.
+           */
 
           const base64 =
             await readFileAsBase64(file);
 
 
           /*
-           * GÖRÜNMEYEN FORM
-           * Gerçek POST ile Apps Script'e gönderilir.
+           * Apps Script'e gönderilecek
+           * gizli form.
            */
 
           const postForm =
             document.createElement("form");
 
+
           postForm.method =
             "POST";
+
 
           postForm.action =
             APPS_SCRIPT_URL;
 
+
           postForm.target =
             "appsScriptResponse";
+
 
           postForm.style.display =
             "none";
@@ -1429,16 +1562,20 @@
             const input =
               document.createElement("input");
 
+
             input.type =
               "hidden";
 
+
             input.name =
               name;
+
 
             input.value =
               value == null
                 ? ""
                 : String(value);
+
 
             postForm.appendChild(
               input
@@ -1456,60 +1593,73 @@
             formData.get("adSoyad")
           );
 
+
           addField(
             "adSoyad2",
             formData.get("adSoyad2") || ""
           );
+
 
           addField(
             "adSoyad3",
             formData.get("adSoyad3") || ""
           );
 
+
           addField(
             "email",
             formData.get("email")
           );
+
 
           addField(
             "telefon",
             formData.get("telefon")
           );
 
+
           addField(
             "bilet",
             selectedTicket.value
           );
+
 
           addField(
             "biletSayisi",
             selectedTicket.value
           );
 
+
           addField(
             "kabul",
             "KABUL"
           );
+
 
           addField(
             "rulesAccepted",
             "true"
           );
 
+
           addField(
             "submissionId",
             createSubmissionId()
           );
+
 
           addField(
             "dekontBase64",
             base64
           );
 
+
           addField(
             "dekontMimeType",
-            file.type || "application/octet-stream"
+            file.type ||
+            "application/octet-stream"
           );
+
 
           addField(
             "dekontFileName",
@@ -1523,14 +1673,14 @@
 
 
           /*
-           * GERÇEK GÖNDERİM
+           * GÖNDER
            */
 
           postForm.submit();
 
 
           /*
-           * Formu DOM'dan kaldır.
+           * Form DOM'dan kaldırılıyor.
            */
 
           setTimeout(
@@ -1539,15 +1689,17 @@
               postForm.remove();
 
             },
-            1000
+            1500
           );
 
 
         } catch (error) {
 
           console.error(
+            "FORM HATASI:",
             error
           );
+
 
           showError(
             error.message ||
@@ -1561,12 +1713,17 @@
 
 
     /* =====================================================
-       APPS SCRIPT'TEN GELEN GERÇEK CEVAP
-       ===================================================== */
+       APPS SCRIPT CEVABI
+    ===================================================== */
 
     window.addEventListener(
       "message",
       function(event) {
+
+        /*
+         * Sadece bizim gizli iframe'den
+         * gelen mesajları kabul et.
+         */
 
         if (
           event.source !==
@@ -1592,7 +1749,9 @@
         }
 
 
-        if (result.success === true) {
+        if (
+          result.success === true
+        ) {
 
           const ticketId =
             result.ticketId;
@@ -1609,11 +1768,6 @@
           }
 
 
-          /*
-           * SADECE GERÇEK TICKET ID GELİRSE
-           * BAŞARI EKRANINI AÇ.
-           */
-
           successTicketId.textContent =
             ticketId;
 
@@ -1621,11 +1775,14 @@
           loadingOverlay.style.display =
             "none";
 
+
           mainPage.style.display =
             "none";
 
+
           successScreen.style.display =
             "flex";
+
 
           window.scrollTo(
             0,
@@ -1639,50 +1796,14 @@
 
 
         /*
-         * BACKEND HATA VERDİ
+         * Backend hata verdiyse
+         * gerçek mesajı göster.
          */
 
         showError(
           result.message ||
           "Bilet oluşturulurken bir hata oluştu."
         );
-
-      }
-    );
-
-
-    /* =====================================================
-       DOSYA SEÇİMİ
-       TASARIMI DEĞİŞTİRMEDEN SADECE KONTROL
-       ===================================================== */
-
-    fileInput.addEventListener(
-      "change",
-      function() {
-
-        if (
-          fileInput.files &&
-          fileInput.files.length
-        ) {
-
-          const file =
-            fileInput.files[0];
-
-          if (
-            file.size >
-            10 * 1024 * 1024
-          ) {
-
-            fileInput.value =
-              "";
-
-            showError(
-              "Dekont dosyası maksimum 10 MB olabilir."
-            );
-
-          }
-
-        }
 
       }
     );
