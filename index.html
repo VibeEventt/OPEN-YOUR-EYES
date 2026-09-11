@@ -1220,18 +1220,23 @@
       document.getElementById("appsScriptResponse");
 
 
-    /* HATA KUTUSU SAYFA AÇILIR AÇILMAZ KESİNLİKLE GİZLİ */
+    let loadingTimeout = null;
+
+
+    /* HATA KUTUSU BAŞLANGIÇTA GİZLİ */
     errorBox.textContent = "";
     errorBox.style.display = "none";
 
 
     function clearError() {
+
       errorBox.textContent = "";
       errorBox.style.display = "none";
+
     }
 
 
-    /* KULLANICI FORMDA HERHANGİ BİR ŞEY DEĞİŞTİRİRSE ESKİ HATA KAYBOLUR */
+    /* KULLANICI FORMDA BİR ŞEY DEĞİŞTİRİRSE ESKİ HATA KAYBOLUR */
     uploadForm.querySelectorAll("input").forEach(function(input) {
 
       input.addEventListener("input", clearError);
@@ -1259,10 +1264,28 @@
           .toString(36)
           .substring(2, 14)
       );
+
+    }
+
+
+    function stopLoadingTimeout() {
+
+      if (loadingTimeout) {
+
+        clearTimeout(
+          loadingTimeout
+        );
+
+        loadingTimeout = null;
+
+      }
+
     }
 
 
     function showError(message) {
+
+      stopLoadingTimeout();
 
       loadingOverlay.style.display = "none";
 
@@ -1290,7 +1313,9 @@
           );
 
           return;
+
         }
+
 
         if (file.size === 0) {
 
@@ -1301,16 +1326,20 @@
           );
 
           return;
+
         }
+
 
         const reader =
           new FileReader();
+
 
         reader.onload =
           function(event) {
 
             const result =
               event.target.result;
+
 
             if (
               typeof result !== "string" ||
@@ -1324,12 +1353,15 @@
               );
 
               return;
+
             }
+
 
             const base64 =
               result.substring(
                 result.indexOf(",") + 1
               );
+
 
             if (!base64) {
 
@@ -1340,11 +1372,14 @@
               );
 
               return;
+
             }
+
 
             resolve(base64);
 
           };
+
 
         reader.onerror =
           function() {
@@ -1356,6 +1391,7 @@
             );
 
           };
+
 
         reader.readAsDataURL(file);
 
@@ -1370,6 +1406,7 @@
 
         clearError();
 
+
         if (
           !fileInput.files ||
           fileInput.files.length === 0
@@ -1380,10 +1417,13 @@
           selectedFileName.textContent = "";
 
           return;
+
         }
+
 
         const file =
           fileInput.files[0];
+
 
         if (
           file.size >
@@ -1399,7 +1439,9 @@
           );
 
           return;
+
         }
+
 
         selectedFileName.textContent =
           "✓ " + file.name;
@@ -1419,8 +1461,11 @@
 
         clearError();
 
+        stopLoadingTimeout();
+
 
         let file = null;
+
 
         if (
           fileInput &&
@@ -1441,6 +1486,7 @@
           );
 
           return;
+
         }
 
 
@@ -1458,6 +1504,7 @@
           );
 
           return;
+
         }
 
 
@@ -1472,6 +1519,7 @@
           );
 
           return;
+
         }
 
 
@@ -1488,6 +1536,7 @@
           );
 
           return;
+
         }
 
 
@@ -1657,6 +1706,10 @@
           );
 
 
+          /*
+           * ÖNCE POST'U GÖNDERİYORUZ.
+           * SONRA 90 SANİYELİK ZAMAN AŞIMINI BAŞLATIYORUZ.
+           */
           setTimeout(
             function() {
 
@@ -1668,12 +1721,33 @@
                   "APPS SCRIPT POST GÖNDERİLDİ"
                 );
 
+
+                loadingTimeout =
+                  setTimeout(
+                    function() {
+
+                      if (
+                        loadingOverlay.style.display === "flex"
+                      ) {
+
+                        showError(
+                          "İşlem zaman aşımına uğradı. Lütfen internet bağlantınızı kontrol edip tekrar deneyin."
+                        );
+
+                      }
+
+                    },
+                    90000
+                  );
+
+
               } catch (submitError) {
 
                 console.error(
                   "POST HATASI:",
                   submitError
                 );
+
 
                 showError(
                   "Bilet gönderilirken bir hata oluştu: " +
@@ -1687,6 +1761,9 @@
           );
 
 
+          /*
+           * POST FORMU BİR SÜRE SONRA TEMİZLE.
+           */
           setTimeout(
             function() {
 
@@ -1711,6 +1788,7 @@
             error
           );
 
+
           showError(
             error.message ||
             "Bir hata oluştu. Lütfen tekrar deneyin."
@@ -1722,6 +1800,24 @@
     );
 
 
+    /*
+     * =========================================================
+     * SADECE VIBE EVENT MESAJLARINI DİNLİYORUZ
+     * =========================================================
+     *
+     * Google'ın iframe sisteminden gelen:
+     *
+     * registerAsChildFrameAck
+     * remoteFrameAck
+     *
+     * gibi mesajlar BURADA YOK SAYILIR.
+     *
+     * Apps Script'ten gelen mesajın içinde:
+     *
+     * source: "VIBE_EVENT"
+     *
+     * olması zorunludur.
+     */
     window.addEventListener(
       "message",
       function(event) {
@@ -1750,12 +1846,39 @@
         }
 
 
+        /*
+         * GOOGLE / DİĞER IFRAME MESAJLARINI YOK SAY.
+         */
+        if (
+          result.source !==
+          "VIBE_EVENT"
+        ) {
+
+          console.log(
+            "YOK SAYILAN IFRAME MESAJI:",
+            result
+          );
+
+          return;
+
+        }
+
+
         console.log(
-          "APPS SCRIPT CEVABI:",
+          "VIBE EVENT APPS SCRIPT CEVABI:",
           result
         );
 
 
+        /*
+         * ARTIK GERÇEK APPS SCRIPT CEVABI GELDİ.
+         */
+        stopLoadingTimeout();
+
+
+        /*
+         * BİLET BAŞARILI.
+         */
         if (
           result.success === true
         ) {
@@ -1783,6 +1906,14 @@
             "none";
 
 
+          submitButton.disabled =
+            false;
+
+
+          submitButton.style.opacity =
+            "1";
+
+
           mainPage.style.display =
             "none";
 
@@ -1802,98 +1933,16 @@
         }
 
 
-        if (result.success === true) {
-  const ticketId = result.ticketId;
-
-  if (!ticketId) {
-    showError("Bilet oluşturuldu ancak bilet numarası alınamadı.");
-    return;
-  }
-
-  successTicketId.textContent = ticketId;
-  loadingOverlay.style.display = "none";
-  mainPage.style.display = "none";
-  successScreen.style.display = "flex";
-  window.scrollTo(0, 0);
-  return;
-}
-
-/* GERÇEK APPS SCRIPT HATASINI GÖSTER */
-showError(
-  "APPS SCRIPT HATASI: " +
-  (result.message || JSON.stringify(result))
-);
-
-      }
-    );
-
-
-    let loadingTimeout = null;
-
-
-    uploadForm.addEventListener(
-      "submit",
-      function() {
-
-        if (loadingTimeout) {
-
-          clearTimeout(
-            loadingTimeout
-          );
-
-        }
-
-
-        loadingTimeout =
-          setTimeout(
-            function() {
-
-              if (
-                loadingOverlay.style.display === "flex"
-              ) {
-
-                showError(
-                  "İşlem zaman aşımına uğradı. Lütfen internet bağlantınızı kontrol edip tekrar deneyin."
-                );
-
-              }
-
-            },
-            90000
-          );
-
-      }
-    );
-
-
-    window.addEventListener(
-      "message",
-      function(event) {
-
-        if (
-          event.source ===
-          responseFrame.contentWindow
-        ) {
-
-          if (
-            event.data &&
-            event.data.success === true
-          ) {
-
-            if (loadingTimeout) {
-
-              clearTimeout(
-                loadingTimeout
-              );
-
-              loadingTimeout =
-                null;
-
-            }
-
-          }
-
-        }
+        /*
+         * APPS SCRIPT GERÇEK HATA MESAJI.
+         */
+        showError(
+          "APPS SCRIPT HATASI: " +
+          (
+            result.message ||
+            "Bilinmeyen bir hata oluştu."
+          )
+        );
 
       }
     );
