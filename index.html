@@ -1185,712 +1185,164 @@
 
   <script>
 
-    const APPS_SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbz7g1JW4MXqF7hMDC1THQNIu5N-YDXWtAXCtgYMDpvLRQjRhaKdhiBB0QeLnETUZEGQ/exec";
+  const APPS_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbz7g1JW4MXqF7hMDC1THQNIu5N-YDXWtAXCtgYMDpvLRQjRhaKdhiBB0QeLnETUZEGQ/exec";
 
 
-    const uploadForm =
-      document.getElementById("mainTicketForm");
+  const uploadForm =
+    document.getElementById("mainTicketForm");
 
-    const fileInput =
-      document.getElementById("fileInput");
+  const fileInput =
+    document.getElementById("fileInput");
 
-    const selectedFileName =
-      document.getElementById("selectedFileName");
+  const selectedFileName =
+    document.getElementById("selectedFileName");
 
-    const submitButton =
-      document.getElementById("submitButton");
+  const submitButton =
+    document.getElementById("submitButton");
 
-    const loadingOverlay =
-      document.getElementById("loadingOverlay");
+  const loadingOverlay =
+    document.getElementById("loadingOverlay");
 
-    const mainPage =
-      document.getElementById("mainPage");
+  const mainPage =
+    document.getElementById("mainPage");
 
-    const successScreen =
-      document.getElementById("successScreen");
+  const successScreen =
+    document.getElementById("successScreen");
 
-    const successTicketId =
-      document.getElementById("successTicketId");
+  const successTicketId =
+    document.getElementById("successTicketId");
 
-    const errorBox =
-      document.getElementById("errorBox");
-
-    const responseFrame =
-      document.getElementById("appsScriptResponse");
+  const errorBox =
+    document.getElementById("errorBox");
 
 
-    let loadingTimeout = null;
+  let loadingTimeout = null;
 
 
-    /* HATA KUTUSU BAŞLANGIÇTA GİZLİ */
+  /* HATA KUTUSU BAŞLANGIÇTA GİZLİ */
+  errorBox.textContent = "";
+  errorBox.style.display = "none";
+
+
+  function clearError() {
+
     errorBox.textContent = "";
     errorBox.style.display = "none";
 
-
-    function clearError() {
-
-      errorBox.textContent = "";
-      errorBox.style.display = "none";
-
-    }
+  }
 
 
-    /* KULLANICI FORMDA BİR ŞEY DEĞİŞTİRİRSE ESKİ HATA KAYBOLUR */
-    uploadForm.querySelectorAll("input").forEach(function(input) {
+  /* KULLANICI FORMDA BİR ŞEY DEĞİŞTİRİRSE ESKİ HATA KAYBOLUR */
+  uploadForm.querySelectorAll("input").forEach(function(input) {
 
-      input.addEventListener("input", clearError);
+    input.addEventListener("input", clearError);
+    input.addEventListener("change", clearError);
 
-      input.addEventListener("change", clearError);
-
-    });
+  });
 
 
-    function createSubmissionId() {
+  function createSubmissionId() {
 
-      if (
-        window.crypto &&
-        typeof window.crypto.randomUUID === "function"
-      ) {
+    if (
+      window.crypto &&
+      typeof window.crypto.randomUUID === "function"
+    ) {
 
-        return window.crypto.randomUUID();
-
-      }
-
-      return (
-        Date.now().toString(36) +
-        "-" +
-        Math.random()
-          .toString(36)
-          .substring(2, 14)
-      );
+      return window.crypto.randomUUID();
 
     }
 
+    return (
+      Date.now().toString(36) +
+      "-" +
+      Math.random()
+        .toString(36)
+        .substring(2, 14)
+    );
 
-    function stopLoadingTimeout() {
+  }
 
-      if (loadingTimeout) {
 
-        clearTimeout(
-          loadingTimeout
+  function stopLoadingTimeout() {
+
+    if (loadingTimeout) {
+
+      clearTimeout(loadingTimeout);
+      loadingTimeout = null;
+
+    }
+
+  }
+
+
+  function showError(message) {
+
+    stopLoadingTimeout();
+
+    loadingOverlay.style.display = "none";
+
+    submitButton.disabled = false;
+
+    submitButton.style.opacity = "1";
+
+    errorBox.textContent = message;
+
+    errorBox.style.display = "block";
+
+  }
+
+
+  function readFileAsBase64(file) {
+
+    return new Promise(function(resolve, reject) {
+
+      if (!file) {
+
+        reject(
+          new Error(
+            "Dekont dosyası seçilmedi."
+          )
         );
 
-        loadingTimeout = null;
+        return;
 
       }
 
-    }
+
+      if (file.size === 0) {
+
+        reject(
+          new Error(
+            "Seçtiğiniz dosya boş."
+          )
+        );
+
+        return;
+
+      }
 
 
-    function showError(message) {
-
-      stopLoadingTimeout();
-
-      loadingOverlay.style.display = "none";
-
-      submitButton.disabled = false;
-
-      submitButton.style.opacity = "1";
-
-      errorBox.textContent = message;
-
-      errorBox.style.display = "block";
-
-    }
+      const reader =
+        new FileReader();
 
 
-    function readFileAsBase64(file) {
+      reader.onload =
+        function(event) {
 
-      return new Promise(function(resolve, reject) {
-
-        if (!file) {
-
-          reject(
-            new Error(
-              "Dekont dosyası seçilmedi."
-            )
-          );
-
-          return;
-
-        }
+          const result =
+            event.target.result;
 
 
-        if (file.size === 0) {
-
-          reject(
-            new Error(
-              "Seçtiğiniz dosya boş."
-            )
-          );
-
-          return;
-
-        }
-
-
-        const reader =
-          new FileReader();
-
-
-        reader.onload =
-          function(event) {
-
-            const result =
-              event.target.result;
-
-
-            if (
-              typeof result !== "string" ||
-              !result.includes(",")
-            ) {
-
-              reject(
-                new Error(
-                  "Dekont dosyası okunamadı."
-                )
-              );
-
-              return;
-
-            }
-
-
-            const base64 =
-              result.substring(
-                result.indexOf(",") + 1
-              );
-
-
-            if (!base64) {
-
-              reject(
-                new Error(
-                  "Dekont verisi alınamadı."
-                )
-              );
-
-              return;
-
-            }
-
-
-            resolve(base64);
-
-          };
-
-
-        reader.onerror =
-          function() {
+          if (
+            typeof result !== "string" ||
+            !result.includes(",")
+          ) {
 
             reject(
               new Error(
-                "Dekont okunurken hata oluştu."
+                "Dekont dosyası okunamadı."
               )
-            );
-
-          };
-
-
-        reader.readAsDataURL(file);
-
-      });
-
-    }
-
-
-    fileInput.addEventListener(
-      "change",
-      function() {
-
-        clearError();
-
-
-        if (
-          !fileInput.files ||
-          fileInput.files.length === 0
-        ) {
-
-          selectedFileName.style.display = "none";
-
-          selectedFileName.textContent = "";
-
-          return;
-
-        }
-
-
-        const file =
-          fileInput.files[0];
-
-
-        if (
-          file.size >
-          10 * 1024 * 1024
-        ) {
-
-          fileInput.value = "";
-
-          selectedFileName.style.display = "none";
-
-          showError(
-            "Dekont dosyası maksimum 10 MB olabilir."
-          );
-
-          return;
-
-        }
-
-
-        selectedFileName.textContent =
-          "✓ " + file.name;
-
-        selectedFileName.style.display =
-          "block";
-
-      }
-    );
-
-
-    uploadForm.addEventListener(
-      "submit",
-      async function(event) {
-
-        event.preventDefault();
-
-        clearError();
-
-        stopLoadingTimeout();
-
-
-        let file = null;
-
-
-        if (
-          fileInput &&
-          fileInput.files &&
-          fileInput.files.length > 0
-        ) {
-
-          file =
-            fileInput.files[0];
-
-        }
-
-
-        if (!file) {
-
-          showError(
-            "Lütfen ödeme dekontunuzu yükleyin."
-          );
-
-          return;
-
-        }
-
-
-        const maxSize =
-          10 * 1024 * 1024;
-
-
-        if (
-          file.size >
-          maxSize
-        ) {
-
-          showError(
-            "Dekont dosyası maksimum 10 MB olabilir."
-          );
-
-          return;
-
-        }
-
-
-        const rulesCheck =
-          document.getElementById("rulesCheck");
-
-
-        if (!rulesCheck.checked) {
-
-          showError(
-            "Devam etmek için etkinlik kurallarını kabul etmelisiniz."
-          );
-
-          return;
-
-        }
-
-
-        const selectedTicket =
-          document.querySelector(
-            'input[name="bilet"]:checked'
-          );
-
-
-        if (!selectedTicket) {
-
-          showError(
-            "Lütfen bilet sayısını seçin."
-          );
-
-          return;
-
-        }
-
-
-        try {
-
-          loadingOverlay.style.display =
-            "flex";
-
-          submitButton.disabled =
-            true;
-
-          submitButton.style.opacity =
-            "0.6";
-
-
-          const base64 =
-            await readFileAsBase64(file);
-
-
-          const postForm =
-            document.createElement("form");
-
-
-          postForm.method =
-            "POST";
-
-          postForm.action =
-            APPS_SCRIPT_URL;
-
-          postForm.target =
-            "appsScriptResponse";
-
-          postForm.enctype =
-            "application/x-www-form-urlencoded";
-
-
-          postForm.style.position =
-            "fixed";
-
-          postForm.style.width =
-            "2px";
-
-          postForm.style.height =
-            "2px";
-
-          postForm.style.left =
-            "-100px";
-
-          postForm.style.bottom =
-            "-100px";
-
-          postForm.style.opacity =
-            "0.01";
-
-          postForm.style.pointerEvents =
-            "none";
-
-
-          function addField(name, value) {
-
-            const input =
-              document.createElement("input");
-
-            input.type =
-              "hidden";
-
-            input.name =
-              name;
-
-            input.value =
-              value == null
-                ? ""
-                : String(value);
-
-            postForm.appendChild(
-              input
-            );
-
-          }
-
-
-          const formData =
-            new FormData(uploadForm);
-
-
-          addField(
-            "adSoyad",
-            formData.get("adSoyad")
-          );
-
-
-          addField(
-            "adSoyad2",
-            formData.get("adSoyad2") || ""
-          );
-
-
-          addField(
-            "adSoyad3",
-            formData.get("adSoyad3") || ""
-          );
-
-
-          addField(
-            "email",
-            formData.get("email")
-          );
-
-
-          addField(
-            "telefon",
-            formData.get("telefon")
-          );
-
-
-          addField(
-            "bilet",
-            selectedTicket.value
-          );
-
-
-          addField(
-            "biletSayisi",
-            selectedTicket.value
-          );
-
-
-          addField(
-            "kabul",
-            "KABUL"
-          );
-
-
-          addField(
-            "rulesAccepted",
-            "true"
-          );
-
-
-          addField(
-            "submissionId",
-            createSubmissionId()
-          );
-
-
-          addField(
-            "dekontBase64",
-            base64
-          );
-
-
-          addField(
-            "dekontMimeType",
-            file.type ||
-            "application/octet-stream"
-          );
-
-
-          addField(
-            "dekontFileName",
-            file.name
-          );
-
-
-          document.body.appendChild(
-            postForm
-          );
-
-
-          /*
-           * ÖNCE POST'U GÖNDERİYORUZ.
-           * SONRA 90 SANİYELİK ZAMAN AŞIMINI BAŞLATIYORUZ.
-           */
-          setTimeout(
-            function() {
-
-              try {
-
-                postForm.submit();
-
-                console.log(
-                  "APPS SCRIPT POST GÖNDERİLDİ"
-                );
-
-
-                loadingTimeout =
-                  setTimeout(
-                    function() {
-
-                      if (
-                        loadingOverlay.style.display === "flex"
-                      ) {
-
-                        showError(
-                          "İşlem zaman aşımına uğradı. Lütfen internet bağlantınızı kontrol edip tekrar deneyin."
-                        );
-
-                      }
-
-                    },
-                    90000
-                  );
-
-
-              } catch (submitError) {
-
-                console.error(
-                  "POST HATASI:",
-                  submitError
-                );
-
-
-                showError(
-                  "Bilet gönderilirken bir hata oluştu: " +
-                  submitError.message
-                );
-
-              }
-
-            },
-            50
-          );
-
-
-          /*
-           * POST FORMU BİR SÜRE SONRA TEMİZLE.
-           */
-          setTimeout(
-            function() {
-
-              if (
-                postForm &&
-                postForm.parentNode
-              ) {
-
-                postForm.remove();
-
-              }
-
-            },
-            20000
-          );
-
-
-        } catch (error) {
-
-          console.error(
-            "FORM HATASI:",
-            error
-          );
-
-
-          showError(
-            error.message ||
-            "Bir hata oluştu. Lütfen tekrar deneyin."
-          );
-
-        }
-
-      }
-    );
-
-
-    /*
-     * =========================================================
-     * SADECE VIBE EVENT MESAJLARINI DİNLİYORUZ
-     * =========================================================
-     *
-     * Google'ın iframe sisteminden gelen:
-     *
-     * registerAsChildFrameAck
-     * remoteFrameAck
-     *
-     * gibi mesajlar BURADA YOK SAYILIR.
-     *
-     * Apps Script'ten gelen mesajın içinde:
-     *
-     * source: "VIBE_EVENT"
-     *
-     * olması zorunludur.
-     */
-    window.addEventListener(
-      "message",
-      function(event) {
-
-        if (
-          event.source !==
-          responseFrame.contentWindow
-        ) {
-
-          return;
-
-        }
-
-
-        const result =
-          event.data;
-
-
-        if (
-          !result ||
-          typeof result !== "object"
-        ) {
-
-          return;
-
-        }
-
-
-        /*
-         * GOOGLE / DİĞER IFRAME MESAJLARINI YOK SAY.
-         */
-        if (
-          result.source !==
-          "VIBE_EVENT"
-        ) {
-
-          console.log(
-            "YOK SAYILAN IFRAME MESAJI:",
-            result
-          );
-
-          return;
-
-        }
-
-
-        console.log(
-          "VIBE EVENT APPS SCRIPT CEVABI:",
-          result
-        );
-
-
-        /*
-         * ARTIK GERÇEK APPS SCRIPT CEVABI GELDİ.
-         */
-        stopLoadingTimeout();
-
-
-        /*
-         * BİLET BAŞARILI.
-         */
-        if (
-          result.success === true
-        ) {
-
-          const ticketId =
-            result.ticketId;
-
-
-          if (!ticketId) {
-
-            showError(
-              "Bilet oluşturuldu ancak bilet numarası alınamadı."
             );
 
             return;
@@ -1898,56 +1350,595 @@
           }
 
 
-          successTicketId.textContent =
-            ticketId;
+          const base64 =
+            result.substring(
+              result.indexOf(",") + 1
+            );
 
 
-          loadingOverlay.style.display =
-            "none";
+          if (!base64) {
+
+            reject(
+              new Error(
+                "Dekont verisi alınamadı."
+              )
+            );
+
+            return;
+
+          }
 
 
-          submitButton.disabled =
-            false;
+          resolve(base64);
+
+        };
 
 
-          submitButton.style.opacity =
-            "1";
+      reader.onerror =
+        function() {
 
-
-          mainPage.style.display =
-            "none";
-
-
-          successScreen.style.display =
-            "flex";
-
-
-          window.scrollTo(
-            0,
-            0
+          reject(
+            new Error(
+              "Dekont okunurken hata oluştu."
+            )
           );
 
+        };
+
+
+      reader.readAsDataURL(file);
+
+    });
+
+  }
+
+
+  fileInput.addEventListener(
+    "change",
+    function() {
+
+      clearError();
+
+
+      if (
+        !fileInput.files ||
+        fileInput.files.length === 0
+      ) {
+
+        selectedFileName.style.display = "none";
+
+        selectedFileName.textContent = "";
+
+        return;
+
+      }
+
+
+      const file =
+        fileInput.files[0];
+
+
+      if (
+        file.size >
+        10 * 1024 * 1024
+      ) {
+
+        fileInput.value = "";
+
+        selectedFileName.style.display = "none";
+
+        showError(
+          "Dekont dosyası maksimum 10 MB olabilir."
+        );
+
+        return;
+
+      }
+
+
+      selectedFileName.textContent =
+        "✓ " + file.name;
+
+      selectedFileName.style.display =
+        "block";
+
+    }
+  );
+
+
+  uploadForm.addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+      clearError();
+
+      stopLoadingTimeout();
+
+
+      let file = null;
+
+
+      if (
+        fileInput &&
+        fileInput.files &&
+        fileInput.files.length > 0
+      ) {
+
+        file =
+          fileInput.files[0];
+
+      }
+
+
+      if (!file) {
+
+        showError(
+          "Lütfen ödeme dekontunuzu yükleyin."
+        );
+
+        return;
+
+      }
+
+
+      const maxSize =
+        10 * 1024 * 1024;
+
+
+      if (
+        file.size >
+        maxSize
+      ) {
+
+        showError(
+          "Dekont dosyası maksimum 10 MB olabilir."
+        );
+
+        return;
+
+      }
+
+
+      const rulesCheck =
+        document.getElementById("rulesCheck");
+
+
+      if (!rulesCheck.checked) {
+
+        showError(
+          "Devam etmek için etkinlik kurallarını kabul etmelisiniz."
+        );
+
+        return;
+
+      }
+
+
+      const selectedTicket =
+        document.querySelector(
+          'input[name="bilet"]:checked'
+        );
+
+
+      if (!selectedTicket) {
+
+        showError(
+          "Lütfen bilet sayısını seçin."
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        loadingOverlay.style.display =
+          "flex";
+
+        submitButton.disabled =
+          true;
+
+        submitButton.style.opacity =
+          "0.6";
+
+
+        const base64 =
+          await readFileAsBase64(file);
+
+
+        const postForm =
+          document.createElement("form");
+
+
+        postForm.method =
+          "POST";
+
+        postForm.action =
+          APPS_SCRIPT_URL;
+
+        postForm.target =
+          "appsScriptResponse";
+
+        postForm.enctype =
+          "application/x-www-form-urlencoded";
+
+
+        postForm.style.position =
+          "fixed";
+
+        postForm.style.width =
+          "2px";
+
+        postForm.style.height =
+          "2px";
+
+        postForm.style.left =
+          "-100px";
+
+        postForm.style.bottom =
+          "-100px";
+
+        postForm.style.opacity =
+          "0.01";
+
+        postForm.style.pointerEvents =
+          "none";
+
+
+        function addField(name, value) {
+
+          const input =
+            document.createElement("input");
+
+          input.type =
+            "hidden";
+
+          input.name =
+            name;
+
+          input.value =
+            value == null
+              ? ""
+              : String(value);
+
+          postForm.appendChild(
+            input
+          );
+
+        }
+
+
+        const formData =
+          new FormData(uploadForm);
+
+
+        addField(
+          "adSoyad",
+          formData.get("adSoyad")
+        );
+
+
+        addField(
+          "adSoyad2",
+          formData.get("adSoyad2") || ""
+        );
+
+
+        addField(
+          "adSoyad3",
+          formData.get("adSoyad3") || ""
+        );
+
+
+        addField(
+          "email",
+          formData.get("email")
+        );
+
+
+        addField(
+          "telefon",
+          formData.get("telefon")
+        );
+
+
+        addField(
+          "bilet",
+          selectedTicket.value
+        );
+
+
+        addField(
+          "biletSayisi",
+          selectedTicket.value
+        );
+
+
+        addField(
+          "kabul",
+          "KABUL"
+        );
+
+
+        addField(
+          "rulesAccepted",
+          "true"
+        );
+
+
+        addField(
+          "submissionId",
+          createSubmissionId()
+        );
+
+
+        addField(
+          "dekontBase64",
+          base64
+        );
+
+
+        addField(
+          "dekontMimeType",
+          file.type ||
+          "application/octet-stream"
+        );
+
+
+        addField(
+          "dekontFileName",
+          file.name
+        );
+
+
+        document.body.appendChild(
+          postForm
+        );
+
+
+        /*
+         * POST'U GÖNDER.
+         */
+        setTimeout(
+          function() {
+
+            try {
+
+              postForm.submit();
+
+              console.log(
+                "VIBE EVENT: APPS SCRIPT POST GÖNDERİLDİ"
+              );
+
+
+              loadingTimeout =
+                setTimeout(
+                  function() {
+
+                    if (
+                      loadingOverlay.style.display === "flex"
+                    ) {
+
+                      showError(
+                        "İşlem zaman aşımına uğradı. Lütfen internet bağlantınızı kontrol edip tekrar deneyin."
+                      );
+
+                    }
+
+                  },
+                  90000
+                );
+
+
+            } catch (submitError) {
+
+              console.error(
+                "VIBE EVENT: POST HATASI:",
+                submitError
+              );
+
+
+              showError(
+                "Bilet gönderilirken bir hata oluştu: " +
+                submitError.message
+              );
+
+            }
+
+          },
+          50
+        );
+
+
+        /*
+         * POST FORMUNU SONRADAN TEMİZLE.
+         */
+        setTimeout(
+          function() {
+
+            if (
+              postForm &&
+              postForm.parentNode
+            ) {
+
+              postForm.remove();
+
+            }
+
+          },
+          120000
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "VIBE EVENT: FORM HATASI:",
+          error
+        );
+
+
+        showError(
+          error.message ||
+          "Bir hata oluştu. Lütfen tekrar deneyin."
+        );
+
+      }
+
+    }
+  );
+
+
+  /*
+   * =========================================================
+   * APPS SCRIPT'TEN GELEN MESAJLARI DİNLİYORUZ
+   * =========================================================
+   *
+   * ÖNEMLİ:
+   * event.source kontrolünü KALDIRDIK.
+   *
+   * Çünkü Apps Script iframe yapısında browser,
+   * responseFrame.contentWindow ile aynı source'u
+   * vermeyebiliyor.
+   *
+   * Bunun yerine sadece:
+   *
+   * source: "VIBE_EVENT"
+   *
+   * olan mesajı kabul ediyoruz.
+   */
+  window.addEventListener(
+    "message",
+    function(event) {
+
+      console.log(
+        "VIBE EVENT: message alındı:",
+        event.data
+      );
+
+
+      const result =
+        event.data;
+
+
+      if (
+        !result ||
+        typeof result !== "object"
+      ) {
+
+        return;
+
+      }
+
+
+      /*
+       * SADECE BİZİM APPS SCRIPT CEVABIMIZI KABUL ET.
+       */
+      if (
+        result.source !==
+        "VIBE_EVENT"
+      ) {
+
+        return;
+
+      }
+
+
+      console.log(
+        "VIBE EVENT: GERÇEK APPS SCRIPT CEVABI:",
+        result
+      );
+
+
+      /*
+       * GERÇEK CEVAP GELDİ.
+       * ARTIK TIMEOUT GEREKMİYOR.
+       */
+      stopLoadingTimeout();
+
+
+      /*
+       * BİLET BAŞARILI.
+       */
+      if (
+        result.success === true
+      ) {
+
+        const ticketId =
+          result.ticketId;
+
+
+        if (!ticketId) {
+
+          showError(
+            "Bilet oluşturuldu ancak bilet numarası alınamadı."
+          );
 
           return;
 
         }
 
 
-        /*
-         * APPS SCRIPT GERÇEK HATA MESAJI.
-         */
-        showError(
-          "APPS SCRIPT HATASI: " +
-          (
-            result.message ||
-            "Bilinmeyen bir hata oluştu."
-          )
+        successTicketId.textContent =
+          ticketId;
+
+
+        loadingOverlay.style.display =
+          "none";
+
+
+        submitButton.disabled =
+          false;
+
+
+        submitButton.style.opacity =
+          "1";
+
+
+        mainPage.style.display =
+          "none";
+
+
+        successScreen.style.display =
+          "flex";
+
+
+        window.scrollTo(
+          0,
+          0
         );
 
-      }
-    );
 
-  </script>
+        console.log(
+          "VIBE EVENT: BİLET BAŞARIYLA OLUŞTU:",
+          ticketId
+        );
+
+
+        return;
+
+      }
+
+
+      /*
+       * APPS SCRIPT GERÇEK HATA MESAJI.
+       */
+      showError(
+        "APPS SCRIPT HATASI: " +
+        (
+          result.message ||
+          "Bilinmeyen bir hata oluştu."
+        )
+      );
+
+    }
+  );
+
+
+</script>
 
 </body>
 
