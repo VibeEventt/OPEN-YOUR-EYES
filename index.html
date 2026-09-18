@@ -448,7 +448,6 @@
       }
     }
 
-    /* TELEFONDA KULLANILAN LOGO */
     .mobile-logo-card {
       display: none;
     }
@@ -476,11 +475,6 @@
       object-fit: contain;
     }
 
-    /* =========================================================
-       TELEFON DÜZENİ
-       SADECE 599PX VE ALTI
-       ========================================================= */
-
     @media (max-width: 599px) {
 
       body {
@@ -501,9 +495,6 @@
         margin-bottom: 14px;
       }
 
-      /*
-       * TELEFONDA ANA GRID 2 EŞİT SÜTUN
-       */
       .main-grid {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -513,21 +504,10 @@
         align-items: stretch;
       }
 
-      /*
-       * FORM VE SIDEBAR KENDİ SÜTUNLARINI KORUMUYOR.
-       * KARTLAR ANA GRID'E DAĞILIYOR.
-       */
       .form-column,
       .sidebar-column {
         display: contents;
       }
-
-      /*
-       * =====================================================
-       * 1. SATIR
-       * KİŞİSEL BİLGİLER | BİLETİN NASIL GELECEK?
-       * =====================================================
-       */
 
       .personal-card {
         grid-column: 1;
@@ -545,38 +525,17 @@
         align-self: stretch;
       }
 
-      /*
-       * =====================================================
-       * 2. SATIR
-       * BİLET SEÇİMİ
-       * =====================================================
-       */
-
       .ticket-selection-card {
         grid-column: 1 / -1;
         grid-row: 2;
         margin-bottom: 0;
       }
 
-      /*
-       * =====================================================
-       * 3. SATIR
-       * ÖDEME BİLGİLERİ
-       * =====================================================
-       */
-
       .payment-card {
         grid-column: 1 / -1;
         grid-row: 3;
         margin-bottom: 0;
       }
-
-      /*
-       * =====================================================
-       * 4. SATIR
-       * DEKONT YÜKLEME | LOGO
-       * =====================================================
-       */
 
       .receipt-card {
         grid-column: 1;
@@ -595,9 +554,6 @@
         align-self: stretch;
       }
 
-      /*
-       * LOGO KUTUSU TAM BOY
-       */
       .mobile-logo-card .mobile-logo-badge {
         width: 100%;
         height: 100%;
@@ -606,13 +562,6 @@
         align-items: center;
         justify-content: center;
       }
-
-      /*
-       * =====================================================
-       * 5. SATIR
-       * BİLETİMİ AL | BİZİ TAKİP ET
-       * =====================================================
-       */
 
       .submit-btn {
         grid-column: 1;
@@ -639,22 +588,12 @@
         justify-content: center;
       }
 
-      /*
-       * =====================================================
-       * 6. SATIR
-       * ETKİNLİK KURALLARI
-       * =====================================================
-       */
-
       .rules-card {
         grid-column: 1 / -1;
         grid-row: 6;
         margin-bottom: 0;
       }
 
-      /*
-       * HATA KUTUSU
-       */
       #errorBox {
         grid-column: 1 / -1;
         grid-row: 7;
@@ -662,9 +601,6 @@
         margin-bottom: 0;
       }
 
-      /*
-       * MOBİL KART BOYUTLARI
-       */
       .section-card,
       .info-card {
         padding: 14px;
@@ -687,9 +623,6 @@
         line-height: 1.2;
       }
 
-      /*
-       * KİŞİSEL BİLGİLER
-       */
       .input-grid {
         grid-template-columns: 1fr !important;
         gap: 8px;
@@ -702,9 +635,6 @@
         font-size: 0.75rem;
       }
 
-      /*
-       * BİLET SEÇİMİ
-       */
       .ticket-options {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 7px;
@@ -723,9 +653,6 @@
         font-size: 0.78rem;
       }
 
-      /*
-       * IBAN
-       */
       .iban-card {
         padding: 12px 8px;
       }
@@ -746,9 +673,6 @@
         line-height: 1.4;
       }
 
-      /*
-       * DEKONT
-       */
       .file-upload-box {
         padding: 14px 7px;
       }
@@ -758,9 +682,6 @@
         line-height: 1.35;
       }
 
-      /*
-       * BİLETİN NASIL GELECEK
-       */
       .info-card h4 {
         font-size: 0.74rem;
         line-height: 1.3;
@@ -774,16 +695,10 @@
         margin-bottom: 9px;
       }
 
-      /*
-       * BİZİ TAKİP ET
-       */
       .social-card p {
         font-size: 0.70rem !important;
       }
 
-      /*
-       * KURALLAR
-       */
       .rules-list li {
         font-size: 0.67rem;
         line-height: 1.45;
@@ -795,9 +710,6 @@
         line-height: 1.4;
       }
 
-      /*
-       * MOBİLDE ESKİ FOOTER LOGOSU GİZLİ
-       */
       footer {
         margin-top: 18px;
         padding-top: 16px;
@@ -830,10 +742,6 @@
         display: block;
       }
     }
-
-    /* =========================================================
-       BAŞARI EKRANI
-       ========================================================= */
 
     #successScreen {
       display: none;
@@ -996,10 +904,6 @@
       color: transparent;
     }
 
-    /* =========================================================
-       LOADING
-       ========================================================= */
-
     #loadingOverlay {
       display: none;
       position: fixed;
@@ -1088,14 +992,12 @@
 
   <div class="container" id="mainPage">
 
-    <!-- POSTER -->
     <div class="hero-container">
       <div class="poster-card">
         <img src="DJ TINA - 1.jpeg" alt="DJ TINA Open Your Eyes Poster">
       </div>
     </div>
 
-    <!-- HAZIR OL -->
     <div class="description-card">
 
       <div class="description-title">
@@ -1112,11 +1014,8 @@
 
       <div class="main-grid">
 
-        <!-- SOL SÜTUN -->
-
         <div class="form-column">
 
-          <!-- 1 - KİŞİSEL BİLGİLER -->
           <div class="section-card personal-card">
 
             <div class="step-header">
@@ -1170,7 +1069,6 @@
 
           </div>
 
-          <!-- 2 - BİLET SEÇİMİ -->
           <div class="section-card ticket-selection-card">
 
             <div class="step-header">
@@ -1206,7 +1104,7 @@
                 </div>
 
                 <span class="opt-price">
-                  400₺
+                  420₺
                 </span>
 
               </label>
@@ -1226,7 +1124,7 @@
                 </div>
 
                 <span class="opt-price">
-                  750₺
+                  770₺
                 </span>
 
               </label>
@@ -1246,7 +1144,7 @@
                 </div>
 
                 <span class="opt-price">
-                  1150₺
+                  1200₺
                 </span>
 
               </label>
@@ -1255,7 +1153,6 @@
 
           </div>
 
-          <!-- 3 - ÖDEME BİLGİLERİ -->
           <div class="section-card payment-card">
 
             <div class="step-header">
@@ -1266,11 +1163,11 @@
             <div class="iban-card">
 
               <div class="iban-no">
-                IBAN: TR02 0001 2009 4570 0001 1277 39
+                IBAN: TR83 0001 5001 5800 7391 0361 53
               </div>
 
               <div class="iban-holder">
-                Hesap Sahibi: Turgut Çağatay Ünal
+                Hesap Sahibi: Adar Fidan
               </div>
 
             </div>
@@ -1281,7 +1178,6 @@
 
           </div>
 
-          <!-- 4 - DEKONT YÜKLEME -->
           <div
             class="section-card receipt-card"
             style="margin-bottom: 12px;"
@@ -1328,7 +1224,6 @@
 
           </div>
 
-          <!-- BİLETİMİ AL -->
           <button
             type="submit"
             class="submit-btn"
@@ -1341,11 +1236,8 @@
 
         </div>
 
-        <!-- SAĞ SÜTUN -->
-
         <div class="sidebar-column">
 
-          <!-- BİLETİN NASIL GELECEK -->
           <div class="info-card how-ticket-card">
 
             <h4>
@@ -1374,7 +1266,6 @@
 
           </div>
 
-          <!-- SADECE TELEFONDA GÖRÜNEN LOGO -->
           <div class="mobile-logo-card">
 
             <div class="mobile-logo-badge">
@@ -1388,7 +1279,6 @@
 
           </div>
 
-          <!-- BİZİ TAKİP ET -->
           <div
             class="info-card social-card"
             style="text-align: center;"
@@ -1422,7 +1312,6 @@
 
           </div>
 
-          <!-- ETKİNLİK KURALLARI -->
           <div class="info-card rules-card">
 
             <h4 style="color: #f43f5e;">
@@ -1480,7 +1369,6 @@
 
     </form>
 
-    <!-- FOOTER -->
     <footer>
 
       <div class="footer-logo-badge">
@@ -1517,8 +1405,6 @@
 
   </div>
 
-
-  <!-- BAŞARI EKRANI -->
 
   <div id="successScreen">
 
@@ -1564,8 +1450,6 @@
   </div>
 
 
-  <!-- LOADING -->
-
   <div id="loadingOverlay">
 
     <div class="loading-box">
@@ -1585,8 +1469,6 @@
 
   </div>
 
-
-  <!-- APPS SCRIPT CEVAP IFRAME -->
 
   <iframe
     name="appsScriptResponse"
